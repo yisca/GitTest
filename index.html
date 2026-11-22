@@ -112,7 +112,7 @@ button{font-family:inherit}
 .feat-txt p{color:var(--muted)}
 .feat-txt .more{display:inline-flex;align-items:center;gap:8px;color:#7d6a3c;font-weight:600;margin-top:22px}
 .badge{display:inline-block;padding:5px 14px;border-radius:999px;font-size:.82rem;font-weight:500;color:#fff;background:var(--sell)}
-.badge.soon{background:var(--soon)}.badge.done{background:var(--done)}.badge.lt{background:rgba(255,255,255,.92);color:var(--ink)}
+.badge.soon{background:var(--soon)}.badge.occ{background:var(--olive)}.badge.done{background:var(--done)}.badge.lt{background:rgba(255,255,255,.92);color:var(--ink)}
 
 /* ===== why ===== */
 .why{background:var(--bg-2)}
@@ -125,8 +125,8 @@ button{font-family:inherit}
 .card p{color:var(--muted);font-size:.97rem}
 
 /* ===== projects ===== */
-.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.pcard{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:1/0.93;cursor:pointer;background:var(--olive);isolation:isolate}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.pcard{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:16/11;max-width:100%;cursor:pointer;background:var(--olive);isolation:isolate}
 .pcard img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
 .pcard:hover img{transform:scale(1.06)}
 .pcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),transparent 30%,transparent 55%,rgba(0,0,0,.55));z-index:1}
@@ -415,9 +415,9 @@ footer .disc{max-width:720px}
 <section id="numbers">
   <div class="wrap nums">
     <div class="num rv"><b dir="ltr"><span data-count="10" style="font-size:inherit;color:inherit">10</span>+</b><span>שנות ניסיון בשוק הנדל״ן</span></div>
-    <div class="num rv"><b data-count="55">55</b><span>נכסים שהושכרו בפרויקטים חדשים</span></div>
-    <div class="num rv"><b data-count="12">12</b><span>דירות שנמכרו בפרויקטים חדשים</span></div>
-    <div class="num rv"><b data-count="412">412</b><span>יחידות דיור בפרויקטים שבהם אנחנו פועלים</span></div>
+    <div class="num rv"><b data-count="105">105</b><span>נכסים שהושכרו בפרויקטים חדשים</span></div>
+    <div class="num rv"><b data-count="19">19</b><span>דירות שנמכרו בפרויקטים חדשים</span></div>
+    <div class="num rv"><b data-count="560">560</b><span>יחידות דיור בפרויקטים שבהם אנחנו פועלים</span></div>
   </div>
 </section>
 
@@ -661,7 +661,7 @@ footer .disc{max-width:720px}
       <details><summary>כמה זמן לוקח להגיע לתל אביב?</summary><p>ברכבת מתחנת גני אביב כ-10–12 דקות לתחנת תל אביב ההגנה, לפי פרסומי העירייה והיזמים. ברכב, תלוי בתנועה.</p></details>
       <details><summary>מתי השכונה מתאכלסת?</summary><p>האכלוס מתבצע בשלבים, ומועדי המסירה משתנים לפי יזם ופרויקט – רובם צפויים בין 2027 ל-2029.</p></details>
       <details><summary>יש לי דירה בפרויקט חדש – איך אתם עוזרים?</summary><p>אנחנו מתמחרים את הנכס לפי העסקאות בפרויקט, משווקים אותו, מסננים מתעניינים, מנהלים משא ומתן ומלווים עד החתימה והמסירה. רק במגדלי אמפא ברחובות השכרנו 45 נכסים.</p></details>
-      <details><summary>אתם עובדים רק בלוד?</summary><p>לא. אנחנו חברת שיווק נדל״ן בפריסה ארצית ופעילים בפרויקטים בלוד, ברחובות ובמרכז הארץ. הרובע הבינלאומי הוא מוקד הפעילות הנוכחי שלנו.</p></details>
+      <details><summary>אתם עובדים רק בלוד?</summary><p>לא. אנחנו חברת שיווק נדל״ן בפריסה ארצית ופעילים בפרויקטים בלוד, ברחובות, בבת ים ובמרכז הארץ. הרובע הבינלאומי הוא מוקד הפעילות הנוכחי שלנו.</p></details>
       <details><summary>אני יזם – אפשר למסור לכם פרויקט לשיווק?</summary><p>בהחלט. השאירו פרטים בטופס (מסלול "בעלי נכסים") ונחזור אליכם לפגישה.</p></details>
     </div>
   </div>
@@ -754,7 +754,7 @@ footer .disc{max-width:720px}
    נתוני האתר – כדי להוסיף פרויקט / נכס חדש פשוט מוסיפים פריט למערכים
    ===================================================================== */
 var WA='972584128725';
-var STATUS={sell:{t:'בשיווק',c:'#1f7a3d',cls:''},soon:{t:'בקרוב בשיווק',c:'#c2410c',cls:'soon'},done:{t:'השיווק הסתיים',c:'#b91c1c',cls:'done'}};
+var STATUS={sell:{t:'בשיווק',c:'#1f7a3d',cls:''},soon:{t:'בקרוב בשיווק',c:'#c2410c',cls:'soon'},done:{t:'השיווק הסתיים',c:'#b91c1c',cls:'done'},occ:{t:'מאוכלס',c:'#454a3f',cls:'occ'}};
 
 var PROJECTS=[
   {id:'aderet',name:'רם אדרת',city:'אחיסמך, לוד',region:'lod',status:'sell',img:'assets/img/facade-234.jpg',
@@ -773,7 +773,13 @@ var PROJECTS=[
    desc:'השכונה החדשה של לוד – כ-11,350 יחידות דיור של יזמים מובילים, 500 מ׳ מתחנת רכבת גני אביב. אנחנו מלווים רוכשים, שוכרים ובעלי דירות בפרויקטים השונים ברובע.',
    res:[['11K+','יח"ד מתוכננות'],['~12','דק׳ לתל אביב'],['2027+','אכלוס בשלבים']],
    rows:[['תכנון','החברה הכלכלית לוד ו"דירה להשכיר"'],['שטח','כ-1,600 דונם'],['פעילות','רכישה, השכרה וליווי בעלי דירות']],
-   link:'#quarter'}
+   link:'#quarter'},
+  {id:'davidson',name:'דוידסון בפארק הים',city:'בת ים',region:'center',status:'occ',img:'assets/img/davidson-sea.jpg',
+   gallery:['assets/img/davidson-sea.jpg','assets/img/davidson-cover.jpg','assets/img/davidson-tower.jpg','assets/img/davidson-entrance.jpg','assets/img/davidson-aerial.jpg','assets/img/davidson-coast.jpg'],
+   lat:31.9975,lng:34.7400,
+   desc:'מגדל מגורים יוקרתי בן 40 קומות בקו ראשון לים, בשכונת פארק הים בבת ים החדשה – על הגבול עם חוף ראשון לציון, דקה ממחלף הקוממיות ודקות מתל אביב. 148 דירות עם נוף פתוח לים, והמגדל כבר מאוכלס.',
+   res:[[50,'נכסים הושכרו'],[7,'דירות נמכרו'],[148,'דירות בפרויקט']],
+   rows:[['יזם','קבוצת דוידסון'],['מגדל','40 קומות, קו ראשון לים'],['דירות','148'],['שכונה','פארק הים, בת ים'],['מפרט','לובי בחלל כפול, 4 מעליות מהירות, חניון תת-קרקעי, חדר עגלות ואופניים'],['סטטוס','מאוכלס']]}
 ];
 
 var REGIONS=[['all','כל הפרויקטים'],['lod','לוד והסביבה'],['center','מרכז ושפלה']];
@@ -792,6 +798,7 @@ var FEATURED={
   'להשכרה':[
     {img:'assets/img/ampa-night.jpg',proj:'מגדלי אמפא · רחובות',title:'דירות 3–5 חדרים להשכרה',meta:['כ-75–121 מ"ר','מרפסת שמש'],desc:'דירות חדשות במגדלי אמפא ברחובות – 4 מגדלים בני 17 קומות עם חניה ומחסן, מועדון דיירים ושדרת מסחר למטה. כבר השכרנו בפרויקט 45 נכסים; ספרו לנו מה אתם מחפשים ונציג את הדירות הזמינות.',badge:'sell'},
     {img:'assets/img/ampa-aerial.jpg',proj:'מגדלי אמפא · רחובות',title:'מיני-פנטהאוזים ופנטהאוזים',meta:['קומות עליונות','נוף פתוח'],desc:'דירות הגג של מגדלי אמפא – מרפסות רחבות ונוף פתוח, בסמוך לחצרות המושבה ולצומת ששת הימים.',badge:'sell'},
+    {img:'assets/img/davidson-coast.jpg',proj:'דוידסון בפארק הים · בת ים',title:'דירות עם נוף לים',meta:['קו ראשון לים','מגדל 40 קומות'],desc:'דירות במגדל דוידסון בפארק הים – מגדל מאוכלס עם נוף פתוח לים, לובי בחלל כפול וחניון תת-קרקעי. השכרנו בפרויקט 50 נכסים; ספרו לנו מה אתם מחפשים.',badge:'sell'},
     {img:'assets/img/penthouse-living.jpg',proj:'פרויקטים חדשים · מרכז',title:'דירות חדשות להשכרה',meta:['כניסה מיידית / גמישה','מקבלן'],desc:'דירות חדשות בפרויקטים שאנחנו מלווים – 3, 4 ו-5 חדרים. ספרו לנו מה אתם מחפשים ונציג לכם את הנכסים הזמינים עכשיו.',badge:'sell'},
     {img:'assets/img/facade-front.jpg',proj:'רם אדרת · אחיסמך',title:'דופלקסים להשכרה',meta:['בניין בוטיק','גינה / גג'],desc:'דופלקסים וטריפלקסים בפרויקט בוטיק – לפרטים על היחידות הפנויות השאירו פרטים.',badge:'sell'}
   ]
