@@ -23,6 +23,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+html{color-scheme:light}
 body{font-family:Heebo,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:17px;font-weight:400;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -286,7 +287,7 @@ footer .bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;p
 footer .disc{max-width:720px}
 
 /* ===== floating / modal ===== */
-.fab{position:fixed;left:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(31,168,85,.7)}
+.fab{position:fixed;left:calc(22px + env(safe-area-inset-left,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:60;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(31,168,85,.7)}
 .fab svg{width:30px;height:30px;color:#fff}
 .mbar{display:none}
 .modal{position:fixed;inset:0;z-index:100;background:rgba(20,22,18,.78);display:none;align-items:center;justify-content:center;padding:20px}
@@ -312,8 +313,8 @@ footer .disc{max-width:720px}
 .lb .x{top:20px;left:20px}.lb .p{right:20px;top:50%}.lb .n{left:20px;top:50%}
 
 /* reveal */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
-.rv.in{opacity:1;transform:none}
+.rv{transition:opacity .9s ease,transform .9s ease}
+.rv.pre{opacity:0;transform:translateY(28px)}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.hero-bg{animation:none;transform:none}}
 
 /* ===== responsive ===== */
@@ -361,7 +362,7 @@ footer .disc{max-width:720px}
   .mbox .mtx{padding:34px 22px}
   .fab{display:none}
   .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;bottom:0;left:0;right:0;z-index:60}
-  .mbar a{padding:15px;text-align:center;color:#fff;font-weight:500}
+  .mbar a{padding:15px 15px calc(15px + env(safe-area-inset-bottom,0px));text-align:center;color:#fff;font-weight:500}
   .mbar a:first-child{background:var(--olive)}.mbar a:last-child{background:var(--wa)}
   footer{padding-bottom:90px}
   #map{min-height:360px}
@@ -700,7 +701,7 @@ footer .disc{max-width:720px}
           </div>
           <label>דרישות והעדפות<textarea name="העדפות" rows="3" placeholder="קומה, מרפסת, חניה, מועד כניסה..."></textarea></label>
           <button class="send" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>שלח פרטים</button>
-          <div class="ok">תודה! נחזור אליכם בהקדם.</div>
+          <div class="ok"></div>
           <p class="fine">בלחיצה על "שלח פרטים" תיפתח הודעת וואטסאפ מוכנה עם הפרטים. הפרטים ישמשו לחזרה אליכם בלבד.</p>
         </form>
 
@@ -716,7 +717,7 @@ footer .disc{max-width:720px}
           <label>פרויקט / כתובת הנכס<select name="פרויקט" class="projsel"></select></label>
           <label>פרטי הנכס<textarea name="פרטי הנכס" rows="3" placeholder="קומה, שטח, מרפסת, מועד פינוי, מחיר מבוקש..."></textarea></label>
           <button class="send" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>שלח פרטים</button>
-          <div class="ok">תודה! נחזור אליכם בהקדם.</div>
+          <div class="ok"></div>
           <p class="fine">בלחיצה על "שלח פרטים" תיפתח הודעת וואטסאפ מוכנה עם הפרטים. הפרטים ישמשו לחזרה אליכם בלבד.</p>
         </form>
       </div>
@@ -828,7 +829,7 @@ var STEPS=[
 
   /* projects grid + filters */
   var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
-  function card(p){var s=STATUS[p.status];var el=document.createElement('article');el.className='pcard rv in'+(p.img?'':' typo');el.dataset.region=p.region;
+  function card(p){var s=STATUS[p.status];var el=document.createElement('article');el.className='pcard'+(p.img?'':' typo');el.dataset.region=p.region;
     el.innerHTML=(p.img?'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy">':'<div class="big"><div class="row">'+p.res.slice(0,2).map(function(r){return '<div><b>'+r[0]+'</b><br><small>'+r[1]+'</small></div>'}).join('')+'</div></div>')+
       '<div class="tops"><span class="badge lt">פרויקטים חדשים</span><span class="badge '+s.cls+'">'+s.t+'</span></div>'+
       '<div class="name"><span>'+p.name+' · '+p.city+'</span><i>'+arrow+'</i></div>';
@@ -867,7 +868,9 @@ var STEPS=[
   $$('.form').forEach(function(f){f.onsubmit=function(e){e.preventDefault();
     var head=f.dataset.form==='owner'?'פנייה מבעל/ת נכס':'פנייה ממחפש/ת דירה';var lines=['היי, הגעתי מהאתר של אמון נדל״ן',head];
     new FormData(f).forEach(function(v,k){if(String(v).trim())lines.push(k+': '+v)});
-    window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(lines.join('\n')),'_blank');$('.ok',f).style.display='block';f.reset()}});
+    var url='https://wa.me/'+WA+'?text='+encodeURIComponent(lines.join('\n'));var ok=$('.ok',f);
+    ok.innerHTML='הפרטים מוכנים. <a href="'+url+'" target="_blank" rel="noopener" style="text-decoration:underline;font-weight:600">לחצו כאן לשליחה בוואטסאפ</a>';ok.style.display='block';
+    try{window.open(url,'_blank')}catch(err){}}});
 
   /* map */
   var legend=$('#legend');
@@ -881,7 +884,22 @@ var STEPS=[
       var li=document.createElement('li');li.innerHTML='<i style="background:'+s.c+'"></i>'+p.name+' · '+p.city;li.onclick=function(){map.flyTo([p.lat,p.lng],14);m.openPopup()};legend.appendChild(li)});
     map.fitBounds(bounds,{padding:[60,60]});
     map.on('popupopen',function(e){var a=e.popup.getElement().querySelector('[data-open]');if(a)a.onclick=function(ev){ev.preventDefault();openP(PROJECTS.filter(function(p){return p.id===a.dataset.open})[0])}});
-  } else { PROJECTS.forEach(function(p){var li=document.createElement('li');li.innerHTML='<i style="background:'+STATUS[p.status].c+'"></i>'+p.name+' · '+p.city;legend.appendChild(li)}); }
+  } else { schematic(); }
+  function schematic(){
+    var W=800,H=520,la0=31.84,la1=32.11,lo0=34.68,lo1=35.0;
+    function xy(lat,lng){return [Math.round((lng-lo0)/(lo1-lo0)*W),Math.round((la1-lat)/(la1-la0)*H)]}
+    var sea=[[32.11,34.775],[32.05,34.745],[31.98,34.725],[31.90,34.705],[31.84,34.69]].map(function(c){return xy(c[0],c[1]).join(',')}).join(' ');
+    var svg='<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" role="img" aria-label="מפה סכמטית של הפרויקטים"><rect width="'+W+'" height="'+H+'" fill="#e6e6df"/>'+
+      '<polygon points="'+sea+' 0,'+H+' 0,0" fill="#cfdbe0"/>'+
+      '<text x="150" y="'+(H/2)+'" fill="#7f97a0" font-size="20" font-family="Heebo,sans-serif" text-anchor="start" direction="rtl">הים התיכון</text>';
+    [['תל אביב',32.075,34.795],['ראשון לציון',31.965,34.805],['נתב"ג',31.998,34.886],['רמלה',31.928,34.866],['באר יעקב',31.94,34.837]].forEach(function(c){var q=xy(c[1],c[2]);
+      svg+='<circle cx="'+q[0]+'" cy="'+q[1]+'" r="4" fill="#8a8d82"/><text x="'+(q[0]-9)+'" y="'+(q[1]+5)+'" fill="#6c7066" font-size="15" font-family="Heebo,sans-serif" direction="rtl">'+c[0]+'</text>'});
+    PROJECTS.forEach(function(p){var q=xy(p.lat,p.lng),s=STATUS[p.status];
+      svg+='<g class="mpt" data-id="'+p.id+'" style="cursor:pointer"><circle cx="'+q[0]+'" cy="'+q[1]+'" r="13" fill="'+s.c+'" stroke="#fff" stroke-width="4"/><text x="'+(q[0]-22)+'" y="'+(q[1]+6)+'" fill="#2f322b" font-size="17" font-weight="600" font-family="Heebo,sans-serif" direction="rtl" paint-order="stroke" stroke="#f3f3ee" stroke-width="5">'+p.name+'</text></g>'});
+    svg+='</svg>';var m=$('#map');m.innerHTML=svg;m.style.overflow='hidden';
+    $$('.mpt',m).forEach(function(g){g.onclick=function(){openP(PROJECTS.filter(function(p){return p.id===g.dataset.id})[0])}});
+    PROJECTS.forEach(function(p){var li=document.createElement('li');li.innerHTML='<i style="background:'+STATUS[p.status].c+'"></i>'+p.name+' · '+p.city;li.onclick=function(){openP(p)};legend.appendChild(li)});
+  }
 
   /* lightbox */
   var imgs=$$('img[data-lb]'),lb=$('#lb'),li=$('img',lb),ix=0;
@@ -892,8 +910,10 @@ var STEPS=[
   addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('on');close()}});
 
   /* reveal + counters */
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
-  $$('.rv').forEach(function(el){io.observe(el)});
+  if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}})},{threshold:.1});
+    $$('.rv').forEach(function(el){if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre');io.observe(el)}});
+  }
   var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;co.unobserve(e.target);var el=e.target,end=+el.dataset.count,t0;
     (function st(ts){t0=t0||ts;var p=Math.min((ts-t0)/1500,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3))).toLocaleString('en-US');if(p<1)requestAnimationFrame(st)})(performance.now())})},{threshold:.5});
   $$('[data-count]').forEach(function(el){co.observe(el)});
