@@ -293,7 +293,10 @@ footer .disc{max-width:720px}
 .modal{position:fixed;inset:0;z-index:100;background:rgba(20,22,18,.78);display:none;align-items:center;justify-content:center;padding:20px}
 .modal.on{display:flex}
 .mbox{background:#fff;border-radius:34px;max-width:980px;width:100%;max-height:92vh;overflow:auto;display:grid;grid-template-columns:1.1fr 1fr}
-.mbox .mimg{min-height:420px;background:var(--olive) center/cover}
+.mbox .mimg{min-height:420px;background:var(--olive) center/cover;position:relative}
+.mthumbs{position:absolute;bottom:14px;right:14px;left:14px;display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.mthumbs button{flex:none;width:64px;height:48px;border-radius:10px;border:2px solid rgba(255,255,255,.6);background:center/cover;cursor:pointer;padding:0}
+.mthumbs button.on{border-color:#fff;box-shadow:0 0 0 2px var(--olive)}
 .mbox .mtx{padding:44px 40px;position:relative}
 .mbox .x{position:absolute;top:18px;left:18px;width:42px;height:42px;border-radius:50%;border:0;background:var(--bg-2);font-size:1.5rem;cursor:pointer}
 .mbox h3{font-weight:500;font-size:1.9rem;color:var(--olive);line-height:1.25;margin:10px 0 4px}
@@ -759,7 +762,8 @@ var PROJECTS=[
    desc:'פרויקט בוטיק של 88 יחידות דיור בלבד – דופלקסים וטריפלקסים בבניינים נמוכים בסגנון מודרני, עם חיפויי עץ, גינות פרטיות, מרפסות רחבות ומרפסות גג עם מטבח חוץ. מגורים בתחושה של בית פרטי.',
    res:[[88,'יח"ד בפרויקט'],[6,'דירות נמכרו'],[10,'דירות הושכרו']],
    rows:[['יזם','רם אדרת'],['סוג','פרויקט בוטיק'],['סוגי דירות','דופלקסים וטריפלקסים'],['פעילות','מכירה והשכרה']]},
-  {id:'ampa',name:'מגדלי אמפא',city:'רחובות',region:'center',status:'sell',img:null,
+  {id:'ampa',name:'מגדלי אמפא',city:'רחובות',region:'center',status:'sell',img:'assets/img/ampa-aerial.jpg',
+   gallery:['assets/img/ampa-aerial.jpg','assets/img/ampa-night.jpg','assets/img/ampa-towers.jpg','assets/img/ampa-street.jpg','assets/img/ampa-boulevard.jpg','assets/img/ampa-construction.jpg'],
    lat:31.8805,lng:34.7915,
    desc:'4 מגדלי מגורים בני 17 קומות בדרך ששת הימים, סמוך לחצרות המושבה בדרום-מערב רחובות: 324 דירות של 3, 4 ו-5 חדרים, מיני-פנטהאוזים ופנטהאוזים, לצד שדרת מסחר. האכלוס החל ב-2024 ושלב ב׳ אוכלס ב-2025.',
    res:[[45,'נכסים הושכרו'],[6,'דירות נמכרו'],[324,'דירות בפרויקט']],
@@ -786,6 +790,8 @@ var FEATURED={
     {img:'assets/img/roof-terrace.jpg',proj:'רם אדרת · אחיסמך',title:'מרפסת צמודה לסלון',meta:['דק עץ','יציאה מהסלון'],desc:'מרפסת דק רחבה הצמודה לחלל המגורים, עם מדרגות פנימיות בין הקומות.',badge:'sell'}
   ],
   'להשכרה':[
+    {img:'assets/img/ampa-night.jpg',proj:'מגדלי אמפא · רחובות',title:'דירות 3–5 חדרים להשכרה',meta:['כ-75–121 מ"ר','מרפסת שמש'],desc:'דירות חדשות במגדלי אמפא ברחובות – 4 מגדלים בני 17 קומות עם חניה ומחסן, מועדון דיירים ושדרת מסחר למטה. כבר השכרנו בפרויקט 45 נכסים; ספרו לנו מה אתם מחפשים ונציג את הדירות הזמינות.',badge:'sell'},
+    {img:'assets/img/ampa-aerial.jpg',proj:'מגדלי אמפא · רחובות',title:'מיני-פנטהאוזים ופנטהאוזים',meta:['קומות עליונות','נוף פתוח'],desc:'דירות הגג של מגדלי אמפא – מרפסות רחבות ונוף פתוח, בסמוך לחצרות המושבה ולצומת ששת הימים.',badge:'sell'},
     {img:'assets/img/penthouse-living.jpg',proj:'פרויקטים חדשים · מרכז',title:'דירות חדשות להשכרה',meta:['כניסה מיידית / גמישה','מקבלן'],desc:'דירות חדשות בפרויקטים שאנחנו מלווים – 3, 4 ו-5 חדרים. ספרו לנו מה אתם מחפשים ונציג לכם את הנכסים הזמינים עכשיו.',badge:'sell'},
     {img:'assets/img/facade-front.jpg',proj:'רם אדרת · אחיסמך',title:'דופלקסים להשכרה',meta:['בניין בוטיק','גינה / גג'],desc:'דופלקסים וטריפלקסים בפרויקט בוטיק – לפרטים על היחידות הפנויות השאירו פרטים.',badge:'sell'}
   ]
@@ -842,7 +848,9 @@ var STEPS=[
   /* project modal */
   var modal=$('#modal');
   function openP(p){var s=STATUS[p.status];
-    $('#mimg').style.backgroundImage=p.img?'url('+p.img+')':'linear-gradient(150deg,#5b6153,#363a31)';
+    var mi=$('#mimg');mi.style.backgroundImage=p.img?'url('+p.img+')':'linear-gradient(150deg,#5b6153,#363a31)';mi.innerHTML='';
+    if(p.gallery){var th=document.createElement('div');th.className='mthumbs';p.gallery.forEach(function(g,i){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','תמונה '+(i+1));b.style.backgroundImage='url('+g+')';if(!i)b.className='on';
+      b.onclick=function(){mi.style.backgroundImage='url('+g+')';$$('button',th).forEach(function(x){x.classList.remove('on')});b.classList.add('on')};th.appendChild(b)});mi.appendChild(th)}
     $('#mtx').innerHTML='<button class="x" aria-label="סגירה">×</button><span class="badge '+s.cls+'">'+s.t+'</span><h3>'+p.name+'</h3><div class="loc">'+p.city+'</div><p>'+p.desc+'</p>'+
       '<div class="res">'+p.res.map(function(r){return '<div><b>'+r[0]+'</b><span>'+r[1]+'</span></div>'}).join('')+'</div>'+
       '<table>'+p.rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'}).join('')+'</table>'+
