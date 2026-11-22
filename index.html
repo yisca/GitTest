@@ -3,699 +3,901 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>הרובע הבינלאומי לוד | מזרחי & כהן נדל"ן</title>
-<meta name="description" content="דירות למכירה ולהשכרה ברובע הבינלאומי בלוד – 12 דקות ברכבת מתל אביב. ליווי אישי של ישראל מזרחי ויהודה כהן: קנייה, השכרה והשקעה בנדל&quot;ן. 058-412-8725">
-<meta property="og:title" content="הרובע הבינלאומי לוד – הזדמנות הנדל&quot;ן של המרכז">
-<meta property="og:description" content="כ-11,350 יחידות דיור, 500 מ' מתחנת רכבת גני אביב, 12 דקות לתל אביב. ליווי מקצועי ממזרחי & כהן נדל&quot;ן.">
+<title>אמון נדל״ן | שיווק פרויקטים, מכירה והשכרה – הרובע הבינלאומי לוד</title>
+<meta name="description" content="אמון נדל״ן – חברת שיווק נדל״ן בפריסה ארצית: שיווק פרויקטים חדשים, מכירת דירות והשכרת נכסים. מתמחים ברובע הבינלאומי בלוד. יהודה כהן וישראל מזרחי, 058-412-8725.">
+<meta property="og:title" content="אמון נדל״ן – הבית הנכון. האנשים הנכונים.">
+<meta property="og:description" content="שיווק פרויקטים חדשים, מכירה והשכרה – עם התמחות ברובע הבינלאומי בלוד.">
 <meta property="og:image" content="assets/img/facade-front.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
 :root{
-  --ink:#14202e; --ink-2:#253447; --muted:#5d6b7a; --line:#e4e0d8;
-  --paper:#faf8f4; --card:#ffffff; --sand:#f1ece3;
-  --gold:#b08a4e; --gold-2:#c9a46a; --wood:#a8693b;
-  --wa:#1fa855;
-  --radius:18px; --shadow:0 18px 50px -20px rgba(20,32,46,.35);
-  --max:1200px;
+  --olive:#454a3f; --olive-d:#363a31; --olive-l:#5b6153;
+  --ink:#2f322b; --muted:#6c7066; --line:#e3e3db;
+  --bg:#ffffff; --bg-2:#f3f3ee; --bg-3:#ebebe3; --cream:#fafaf6;
+  --sell:#1f7a3d; --soon:#c2410c; --done:#b91c1c; --wa:#1fa855;
+  --r-xl:44px; --r-lg:26px; --r-md:16px;
+  --max:1216px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Heebo,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;font-size:17px;overflow-x:hidden}
+body{font-family:Heebo,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:17px;font-weight:400;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
-h1,h2,h3{font-family:"Frank Ruhl Libre",serif;line-height:1.2;font-weight:700}
+button{font-family:inherit}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
-.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-weight:700;letter-spacing:.08em;font-size:.85rem}
-.eyebrow::before{content:"";width:34px;height:2px;background:currentColor}
 .sec{padding:110px 0}
-.sec-head{max-width:760px;margin-bottom:56px}
-.sec-head h2{font-size:clamp(2rem,4vw,3rem);margin:14px 0 18px}
-.sec-head p{color:var(--muted);font-size:1.1rem}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 30px;border-radius:999px;font-weight:700;font-size:1rem;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;font-family:inherit}
-.btn:hover{transform:translateY(-2px)}
-.btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#fff;box-shadow:0 12px 30px -12px rgba(176,138,78,.8)}
-.btn-ghost{border:1.5px solid rgba(255,255,255,.6);color:#fff;background:rgba(255,255,255,.06);backdrop-filter:blur(6px)}
-.btn-wa{background:var(--wa);color:#fff}
-.btn svg{width:20px;height:20px}
+.kicker{display:block;font-size:.9rem;letter-spacing:.14em;color:var(--muted);margin-bottom:12px}
+.h2{font-weight:300;font-size:clamp(2.1rem,4.4vw,3.4rem);line-height:1.2;color:var(--olive)}
+.lead{color:var(--muted);font-size:1.08rem;margin-top:18px}
+.head-c{text-align:center;max-width:760px;margin:0 auto 60px}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 32px;border-radius:999px;font-size:1.02rem;font-weight:500;border:1.5px solid transparent;cursor:pointer;transition:background .25s,color .25s,transform .25s,border-color .25s}
+.pill:hover{transform:translateY(-2px)}
+.pill svg{width:18px;height:18px}
+.pill-dark{background:var(--olive);color:#fff}
+.pill-dark:hover{background:var(--olive-d)}
+.pill-line{border-color:var(--olive);color:var(--olive);background:transparent}
+.pill-line:hover{background:var(--olive);color:#fff}
+.pill-white{background:#fff;color:var(--olive)}
+.pill-ghost{border-color:rgba(255,255,255,.75);color:#fff;background:rgba(0,0,0,.12)}
+.pill-ghost:hover{background:#fff;color:var(--olive)}
+.pill-wa{background:var(--wa);color:#fff}
 
-/* header */
-.hdr{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,box-shadow .3s,padding .3s;padding:22px 0}
-.hdr.solid{background:rgba(250,248,244,.96);backdrop-filter:blur(10px);box-shadow:0 6px 30px -18px rgba(0,0,0,.4);padding:12px 0}
-.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px}
-.logo{display:flex;align-items:center;gap:12px;color:#fff}
-.hdr.solid .logo{color:var(--ink)}
-.logo-mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--gold-2),var(--wood));display:grid;place-items:center;font-family:"Frank Ruhl Libre",serif;font-weight:900;color:#fff;font-size:1.2rem}
-.logo b{display:block;font-family:"Frank Ruhl Libre",serif;font-size:1.25rem;line-height:1}
-.logo small{font-size:.75rem;opacity:.8;letter-spacing:.1em}
-.nav{display:flex;gap:28px;color:#fff;font-weight:500}
-.hdr.solid .nav{color:var(--ink)}
-.nav a{position:relative;opacity:.9}
-.nav a:hover{opacity:1}
-.nav a::after{content:"";position:absolute;right:0;bottom:-6px;height:2px;width:0;background:var(--gold);transition:width .25s}
+/* ===== header ===== */
+.hdr{position:fixed;inset:0 0 auto;z-index:50;padding:20px 0;transition:background .35s,padding .35s,box-shadow .35s}
+.hdr.solid{background:rgba(255,255,255,.96);backdrop-filter:blur(12px);padding:10px 0;box-shadow:0 8px 30px -22px rgba(0,0,0,.5)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:12px;color:#fff;transition:color .3s}
+.logo svg{width:40px;height:40px;flex:none}
+.logo .t{display:flex;flex-direction:column;line-height:1.05}
+.logo b{font-weight:300;font-size:1.75rem;letter-spacing:.02em}
+.logo small{font-size:.68rem;letter-spacing:.32em;opacity:.8;margin-top:4px}
+.hdr.solid .logo{color:var(--olive)}
+.nav{display:flex;gap:34px;color:#fff;font-weight:500;font-size:1rem}
+.nav a{opacity:.92;position:relative;padding:4px 0}
+.nav a::after{content:"";position:absolute;inset:auto 0 -2px auto;width:0;height:1.5px;background:currentColor;transition:width .3s}
 .nav a:hover::after{width:100%}
-.hdr-cta{display:flex;gap:10px;align-items:center}
-.hdr-phone{color:#fff;font-weight:700;direction:ltr}
-.hdr.solid .hdr-phone{color:var(--ink)}
-.burger{display:none;background:none;border:0;color:#fff;cursor:pointer}
-.hdr.solid .burger{color:var(--ink)}
+.hdr.solid .nav{color:var(--ink)}
+.hdr .pill{padding:11px 28px}
+.hdr.solid .pill-white{background:var(--olive);color:#fff}
+.burger{display:none;background:none;border:0;color:#fff;cursor:pointer;padding:6px}
+.hdr.solid .burger{color:var(--olive)}
 
-/* hero */
-.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url(assets/img/facade-front.jpg) center/cover;transform:scale(1.06);animation:kb 18s ease-out forwards}
+/* ===== hero ===== */
+.hero{position:relative;height:100vh;height:100svh;min-height:620px;display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url(assets/img/facade-front.jpg) center 40%/cover;transform:scale(1.08);animation:kb 20s ease-out forwards}
 @keyframes kb{to{transform:scale(1)}}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,22,34,.55) 0%,rgba(14,22,34,.25) 35%,rgba(14,22,34,.88) 100%)}
-.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.35fr .9fr;gap:48px;align-items:end;padding-bottom:90px;padding-top:140px;width:100%}
-.hero h1{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:900;margin:18px 0 20px;text-shadow:0 4px 30px rgba(0,0,0,.35)}
-.hero h1 em{font-style:normal;color:var(--gold-2)}
-.hero p.lead{font-size:1.2rem;max-width:620px;opacity:.95;margin-bottom:32px}
-.hero .eyebrow{color:var(--gold-2)}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
-.chip{padding:7px 16px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);font-size:.9rem;backdrop-filter:blur(6px)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,22,18,.55),rgba(20,22,18,.42) 45%,rgba(20,22,18,.62) 82%,#fff 100%)}
+.hero-in{position:relative;z-index:2;padding:0 20px;max-width:960px}
+.tag{display:inline-block;padding:9px 24px;border-radius:999px;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.1);backdrop-filter:blur(6px);font-size:.95rem}
+.hero h1{font-weight:600;font-size:clamp(3.2rem,10vw,7.2rem);line-height:1.05;margin:30px 0 26px;text-shadow:0 6px 40px rgba(0,0,0,.35)}
+.hero .bar{width:96px;height:1.5px;background:rgba(255,255,255,.65);margin:0 auto 26px}
+.hero .slogan{font-weight:300;font-size:clamp(1.5rem,3.6vw,2.5rem);letter-spacing:.03em}
+.hero .sub{font-size:1.15rem;opacity:.92;margin:14px 0 34px}
+.hero .btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.scroll-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:2;width:26px;height:42px;border:1.5px solid rgba(255,255,255,.7);border-radius:20px}
+.scroll-cue::after{content:"";position:absolute;top:8px;left:50%;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:sc 1.8s infinite}
+@keyframes sc{0%{opacity:0;transform:translateY(0)}40%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
 
-.lead-card{background:rgba(255,255,255,.97);color:var(--ink);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow)}
-.lead-card h3{font-size:1.6rem;margin-bottom:6px}
-.lead-card p{color:var(--muted);font-size:.95rem;margin-bottom:20px}
-.form{display:grid;gap:12px}
-.form input,.form select,.form textarea{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;font-size:1rem;background:#fff;color:var(--ink);transition:border-color .2s}
-.form input:focus,.form select:focus,.form textarea:focus{outline:0;border-color:var(--gold)}
-.form .btn{width:100%;margin-top:4px}
-.form small{color:var(--muted);font-size:.78rem;text-align:center}
-.form .ok{display:none;background:#eaf6ee;color:#17693a;padding:12px;border-radius:10px;font-weight:500;text-align:center}
+/* ===== numbers ===== */
+.nums{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+.num{text-align:center;padding:44px 12px;border-inline-start:1px solid var(--line)}
+.num:first-child{border-inline-start:0}
+.num b{display:block;font-weight:200;font-size:clamp(2.6rem,5vw,3.8rem);color:var(--olive);line-height:1}
+.num span{color:var(--muted);font-size:.98rem}
 
-/* stats */
-.stats{background:var(--ink);color:#fff;padding:54px 0}
-.stats .wrap{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;text-align:center}
-.stat b{display:block;font-family:"Frank Ruhl Libre",serif;font-size:clamp(2rem,3.6vw,2.9rem);color:var(--gold-2);line-height:1.1}
-.stat span{font-size:.95rem;opacity:.85}
-.stats-note{text-align:center;color:rgba(255,255,255,.5);font-size:.78rem;margin-top:26px}
+/* ===== featured ===== */
+.tabs{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:-24px 0 56px}
+.tab{padding:10px 26px;border-radius:999px;border:0;background:var(--bg-2);color:var(--ink);cursor:pointer;font-size:.98rem;transition:background .25s,color .25s}
+.tab.on{background:var(--olive);color:#fff}
+.feat{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+.feat-media{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:16/10;background:var(--bg-2)}
+.feat-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+.feat-media img.on{opacity:1}
+.feat-media .badge{position:absolute;top:22px;right:22px;z-index:2}
+.arrow{position:absolute;top:50%;z-index:2;width:50px;height:50px;margin-top:-25px;border-radius:50%;border:0;background:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.arrow svg{width:20px;height:20px}
+.arrow.prev{right:18px}.arrow.next{left:18px}
+.dots{position:absolute;bottom:20px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:2}
+.dots i{width:9px;height:9px;border-radius:9px;background:rgba(255,255,255,.6);transition:width .3s,background .3s;cursor:pointer}
+.dots i.on{width:28px;background:#fff}
+.feat-txt .cat{font-size:1.05rem;font-weight:600;letter-spacing:.12em;color:#7d6a3c}
+.feat-txt .proj{color:var(--muted);margin-top:40px}
+.feat-txt h3{font-size:1.9rem;font-weight:600;color:var(--ink);line-height:1.25}
+.feat-txt .meta{display:flex;gap:14px;flex-wrap:wrap;color:#7d6a3c;margin:12px 0 18px;font-weight:500}
+.feat-txt .meta span+span::before{content:"•";margin-left:14px;color:#c8c0a8}
+.feat-txt p{color:var(--muted)}
+.feat-txt .more{display:inline-flex;align-items:center;gap:8px;color:#7d6a3c;font-weight:600;margin-top:22px}
+.badge{display:inline-block;padding:5px 14px;border-radius:999px;font-size:.82rem;font-weight:500;color:#fff;background:var(--sell)}
+.badge.soon{background:var(--soon)}.badge.done{background:var(--done)}.badge.lt{background:rgba(255,255,255,.92);color:var(--ink)}
 
-/* about */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
-.about-img{position:relative}
-.about-img img{border-radius:var(--radius);box-shadow:var(--shadow);aspect-ratio:4/5;object-fit:cover;width:100%}
-.about-img .float{position:absolute;bottom:-30px;left:-30px;background:var(--card);padding:22px 26px;border-radius:16px;box-shadow:var(--shadow);max-width:250px}
-.about-img .float b{font-family:"Frank Ruhl Libre",serif;font-size:2.2rem;color:var(--gold);display:block;line-height:1}
-.about-text p{color:var(--ink-2);margin-bottom:18px;font-size:1.06rem}
-.ticks{list-style:none;display:grid;gap:12px;margin-top:26px}
-.ticks li{display:flex;gap:12px;align-items:flex-start}
-.ticks li::before{content:"";flex:0 0 22px;height:22px;margin-top:4px;border-radius:50%;background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/14px no-repeat}
+/* ===== why ===== */
+.why{background:var(--bg-2)}
+.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.card{background:var(--cream);border:1px solid #fff;border-radius:var(--r-lg);padding:38px 32px;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 50px -30px rgba(40,45,35,.5)}
+.ico{width:64px;height:64px;border-radius:50%;border:1.5px solid #cfcfc4;background:var(--bg-3);display:grid;place-items:center;color:var(--olive);margin:0 auto 22px 0}
+.ico svg{width:26px;height:26px}
+.card h3{font-weight:500;font-size:1.3rem;color:var(--ink);margin-bottom:12px;line-height:1.35}
+.card p{color:var(--muted);font-size:.97rem}
 
-/* why grid */
-.why{background:var(--sand)}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.feat{background:var(--card);border-radius:var(--radius);padding:34px 30px;border:1px solid var(--line);transition:transform .25s,box-shadow .25s}
-.feat:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.feat .ic{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#f6efe2,#ecdfc6);display:grid;place-items:center;margin-bottom:20px;color:var(--wood)}
-.feat .ic svg{width:28px;height:28px}
-.feat h3{font-size:1.35rem;margin-bottom:10px}
-.feat p{color:var(--muted);font-size:.98rem}
+/* ===== projects ===== */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pcard{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:1/0.93;cursor:pointer;background:var(--olive);isolation:isolate}
+.pcard img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.pcard:hover img{transform:scale(1.06)}
+.pcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),transparent 30%,transparent 55%,rgba(0,0,0,.55));z-index:1}
+.pcard .tops{position:absolute;top:18px;left:18px;right:18px;display:flex;justify-content:space-between;z-index:2}
+.pcard .name{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;display:flex;align-items:stretch;border:1px solid rgba(255,255,255,.6);border-radius:999px;background:rgba(30,32,27,.35);backdrop-filter:blur(8px);color:#fff;white-space:nowrap;overflow:hidden}
+.pcard .name span{padding:14px 22px;font-size:1.02rem}
+.pcard .name i{display:grid;place-items:center;padding:0 18px;border-inline-start:1px solid rgba(255,255,255,.45);font-style:normal}
+.pcard .name i svg{width:18px;height:18px;transition:transform .3s}
+.pcard:hover .name i svg{transform:translateX(-4px)}
+.pcard.typo{background:linear-gradient(150deg,var(--olive-l),var(--olive-d))}
+.pcard.typo .big{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;z-index:1;padding-bottom:50px;text-align:center}
+.pcard.typo .big b{font-weight:200;font-size:5.4rem;line-height:1}
+.pcard.typo .big small{opacity:.75;font-size:1rem}
+.pcard.typo .big .row{display:flex;gap:40px}
+.pcard.typo::before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;border:44px solid rgba(255,255,255,.05);left:-90px;top:-90px}
+.filters{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:50px}
+.filters .pill{padding:16px 40px;font-size:1.08rem}
+.filters .pill.on{background:var(--olive);color:#fff;border-color:var(--olive)}
 
-/* timeline */
-.tl{position:relative;display:grid;gap:0;max-width:880px}
-.tl::before{content:"";position:absolute;right:15px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--gold),var(--line))}
-.tl-item{position:relative;padding:0 56px 38px 0}
-.tl-item::before{content:"";position:absolute;right:6px;top:6px;width:20px;height:20px;border-radius:50%;background:var(--paper);border:4px solid var(--gold)}
-.tl-item .yr{font-family:"Frank Ruhl Libre",serif;font-weight:900;color:var(--gold);font-size:1.4rem}
-.tl-item h3{font-size:1.2rem;margin:2px 0 6px;font-family:Heebo,sans-serif;font-weight:700}
-.tl-item p{color:var(--muted)}
+/* ===== quarter ===== */
+.quarter{background:var(--bg-2)}
+.q-hero{position:relative;border-radius:var(--r-xl);overflow:hidden;min-height:520px;display:flex;align-items:flex-end;color:#fff;margin-bottom:70px}
+.q-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.q-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(25,27,22,.85),rgba(25,27,22,.1) 70%)}
+.q-hero .in{position:relative;z-index:2;padding:56px;max-width:760px}
+.q-hero .h2{color:#fff}
+.q-hero p{opacity:.9;margin-top:14px;font-size:1.1rem}
+.q-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:80px}
+.q-stat{background:var(--cream);border-radius:var(--r-lg);padding:30px 18px;text-align:center}
+.q-stat b{display:block;font-weight:200;font-size:2.5rem;color:var(--olive);line-height:1.1}
+.q-stat span{color:var(--muted);font-size:.93rem}
+.q-split{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;margin-bottom:90px}
+.q-split p{color:var(--muted);margin-bottom:16px}
+.q-split .h3{font-weight:300;font-size:2.1rem;color:var(--olive);line-height:1.25;margin-bottom:22px}
+.checks{list-style:none;display:grid;gap:14px;margin-top:10px}
+.checks li{display:flex;gap:14px;color:var(--ink)}
+.checks li::before{content:"";flex:none;width:24px;height:24px;margin-top:3px;border-radius:50%;background:var(--olive) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/13px no-repeat}
+.infra{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:90px}
+.infra .card{background:#fff}
+.infra .ico{margin:0 0 20px}
+.tl{position:relative;padding-right:8px}
+.tl::before{content:"";position:absolute;right:15px;top:10px;bottom:10px;width:1.5px;background:#c9c9bd}
+.tl-i{position:relative;padding:0 54px 34px 0}
+.tl-i::before{content:"";position:absolute;right:7px;top:7px;width:18px;height:18px;border-radius:50%;background:var(--bg-2);border:2px solid var(--olive)}
+.tl-i .y{font-weight:600;color:var(--olive);font-size:1.15rem}
+.tl-i h4{font-weight:500;font-size:1.12rem}
+.tl-i p{color:var(--muted);font-size:.97rem;margin:0}
+.mk{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.mk div{background:var(--olive);color:#fff;border-radius:var(--r-lg);padding:30px 26px}
+.mk b{display:block;font-weight:300;font-size:2rem;line-height:1.15}
+.mk span{display:block;font-weight:500;margin:10px 0 4px}
+.mk p{opacity:.7;font-size:.9rem}
+.devs{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;justify-content:center}
+.devs span{padding:9px 22px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--ink);font-size:.95rem}
+.note{font-size:.8rem;color:var(--muted);margin-top:28px;text-align:center}
 
-/* market */
-.market{background:var(--ink);color:#fff}
-.market .sec-head p{color:rgba(255,255,255,.7)}
-.market .sec-head h2{color:#fff}
-.mk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.mk{border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:28px;background:rgba(255,255,255,.03)}
-.mk b{font-family:"Frank Ruhl Libre",serif;font-size:2rem;color:var(--gold-2);display:block;line-height:1.15}
-.mk span{display:block;font-weight:700;margin:8px 0 6px}
-.mk p{color:rgba(255,255,255,.65);font-size:.92rem}
-.devs{margin-top:54px}
-.devs h3{font-size:1.3rem;margin-bottom:18px;font-family:Heebo,sans-serif}
-.dev-list{display:flex;flex-wrap:wrap;gap:12px}
-.dev-list span{padding:10px 20px;border-radius:999px;border:1px solid rgba(201,164,106,.45);color:#f3e6cf;font-weight:500}
-.disc{font-size:.8rem;color:rgba(255,255,255,.45);margin-top:30px}
+/* ===== gallery ===== */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:230px;grid-auto-flow:dense;gap:14px}
+.gal figure{border-radius:var(--r-lg);overflow:hidden;cursor:zoom-in;position:relative}
+.gal figure.w2{grid-column:span 2}.gal figure.h2{grid-row:span 2}.gal figure.w4{grid-column:1/-1}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.gal figure:hover img{transform:scale(1.05)}
 
-/* projects */
-.proj{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:center;margin-bottom:90px}
-.proj:last-child{margin-bottom:0}
-.proj.rev .proj-media{order:2}
-.proj-media{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:12px;height:520px}
-.proj-media img{width:100%;height:100%;object-fit:cover;border-radius:14px;cursor:zoom-in;transition:filter .25s}
-.proj-media img:hover{filter:brightness(1.07)}
-.proj-media img:first-child{grid-row:1/3}
-.proj-tag{display:inline-block;background:var(--sand);color:var(--wood);font-weight:700;font-size:.85rem;padding:6px 14px;border-radius:999px;margin-bottom:14px}
-.proj h3{font-size:clamp(1.8rem,3vw,2.4rem);margin-bottom:6px}
-.proj .loc{color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:6px}
-.proj .desc{color:var(--ink-2);margin-bottom:26px}
-.results{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
-.res{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
-.res b{font-family:"Frank Ruhl Libre",serif;font-size:2.2rem;color:var(--gold);display:block;line-height:1}
-.res span{font-size:.88rem;color:var(--muted)}
-.proj-plain{background:linear-gradient(135deg,var(--ink),var(--ink-2));border-radius:var(--radius);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:50px;height:100%;min-height:340px;position:relative;overflow:hidden}
-.proj-plain::after{content:"";position:absolute;inset:auto -60px -60px auto;width:260px;height:260px;border-radius:50%;border:40px solid rgba(201,164,106,.12)}
-.proj-plain b{font-family:"Frank Ruhl Libre",serif;font-size:5rem;line-height:1;color:var(--gold-2)}
-.proj-plain p{opacity:.8;font-size:1.1rem}
+/* ===== process ===== */
+.proc{background:linear-gradient(180deg,#fff,var(--cream))}
+.steps{display:grid;grid-template-columns:repeat(10,1fr);position:relative;margin-top:20px}
+.steps::before{content:"";position:absolute;right:5%;left:5%;top:50%;height:1.5px;background:var(--olive);opacity:.75}
+.step{display:flex;flex-direction:column;align-items:center;text-align:center;font-size:.95rem;color:var(--ink);height:330px;position:relative}
+.step .dot{position:absolute;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:var(--olive)}
+.step .bx{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;padding:0 4px}
+.step:nth-child(odd) .bx{margin-top:0}
+.step:nth-child(even) .bx{margin-top:auto;flex-direction:column-reverse}
+.step .ico{margin:0;width:62px;height:62px}
+.step .ico svg{width:24px;height:24px}
+.step em{font-style:normal;line-height:1.35}
 
-/* gallery */
-.gal{display:grid;grid-auto-flow:dense;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:12px}
-.gal figure{position:relative;overflow:hidden;border-radius:14px;cursor:zoom-in}
-.gal figure.w2{grid-column:span 2}
-.gal figure.h2{grid-row:span 2}
-.gal figure.w4{grid-column:1/-1}
-.gal img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.gal figure:hover img{transform:scale(1.06)}
-.gal figcaption{position:absolute;inset:auto 0 0 0;padding:30px 16px 12px;background:linear-gradient(transparent,rgba(0,0,0,.65));color:#fff;font-size:.9rem;font-weight:500;opacity:0;transition:opacity .3s}
-.gal figure:hover figcaption{opacity:1}
+/* ===== about ===== */
+.about{background:var(--olive);color:#fff}
+.about .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:70px;align-items:center}
+.about .kicker{color:rgba(255,255,255,.65)}
+.about .h2{color:#fff}
+.about p{color:rgba(255,255,255,.82);margin-top:18px}
+.about p.strong{color:#fff;font-weight:500}
+.vals{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}
+.vals span{border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:11px 20px;font-size:.95rem;text-align:center}
+.team{display:grid;gap:18px}
+.agent{display:flex;align-items:center;gap:22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);padding:26px 28px}
+.av{flex:none;width:84px;height:84px;border-radius:50%;background:var(--cream);color:var(--olive);display:grid;place-items:center;font-weight:300;font-size:1.9rem}
+.agent h3{font-weight:400;font-size:1.5rem}
+.agent .r{opacity:.7;font-size:.95rem}
+.agent .acts{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.agent .pill{padding:8px 20px;font-size:.92rem}
+.about-img{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:16/9;margin-bottom:6px}
+.about-img img{width:100%;height:100%;object-fit:cover}
 
-/* services */
-.svc{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.svc .feat{padding:30px 26px}
-.svc .num{font-family:"Frank Ruhl Libre",serif;color:var(--gold);font-size:1rem;font-weight:700;margin-bottom:10px;display:block}
+/* ===== developers band ===== */
+.devband .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;background:var(--bg-2);border-radius:var(--r-xl);padding:60px}
+.devband .btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
 
-/* team */
-.team{background:var(--sand)}
-.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:900px}
-.agent{background:var(--card);border-radius:var(--radius);padding:36px;display:flex;gap:24px;align-items:center;border:1px solid var(--line)}
-.avatar{flex:0 0 96px;height:96px;border-radius:50%;background:linear-gradient(135deg,var(--ink),var(--ink-2));color:var(--gold-2);display:grid;place-items:center;font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:2rem;border:3px solid var(--gold-2)}
-.agent h3{font-size:1.5rem}
-.agent .role{color:var(--muted);margin-bottom:12px}
-.agent .acts{display:flex;gap:10px;flex-wrap:wrap}
-.agent .btn{padding:10px 18px;font-size:.92rem}
-.btn-line{border:1.5px solid var(--ink);color:var(--ink);background:transparent}
+/* ===== map ===== */
+.mapsec{background:var(--bg-2)}
+.mapsec .wrap{display:grid;grid-template-columns:1fr 2fr;gap:30px;align-items:stretch}
+.legend{background:#fff;border-radius:var(--r-xl);padding:44px 40px;box-shadow:0 24px 60px -40px rgba(0,0,0,.4)}
+.legend h3{font-weight:600;font-size:1.9rem;color:var(--olive);margin-bottom:22px}
+.legend ul{list-style:none;display:grid;gap:14px;margin-bottom:24px}
+.legend li{display:flex;align-items:center;gap:12px;cursor:pointer}
+.legend li i{width:14px;height:14px;border-radius:50%;flex:none}
+.legend p{color:var(--muted);font-size:.93rem}
+#map{border-radius:var(--r-xl);min-height:460px;background:#dcdcd6;z-index:1}
+.leaflet-popup-content{font-family:Heebo,sans-serif;direction:rtl;text-align:right}
 
-/* faq */
-.faq{max-width:880px}
-.faq details{border-bottom:1px solid var(--line);padding:22px 0}
-.faq summary{cursor:pointer;font-weight:700;font-size:1.12rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px}
+/* ===== faq ===== */
+.faq{max-width:860px;margin:0 auto}
+.faq details{border-bottom:1px solid var(--line);padding:24px 0}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-size:1.15rem;font-weight:500}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-size:1.6rem;color:var(--gold);transition:transform .25s;flex:0 0 auto}
+.faq summary::after{content:"+";font-weight:200;font-size:1.8rem;line-height:1;color:var(--olive);transition:transform .3s}
 .faq details[open] summary::after{transform:rotate(45deg)}
-.faq details p{color:var(--muted);margin-top:12px}
+.faq p{color:var(--muted);margin-top:12px}
 
-/* cta */
-.cta{position:relative;color:#fff;overflow:hidden}
-.cta-bg{position:absolute;inset:0;background:url(assets/img/roof-sunset.jpg) center/cover}
-.cta::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,22,34,.35),rgba(14,22,34,.9) 60%)}
-.cta .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-.cta h2{font-size:clamp(2rem,4vw,3.2rem);margin:14px 0 18px}
-.cta p{opacity:.9;font-size:1.1rem;margin-bottom:26px}
-.cta .eyebrow{color:var(--gold-2)}
-.contact-lines{display:grid;gap:14px}
-.contact-lines a{display:flex;gap:12px;align-items:center;font-size:1.15rem;font-weight:500}
-.contact-lines svg{width:22px;height:22px;color:var(--gold-2)}
+/* ===== contact ===== */
+.contact{background:var(--bg-2);padding:0}
+.contact .grid{display:grid;grid-template-columns:1fr 1fr;min-height:760px}
+.c-info{display:flex;flex-direction:column;justify-content:center;padding:90px 8vw 90px 60px;position:relative}
+.c-info .h2{font-size:clamp(2.4rem,5vw,4rem)}
+.c-info .lines{margin-top:34px;display:grid;gap:14px}
+.c-info .lines a,.c-info .lines div{display:flex;align-items:center;gap:12px;font-size:1.1rem}
+.c-info .lines svg{width:20px;height:20px;color:var(--olive);flex:none}
+.c-info hr{border:0;border-top:1px solid #cfcfc4;margin:34px 0 20px}
+.c-info small{color:var(--muted)}
+.c-form{background:linear-gradient(90deg,#8d8f86,#b9bab2);display:flex;align-items:center;justify-content:center;padding:60px 30px}
+.panel{width:100%;max-width:470px;background:#505549;border-radius:36px;padding:36px 34px;color:#fff;box-shadow:0 30px 60px -30px rgba(0,0,0,.5)}
+.ptabs{display:grid;grid-template-columns:1fr 1fr;background:rgba(0,0,0,.18);border-radius:999px;padding:5px;margin-bottom:24px}
+.ptabs button{border:0;background:transparent;color:rgba(255,255,255,.75);padding:11px;border-radius:999px;cursor:pointer;font-size:.98rem}
+.ptabs button.on{background:#fff;color:var(--olive);font-weight:500}
+.form{display:none;gap:14px}
+.form.on{display:grid}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form label{display:grid;gap:6px;font-size:.88rem;color:rgba(255,255,255,.85)}
+.form input,.form select,.form textarea{width:100%;background:transparent;border:1px solid rgba(255,255,255,.38);border-radius:999px;padding:12px 20px;color:#fff;font-family:inherit;font-size:1rem}
+.form textarea{border-radius:22px;resize:vertical}
+.form select option{color:var(--ink)}
+.form input::placeholder,.form textarea::placeholder{color:rgba(255,255,255,.55)}
+.form input:focus,.form select:focus,.form textarea:focus{outline:0;border-color:#fff}
+.form .send{background:#61675a;color:#fff;border:0;border-radius:999px;padding:16px;font-size:1.08rem;cursor:pointer;display:flex;justify-content:center;gap:10px;align-items:center;margin-top:6px;transition:background .25s}
+.form .send:hover{background:#71786a}
+.form .send svg{width:18px;height:18px}
+.form .fine{font-size:.76rem;color:rgba(255,255,255,.65);line-height:1.55}
+.form .ok{display:none;background:rgba(255,255,255,.14);padding:12px;border-radius:14px;text-align:center}
 
-/* footer */
-footer{background:#0d151f;color:rgba(255,255,255,.65);padding:56px 0 30px;font-size:.92rem}
-footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
-footer h4{color:#fff;margin-bottom:14px;font-size:1rem}
-footer .logo{color:#fff;margin-bottom:16px}
-footer ul{list-style:none;display:grid;gap:8px}
-footer a:hover{color:var(--gold-2)}
-.legal{border-top:1px solid rgba(255,255,255,.1);margin-top:40px;padding-top:24px;font-size:.78rem;color:rgba(255,255,255,.4);grid-column:1/-1}
+/* ===== footer ===== */
+footer{padding:40px 0 30px;font-size:.93rem;color:var(--muted)}
+footer .top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-bottom:24px;border-bottom:1px solid var(--line)}
+footer .links{display:flex;gap:28px;flex-wrap:wrap}
+footer .logo{color:var(--olive)}
+footer .logo b{font-size:1.4rem}
+footer .bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:20px;font-size:.8rem}
+footer .disc{max-width:720px}
 
-/* floating */
-.fab{position:fixed;bottom:22px;left:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 10px 30px -6px rgba(31,168,85,.7);animation:pulse 2.4s infinite}
-.fab svg{width:32px;height:32px;color:#fff}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(31,168,85,.55)}70%{box-shadow:0 0 0 18px rgba(31,168,85,0)}100%{box-shadow:0 0 0 0 rgba(31,168,85,0)}}
+/* ===== floating / modal ===== */
+.fab{position:fixed;left:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 12px 30px -8px rgba(31,168,85,.7)}
+.fab svg{width:30px;height:30px;color:#fff}
 .mbar{display:none}
-
-/* lightbox */
-.lb{position:fixed;inset:0;background:rgba(8,12,18,.94);z-index:100;display:none;align-items:center;justify-content:center;padding:30px}
+.modal{position:fixed;inset:0;z-index:100;background:rgba(20,22,18,.78);display:none;align-items:center;justify-content:center;padding:20px}
+.modal.on{display:flex}
+.mbox{background:#fff;border-radius:34px;max-width:980px;width:100%;max-height:92vh;overflow:auto;display:grid;grid-template-columns:1.1fr 1fr}
+.mbox .mimg{min-height:420px;background:var(--olive) center/cover}
+.mbox .mtx{padding:44px 40px;position:relative}
+.mbox .x{position:absolute;top:18px;left:18px;width:42px;height:42px;border-radius:50%;border:0;background:var(--bg-2);font-size:1.5rem;cursor:pointer}
+.mbox h3{font-weight:500;font-size:1.9rem;color:var(--olive);line-height:1.25;margin:10px 0 4px}
+.mbox .loc{color:var(--muted);margin-bottom:16px}
+.mbox p{color:var(--muted);margin-bottom:16px}
+.mbox .res{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0 24px}
+.mbox .res div{background:var(--bg-2);border-radius:18px;padding:14px 8px;text-align:center}
+.mbox .res b{display:block;font-weight:300;font-size:2rem;color:var(--olive);line-height:1.1}
+.mbox .res span{font-size:.82rem;color:var(--muted)}
+.mbox table{width:100%;border-collapse:collapse;font-size:.92rem;margin-bottom:20px}
+.mbox td{padding:7px 0;border-bottom:1px solid var(--line)}
+.mbox td:first-child{color:var(--muted);width:40%}
+.lb{position:fixed;inset:0;z-index:110;background:rgba(10,11,9,.94);display:none;align-items:center;justify-content:center}
 .lb.on{display:flex}
-.lb img{max-height:88vh;max-width:92vw;border-radius:10px}
-.lb button{position:absolute;background:rgba(255,255,255,.12);border:0;color:#fff;width:52px;height:52px;border-radius:50%;font-size:1.6rem;cursor:pointer}
-.lb .x{top:20px;left:20px}.lb .pv{right:20px;top:50%}.lb .nx{left:20px;top:50%}
+.lb img{max-width:92vw;max-height:88vh;border-radius:14px}
+.lb button{position:absolute;width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:1.6rem;cursor:pointer}
+.lb .x{top:20px;left:20px}.lb .p{right:20px;top:50%}.lb .n{left:20px;top:50%}
 
 /* reveal */
-.rv{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
 .rv.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.hero-bg{animation:none}.fab{animation:none}}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.hero-bg{animation:none;transform:none}}
 
-/* responsive */
-@media (max-width:1024px){
-  .nav,.hdr-phone{display:none}
+/* ===== responsive ===== */
+@media (max-width:1080px){
+  .nav{display:none}
   .burger{display:block}
-  .nav.open{display:flex;position:absolute;top:100%;right:0;left:0;flex-direction:column;background:var(--paper);color:var(--ink);padding:20px 24px;gap:16px;box-shadow:0 20px 30px -20px rgba(0,0,0,.3)}
-  .hero .wrap,.split,.cta .wrap,.proj{grid-template-columns:1fr}
-  .proj.rev .proj-media{order:0}
-  .grid3,.svc,.mk-grid{grid-template-columns:1fr 1fr}
-  .stats .wrap{grid-template-columns:repeat(3,1fr)}
-  .about-img .float{left:16px}
+  .nav.open{display:flex;flex-direction:column;position:absolute;top:100%;right:0;left:0;background:#fff;color:var(--ink);padding:22px 24px;gap:14px;box-shadow:0 20px 30px -20px rgba(0,0,0,.35)}
+  .feat,.q-split,.about .wrap,.devband .wrap,.mapsec .wrap,.contact .grid,.mbox{grid-template-columns:1fr}
+  .cards4,.mk{grid-template-columns:1fr 1fr}
+  .pgrid,.infra{grid-template-columns:1fr 1fr}
+  .q-stats{grid-template-columns:repeat(3,1fr)}
+  .steps{grid-template-columns:1fr 1fr;gap:16px}
+  .steps::before{display:none}
+  .step{height:auto;flex-direction:row}
+  .step .dot{display:none}
+  .step .bx,.step:nth-child(even) .bx{flex-direction:row;margin:0;text-align:right;background:#fff;border-radius:18px;padding:12px 14px;justify-content:flex-start}
+  .devband .btns{justify-content:flex-start}
+  .c-info{padding:80px 24px 50px}
+  .mbox .mimg{min-height:240px}
 }
 @media (max-width:680px){
   body{font-size:16px}
   .wrap{padding:0 16px}
-  .sec{padding:76px 0}
-  .hero .wrap{padding-bottom:40px;gap:30px}
-  .hdr-cta .btn{display:none}
-  .grid3,.svc,.mk-grid,.team-grid{grid-template-columns:1fr}
-  .stats .wrap{grid-template-columns:1fr 1fr}
-  .stats .stat:last-child{grid-column:1/-1}
-  .proj-media{height:360px}
-  .results{grid-template-columns:repeat(3,1fr)}
-  .res b{font-size:1.7rem}
+  .sec{padding:78px 0}
+  .hdr .pill{display:none}
+  .nums{grid-template-columns:1fr 1fr}
+  .num{border-inline-start:0;border-bottom:1px solid var(--line)}
+  .num:nth-child(even){border-inline-start:1px solid var(--line)}
+  .cards4,.pgrid,.infra,.mk{grid-template-columns:1fr}
+  .q-stats{grid-template-columns:1fr 1fr}
+  .q-stats .q-stat:last-child{grid-column:1/-1}
+  .q-hero{min-height:420px}
+  .q-hero .in{padding:30px 24px}
+  .steps{grid-template-columns:1fr}
   .gal{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
   .gal figure.w2{grid-column:span 2}
+  .devband .wrap{padding:36px 24px;border-radius:30px}
+  .vals{grid-template-columns:1fr}
   .agent{flex-direction:column;text-align:center}
   .agent .acts{justify-content:center}
-  footer .wrap{grid-template-columns:1fr}
+  .form .two{grid-template-columns:1fr}
+  .panel{padding:28px 20px;border-radius:28px}
+  .c-form{padding:30px 16px 60px}
+  .filters .pill{padding:13px 26px;font-size:1rem}
+  .mbox .mtx{padding:34px 22px}
   .fab{display:none}
-  .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;bottom:0;left:0;right:0;z-index:60;box-shadow:0 -6px 20px rgba(0,0,0,.15)}
-  .mbar a{padding:15px;text-align:center;font-weight:700;color:#fff}
-  .mbar a:first-child{background:var(--ink)}
-  .mbar a:last-child{background:var(--wa)}
+  .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;bottom:0;left:0;right:0;z-index:60}
+  .mbar a{padding:15px;text-align:center;color:#fff;font-weight:500}
+  .mbar a:first-child{background:var(--olive)}.mbar a:last-child{background:var(--wa)}
   footer{padding-bottom:90px}
-  .about-img .float{position:static;margin-top:-40px;margin-right:16px;position:relative}
-  .proj-plain{padding:34px}
+  #map{min-height:360px}
+  .legend{padding:32px 26px}
 }
 </style>
 </head>
 <body>
 
-<!-- ============ HEADER ============ -->
+<!-- ================= HEADER ================= -->
 <header class="hdr" id="hdr">
   <div class="wrap">
-    <a href="#top" class="logo" aria-label="מזרחי & כהן נדל&quot;ן">
-      <span class="logo-mark">מכ</span>
-      <span><b>מזרחי & כהן</b><small>נדל"ן · שיווק · השקעות</small></span>
+    <a href="#top" class="logo" aria-label="אמון נדל״ן – לדף הבית">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 22 24 7l18 15"/><path d="M11 18v23h26V18"/><path d="M19 41V30a5 5 0 0 1 10 0v11"/><circle cx="24" cy="20" r="2.2"/></svg>
+      <span class="t"><b>אמון נדל״ן</b><small>שיווק · מכירה · השכרה</small></span>
     </a>
     <nav class="nav" id="nav">
-      <a href="#about">הרובע</a>
-      <a href="#why">למה עכשיו</a>
-      <a href="#market">נתוני שוק</a>
-      <a href="#projects">הפרויקטים שלנו</a>
-      <a href="#gallery">גלריה</a>
-      <a href="#team">צוות</a>
+      <a href="#projects">פרויקטים</a>
+      <a href="#quarter">הרובע הבינלאומי</a>
+      <a href="#owners">לבעלי נכסים</a>
+      <a href="#about">אודות</a>
       <a href="#faq">שאלות</a>
     </nav>
-    <div class="hdr-cta">
-      <a class="hdr-phone" href="tel:+972584128725">058-412-8725</a>
-      <a class="btn btn-gold" href="#contact">לתיאום פגישה</a>
-      <button class="burger" id="burger" aria-label="תפריט"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
-    </div>
+    <a href="#contact" class="pill pill-white">צור קשר</a>
+    <button class="burger" id="burger" aria-label="פתיחת תפריט"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
+<!-- ================= HERO ================= -->
 <section class="hero" id="top">
-  <div class="hero-bg" role="img" aria-label="הדמיית בניין מגורים ברובע הבינלאומי"></div>
+  <div class="hero-bg" role="img" aria-label="הדמיית פרויקט מגורים"></div>
+  <div class="hero-in">
+    <span class="tag">שיווק פרויקטים חדשים | מכירה | השכרת נכסים</span>
+    <h1>אמון נדל״ן</h1>
+    <div class="bar"></div>
+    <div class="slogan">הבית הנכון. האנשים הנכונים.</div>
+    <p class="sub">חברת שיווק נדל״ן בפריסה ארצית – עם התמחות מיוחדת ברובע הבינלאומי בלוד</p>
+    <div class="btns">
+      <a href="#contact" class="pill pill-white" data-path="owner">אני בעל נכס</a>
+      <a href="#contact" class="pill pill-ghost" data-path="seeker">אני מחפש דירה</a>
+    </div>
+  </div>
+  <a href="#numbers" class="scroll-cue" aria-label="גלול למטה"></a>
+</section>
+
+<!-- ================= NUMBERS ================= -->
+<section id="numbers">
+  <div class="wrap nums">
+    <div class="num rv"><b dir="ltr"><span data-count="10" style="font-size:inherit;color:inherit">10</span>+</b><span>שנות ניסיון בשוק הנדל״ן</span></div>
+    <div class="num rv"><b data-count="55">55</b><span>נכסים שהושכרו בפרויקטים חדשים</span></div>
+    <div class="num rv"><b data-count="12">12</b><span>דירות שנמכרו בפרויקטים חדשים</span></div>
+    <div class="num rv"><b data-count="412">412</b><span>יחידות דיור בפרויקטים שבהם אנחנו פועלים</span></div>
+  </div>
+</section>
+
+<!-- ================= FEATURED ================= -->
+<section class="sec" id="featured">
   <div class="wrap">
-    <div>
-      <span class="eyebrow">לוד · הרובע הבינלאומי</span>
-      <h1>השכונה החדשה של המרכז.<br><em>12 דקות</em> מתל אביב.</h1>
-      <p class="lead">כ-11,350 יחידות דיור, פארקים, מסחר ותעסוקה – במרחק הליכה מתחנת רכבת גני אביב. אנחנו מלווים אתכם בקנייה, בהשכרה ובהשקעה ברובע הבינלאומי, מהשיחה הראשונה ועד קבלת המפתח.</p>
-      <div class="hero-btns">
-        <a class="btn btn-gold" href="#contact">לקבלת מחירון ותוכניות</a>
-        <a class="btn btn-ghost" href="https://wa.me/972584128725?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%93%D7%99%D7%A8%D7%95%D7%AA%20%D7%91%D7%A8%D7%95%D7%91%D7%A2%20%D7%94%D7%91%D7%99%D7%A0%D7%9C%D7%90%D7%95%D7%9E%D7%99%20%D7%91%D7%9C%D7%95%D7%93" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>
-          שיחה בוואטסאפ
-        </a>
+    <div class="head-c rv">
+      <span class="kicker">נכסים נבחרים</span>
+      <h2 class="h2">הנכסים המובילים שלנו</h2>
+      <p class="lead">מבחר נכסים מהפרויקטים שאנחנו משווקים – לחצו על קטגוריה כדי לעיין</p>
+    </div>
+    <div class="tabs rv" id="ftabs"></div>
+    <div class="feat rv">
+      <div class="feat-media" id="fmedia">
+        <span class="badge" id="fbadge"></span>
+        <button class="arrow prev" id="fprev" aria-label="הקודם"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button class="arrow next" id="fnext" aria-label="הבא"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <div class="dots" id="fdots"></div>
       </div>
-      <div class="chips">
-        <span class="chip">500 מ' מתחנת רכבת</span>
-        <span class="chip">פארק אקליפטוסים</span>
-        <span class="chip">דירות חדשות מקבלן</span>
-        <span class="chip">השכרה וניהול נכסים</span>
+      <div class="feat-txt">
+        <div class="cat" id="fcat"></div>
+        <div class="proj" id="fproj"></div>
+        <h3 id="ftitle"></h3>
+        <div class="meta" id="fmeta"></div>
+        <p id="fdesc"></p>
+        <a href="#contact" class="more" data-path="seeker">לפרטים נוספים <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
       </div>
     </div>
-
-    <div class="lead-card" id="lead1">
-      <h3>רוצים לשמוע מה זמין עכשיו?</h3>
-      <p>השאירו פרטים – ישראל או יהודה יחזרו אליכם עם הדירות הרלוונטיות.</p>
-      <form class="form" data-lead>
-        <input name="name" required placeholder="שם מלא" autocomplete="name">
-        <input name="phone" required type="tel" placeholder="טלפון" autocomplete="tel" pattern="[0-9\-\+ ]{9,}">
-        <select name="interest" aria-label="מה מעניין אתכם">
-          <option>אני מעוניין/ת לקנות דירה</option>
-          <option>אני מחפש/ת דירה להשכרה</option>
-          <option>השקעה בנדל"ן</option>
-          <option>יש לי נכס להשכיר / למכור</option>
-        </select>
-        <button class="btn btn-gold" type="submit">שלחו לי פרטים</button>
-        <div class="ok">תודה! נחזור אליכם בהקדם.</div>
-        <small>הפרטים ישמשו ליצירת קשר בלבד.</small>
-      </form>
-    </div>
   </div>
 </section>
 
-<!-- ============ STATS ============ -->
-<section class="stats">
-  <div class="wrap">
-    <div class="stat"><b data-count="11350">11,350</b><span>יחידות דיור מתוכננות</span></div>
-    <div class="stat"><b data-count="1600">1,600</b><span>דונם של שכונה חדשה</span></div>
-    <div class="stat"><b>~<span data-count="12">12</span> דק'</b><span>ברכבת לתל אביב</span></div>
-    <div class="stat"><b data-count="40000">40,000</b><span>תושבים חדשים צפויים</span></div>
-    <div class="stat"><b data-count="154000">154,000</b><span>מ"ר שטחי תעסוקה</span></div>
-  </div>
-  <p class="stats-note" style="max-width:var(--max);margin-inline:auto;padding:0 16px">על פי פרסומי עיריית לוד, החברה הכלכלית לוד ותכנית המתאר של השכונה. הנתונים מתכנוניים ועשויים להשתנות.</p>
-</section>
-
-<!-- ============ ABOUT ============ -->
-<section class="sec" id="about">
-  <div class="wrap split">
-    <div class="about-img rv">
-      <img src="assets/img/street-row.jpg" alt="רחוב מגורים חדש ברובע הבינלאומי" loading="lazy">
-      <div class="float"><b>2017</b>ההסכם האסטרטגי בין הממשלה לעיריית לוד – שממנו נולד הרובע</div>
-    </div>
-    <div class="about-text rv">
-      <span class="eyebrow">על הרובע הבינלאומי</span>
-      <h2 style="font-size:clamp(2rem,4vw,3rem);margin:14px 0 22px">עיר חדשה בתוך העיר – במיקום הכי מרכזי בישראל</h2>
-      <p>הרובע הבינלאומי הוא השכונה החדשה והגדולה ביותר שנבנית היום בלוד, ואחד הפרויקטים העירוניים המשמעותיים במרכז הארץ. השכונה משתרעת על כ-1,600 דונם במערב העיר, בין גני אביב, מושב ניר צבי ובאר יעקב, על קרקעות שהועברו לעיר במסגרת הסכם הגג של לוד.</p>
-      <p>התכנון, שמובל על ידי החברה הכלכלית לוד יחד עם החברה הממשלתית "דירה להשכיר", בנוי על מודל של שימושים מעורבים: מגורים לצד מסחר, תעסוקה, מבני ציבור ושטחים פתוחים רחבים – שכונה שבה אפשר לגור, לעבוד ולבלות בלי להוציא את הרכב מהחניה.</p>
-      <ul class="ticks">
-        <li>מגדלים ובנייני בוטיק בגובה 7–15 קומות, לצד בתים צמודי קרקע</li>
-        <li>תמהיל מגוון: כ-2,200 דירות קטנות לזוגות צעירים, דירות משפחה, פנטהאוזים ו-600 יח"ד לדיור מוגן</li>
-        <li>פארק אקליפטוסים גדול ושדרות ירוקות לאורך השכונה</li>
-        <li>כ-48,000 מ"ר מסחר וכ-154,000 מ"ר תעסוקה מתוכננים</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WHY ============ -->
+<!-- ================= WHY ================= -->
 <section class="sec why" id="why">
   <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">למה דווקא הרובע הבינלאומי</span>
-      <h2>6 סיבות שבגללן כולם מדברים על לוד</h2>
-      <p>מחירים של עיר מתפתחת, נגישות של מרכז הארץ ופוטנציאל השבחה של שכונה שרק מתחילה להתאכלס.</p>
+    <div class="head-c rv">
+      <span class="kicker">למה אמון</span>
+      <h2 class="h2">לא רק עסקאות.<br>אנשים, משפחות וחלומות.</h2>
+      <p class="lead">גישה אישית שמחברת בין היכרות עמוקה עם השוק, שקיפות מלאה וליווי צמוד – לבעלי נכסים, לרוכשים ולשוכרים.</p>
     </div>
-    <div class="grid3">
-      <div class="feat rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l-2-4M15 21l2-4"/><circle cx="9" cy="14" r=".8" fill="currentColor"/><circle cx="15" cy="14" r=".8" fill="currentColor"/></svg></div><h3>רכבת במרחק הליכה</h3><p>תחנת רכבת לוד–גני אביב נמצאת כ-500 מטר מהשכונה, עם נסיעה של כ-10–12 דקות לתחנת ההגנה בתל אביב. התכנית כוללת שדרוג והרחבה של התחנה.</p></div>
-      <div class="feat rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></div><h3>הלב של מרכז הארץ</h3><p>דקות מכביש 1, כביש 6, כביש 40 וכביש 44, וסמוך לנמל התעופה בן גוריון. ראשון לציון, רחובות, מודיעין ותל אביב – כולן בהישג יד.</p></div>
-      <div class="feat rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div><h3>פוטנציאל השבחה</h3><p>רוכשים היום בשלב שבו השכונה עדיין נבנית. ככל שהאכלוס, המסחר והתעסוקה יתמלאו – כך צפוי ביקוש גובר לדירות ולשכירות באזור.</p></div>
-      <div class="feat rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M7 8c0-2 2-3 5-3s5 1 5 3-2 3-5 3-5 1-5 3 2 3 5 3 5-1 5-3"/></svg></div><h3>מחיר נגיש ביחס למרכז</h3><p>דירות חדשות מקבלן במחירים שנמוכים משמעותית מהערים השכנות – עם אותו זמן נסיעה לתל אביב, ולעיתים קצר יותר.</p></div>
-      <div class="feat rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22V12M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg></div><h3>שכונה ירוקה ומתוכננת</h3><p>פארק אקליפטוסים, שטחים ציבוריים פתוחים, מבני חינוך וציבור ושדרות – תכנון חדש מאפס, בלי הפשרות של שכונות ותיקות.</p></div>
-      <div class="feat rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18M5 21V8l7-5 7 5v13M10 21v-6h4v6"/></svg></div><h3>יזמים מהשורה הראשונה</h3><p>חברות בנייה מובילות כבר פועלות ברובע: אשטרום, רם אדרת, אבני דרך, רייסדור, בוני ישראל ועוד – לצד פרויקטים של השכרה ארוכת טווח.</p></div>
+    <div class="cards4">
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg></div><h3>התמחות בפרויקטים חדשים</h3><p>היכרות מעמיקה עם הדינמיקה של מכירה והשכרה בבניינים חדשים, עם היזמים ועם רמות המחירים בכל פרויקט.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><h3>תמחור מדויק</h3><p>ניתוח עסקאות והשוואה לנכסים דומים בפרויקט – כדי שתקבלו את המחיר הנכון, לא רק את המחיר המהיר.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M16 11l2 2 4-4"/></svg></div><h3>התאמה וסינון אמיתיים</h3><p>אנחנו מקשיבים לצרכים, לתקציב ולחלומות – ומתאימים נכס ללקוח ולקוח לנכס, עם סינון ובדיקות לפי הצורך.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-8-4.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 6.5-8 11-8 11z"/></svg></div><h3>יושרה, שקיפות וליווי</h3><p>עדכון שוטף, אמירת אמת גם כשהיא לא נוחה, וליווי מקצועי ואנושי גם אחרי שהעסקה נחתמה.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ============ TIMELINE ============ -->
-<section class="sec">
-  <div class="wrap split" style="align-items:start">
-    <div class="sec-head rv" style="margin-bottom:0;position:sticky;top:120px">
-      <span class="eyebrow">ציר הזמן</span>
-      <h2>מתכנית על הנייר – לשכונה חיה</h2>
-      <p>הרובע עובר בשנים האחרונות משלב השיווק לשלב הבנייה המואצת, וגלי האכלוס הראשונים כבר באופק. זה בדיוק השלב שבו כדאי להיכנס.</p>
-      <a class="btn btn-gold" href="#contact" style="margin-top:26px">רוצים לדעת מה נשאר?</a>
-    </div>
-    <div class="tl">
-      <div class="tl-item rv"><span class="yr" dir="ltr">2017</span><h3>הסכם אסטרטגי ממשלה–עיריית לוד</h3><p>הרובע הבינלאומי מוגדר כאחד ממנועי הצמיחה המרכזיים של העיר, והתכנון יוצא לדרך.</p></div>
-      <div class="tl-item rv"><span class="yr" dir="ltr">2022–2024</span><h3>שיווק קרקעות ויציאה לביצוע</h3><p>מכרזי רמ"י והחברה הכלכלית משווקים אלפי יחידות דיור; עבודות התשתית והפיתוח מתחילות בשטח.</p></div>
-      <div class="tl-item rv"><span class="yr" dir="ltr">2025</span><h3>כ-4,100 יח"ד שווקו בהצלחה</h3><p>לפי פרסומי העירייה שווקו קרקעות לכ-4,100 יחידות דיור, וכ-1,700 נוספות בשיווק. מכרז ל-596 דירות נסגר בכ-461 מיליון ש"ח.</p></div>
-      <div class="tl-item rv"><span class="yr" dir="ltr">2026</span><h3>בנייה בהיקף מלא</h3><p>עשרות מבנים בשלבי שלד וגמר, והחברה הכלכלית ממשיכה בעבודות פיתוח – כולל הקמת שצפ"ים וגינות ציבוריות.</p></div>
-      <div class="tl-item rv"><span class="yr" dir="ltr">2027–2029</span><h3>גלי אכלוס</h3><p>מועדי האכלוס הצפויים משתנים לפי יזם ופרויקט, ומתפרסים על פני השנים הקרובות.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ MARKET ============ -->
-<section class="sec market" id="market">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">נתוני שוק</span>
-      <h2>המספרים מאחורי ההזדמנות</h2>
-      <p>תמונת מצב של הרובע על בסיס פרסומים ציבוריים, נתוני עסקאות ומחירוני יזמים. לנתונים מעודכנים ליום הפגישה – דברו איתנו.</p>
-    </div>
-    <div class="mk-grid">
-      <div class="mk rv"><b>~24–25 אלף ₪</b><span>מחיר ממוצע למ"ר</span><p>לפי נתוני עסקאות שפורסמו לאזור (מדלן).</p></div>
-      <div class="mk rv"><b>מ-2.2 מיליון ₪</b><span>מחירי פתיחה</span><p>מחירי פתיחה שפורסמו בפרויקטים חדשים, לדירות 3–5 חדרים.</p></div>
-      <div class="mk rv"><b>461 מיליון ₪</b><span>מכרז ל-596 דירות</span><p>כ-773 אלף ₪ ליח"ד כולל פיתוח – אינדיקציה לאמון היזמים.</p></div>
-      <div class="mk rv"><b>11,645</b><span>יח"ד בתכנית המלאה</span><p>לפי מסמכי התכנון של העירייה – אחת השכונות הגדולות במרכז.</p></div>
-    </div>
-    <div class="devs rv">
-      <h3>חלק מהיזמים הפועלים ברובע</h3>
-      <div class="dev-list">
-        <span>רם אדרת</span><span>אשטרום</span><span>אבני דרך</span><span>רייסדור</span><span>בוני ישראל</span><span>באר משה ומרים</span><span>אייל פרץ</span><span>עמרם אברהם</span><span>דירה להשכיר</span>
-      </div>
-    </div>
-    <p class="disc">* הנתונים מבוססים על פרסומים ציבוריים (עיריית לוד, החברה הכלכלית לוד, TheMarker, מרכז הנדל"ן, מדלן ויד2) ונכונים למועד פרסומם. מחירים ומועדי אכלוס משתנים ואינם מהווים הצעה או התחייבות.</p>
-  </div>
-</section>
-
-<!-- ============ PROJECTS ============ -->
+<!-- ================= PROJECTS ================= -->
 <section class="sec" id="projects">
   <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">הפרויקטים שלנו</span>
-      <h2>תוצאות מדברות בעד עצמן</h2>
-      <p>אנחנו לא רק מדברים על נדל"ן חדש – אנחנו משווקים, מוכרים ומשכירים אותו. הנה חלק מהפרויקטים שבהם אנחנו פעילים.</p>
+    <div class="head-c rv">
+      <span class="kicker">תיק עבודות</span>
+      <h2 class="h2">הפרויקטים שלנו</h2>
+      <p class="lead">פרויקטים ששיווקנו ואנחנו פעילים בהם – לחצו על פרויקט לפרטים ולתוצאות</p>
     </div>
-
-    <article class="proj rv">
-      <div class="proj-media">
-        <img src="assets/img/facade-234.jpg" alt="פרויקט רם אדרת – חזית בניין בוטיק" loading="lazy" data-lb>
-        <img src="assets/img/living-garden.jpg" alt="סלון עם יציאה לגינה" loading="lazy" data-lb>
-        <img src="assets/img/roof-sunset.jpg" alt="מרפסת גג בשקיעה" loading="lazy" data-lb>
-      </div>
-      <div>
-        <span class="proj-tag">פרויקט בוטיק · דופלקסים וטריפלקסים</span>
-        <h3>רם אדרת – אחיסמך</h3>
-        <div class="loc"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>אחיסמך, לוד</div>
-        <p class="desc">פרויקט בוטיק של 88 יחידות דיור בלבד – דופלקסים וטריפלקסים בבניינים נמוכים בסגנון מודרני, עם חיפויי עץ, גינות פרטיות, מרפסות רחבות ומרפסות גג עם נוף פתוח. מגורים בתחושה של בית פרטי, במחיר של דירה.</p>
-        <div class="results">
-          <div class="res"><b>88</b><span>יח"ד בפרויקט</span></div>
-          <div class="res"><b>6</b><span>דירות מכרנו</span></div>
-          <div class="res"><b>10</b><span>דירות השכרנו</span></div>
-        </div>
-        <a class="btn btn-gold" href="#contact">לפרטים על הדירות הזמינות</a>
-      </div>
-    </article>
-
-    <article class="proj rev rv">
-      <div class="proj-plain">
-        <b>45</b>
-        <p>נכסים הושכרו בפרויקט</p>
-        <div style="height:24px"></div>
-        <b style="font-size:3.4rem">6</b>
-        <p>דירות נמכרו</p>
-      </div>
-      <div>
-        <span class="proj-tag">שיווק, השכרה וניהול</span>
-        <h3>פרויקט אמפא – רחובות</h3>
-        <div class="loc"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>רחובות</div>
-        <p class="desc">ליווי מלא של פרויקט מגורים חדש ברחובות – משיווק ומכירה ועד איתור שוכרים איכותיים, חתימה על חוזים ומסירת דירות. 45 נכסים הושכרו ו-6 דירות נמכרו באמצעות המשרד.</p>
-        <div class="results">
-          <div class="res"><b>45</b><span>נכסים הושכרו</span></div>
-          <div class="res"><b>6</b><span>דירות נמכרו</span></div>
-          <div class="res"><b>100%</b><span>ליווי אישי</span></div>
-        </div>
-        <a class="btn btn-gold" href="#contact">יש לכם נכס להשכיר?</a>
-      </div>
-    </article>
+    <div class="pgrid" id="pgrid"></div>
+    <div class="filters" id="pfilters"></div>
   </div>
 </section>
 
-<!-- ============ GALLERY ============ -->
-<section class="sec" id="gallery" style="padding-top:0">
+<!-- ================= INTERNATIONAL QUARTER ================= -->
+<section class="sec quarter" id="quarter">
   <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">גלריה</span>
-      <h2>ככה זה ייראה – וככה תרגישו בבית</h2>
-      <p>הדמיות מפרויקט רם אדרת: חזיתות, חללי מגורים, גינות ומרפסות גג.</p>
+    <div class="q-hero rv">
+      <img src="assets/img/street-row.jpg" alt="רחוב מגורים חדש ברובע הבינלאומי" loading="lazy">
+      <div class="in">
+        <span class="kicker" style="color:rgba(255,255,255,.75)">מוקד הפעילות שלנו</span>
+        <h2 class="h2">הרובע הבינלאומי, לוד</h2>
+        <p>השכונה החדשה והגדולה שנבנית היום במרכז הארץ – כ-11,350 יחידות דיור, פארקים, מסחר ותעסוקה, כ-500 מטר מתחנת רכבת ובמרחק כ-12 דקות נסיעה ברכבת מתל אביב.</p>
+      </div>
+    </div>
+
+    <div class="q-stats">
+      <div class="q-stat rv"><b>11,350</b><span>יחידות דיור מתוכננות</span></div>
+      <div class="q-stat rv"><b>1,600</b><span>דונם</span></div>
+      <div class="q-stat rv"><b>~12 דק'</b><span>ברכבת לתל אביב</span></div>
+      <div class="q-stat rv"><b>40,000</b><span>תושבים חדשים צפויים</span></div>
+      <div class="q-stat rv"><b>154,000</b><span>מ"ר שטחי תעסוקה</span></div>
+    </div>
+
+    <div class="q-split">
+      <div class="rv">
+        <h3 class="h3">עיר חדשה בתוך העיר – במיקום הכי מרכזי בישראל</h3>
+        <p>הרובע הבינלאומי משתרע על כ-1,600 דונם במערב לוד, בין שכונת גני אביב, מושב ניר צבי ובאר יעקב, על קרקעות שהועברו לעיר במסגרת הסכם הגג. הפרויקט הוא אחד המהלכים המרכזיים בהסכם האסטרטגי שנחתם ב-2017 בין הממשלה לעיריית לוד.</p>
+        <p>את התכנון מובילה החברה הכלכלית לוד יחד עם החברה הממשלתית "דירה להשכיר", במודל של שימושים מעורבים: מגורים לצד מסחר, תעסוקה, מבני ציבור ושטחים פתוחים – שכונה שבה אפשר לגור, לעבוד ולבלות.</p>
+        <ul class="checks">
+          <li>בניינים בגובה 7–15 קומות, לצד פרויקטי בוטיק</li>
+          <li>כ-2,200 דירות קטנות לזוגות צעירים ו-600 יח"ד לדיור מוגן</li>
+          <li>פארק אקליפטוסים גדול ושטחים ציבוריים פתוחים</li>
+          <li>כ-48,000 מ"ר מסחר וכ-154,000 מ"ר תעסוקה</li>
+        </ul>
+      </div>
+      <div class="rv">
+        <h3 class="h3">ציר הזמן של הרובע</h3>
+        <div class="tl">
+          <div class="tl-i"><div class="y" dir="ltr">2017</div><h4>הסכם אסטרטגי ממשלה–עיריית לוד</h4><p>הרובע מוגדר כמנוע צמיחה מרכזי של העיר והתכנון יוצא לדרך.</p></div>
+          <div class="tl-i"><div class="y" dir="ltr">2022–2024</div><h4>שיווק קרקעות ותחילת פיתוח</h4><p>מכרזי רמ"י והחברה הכלכלית משווקים אלפי יחידות דיור.</p></div>
+          <div class="tl-i"><div class="y" dir="ltr">2025</div><h4>כ-4,100 יח"ד שווקו</h4><p>מכרז ל-596 דירות נסגר בכ-461 מיליון ש"ח; כ-1,700 יח"ד נוספות בשיווק.</p></div>
+          <div class="tl-i"><div class="y" dir="ltr">2026</div><h4>בנייה בהיקף מלא</h4><p>עשרות מבנים בשלבי שלד וגמר, לצד עבודות פיתוח וגינות ציבוריות.</p></div>
+          <div class="tl-i" style="padding-bottom:0"><div class="y" dir="ltr">2027–2029</div><h4>גלי אכלוס</h4><p>מועדי האכלוס משתנים לפי יזם ופרויקט.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="head-c rv" style="margin-bottom:40px">
+      <span class="kicker">החיים ברובע</span>
+      <h3 class="h2" style="font-size:clamp(1.8rem,3.4vw,2.6rem)">תחבורה, חינוך, מסחר ושירותים</h3>
+    </div>
+    <div class="infra">
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l-2-4M15 21l2-4"/></svg></div><h3>רכבת במרחק הליכה</h3><p>תחנת לוד–גני אביב נמצאת כ-500 מטר מהשכונה, עם נסיעה של כ-10–12 דקות לתל אביב ההגנה. התכנית כוללת שדרוג והרחבה של התחנה.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/><circle cx="12" cy="12" r="9"/></svg></div><h3>כבישים ונתב"ג</h3><p>גישה מהירה לכבישים 1, 6, 40 ו-44 וקרבה לנמל התעופה בן גוריון. ראשון לציון, רחובות ומודיעין בהישג יד.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></div><h3>חינוך ומבני ציבור</h3><p>התכנית כוללת שטחים ייעודיים למוסדות חינוך ומבני ציבור לאורך השכונה, בהתאם לשלבי האכלוס.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16l-1 13H5z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></div><h3>מסחר ותעסוקה</h3><p>כ-48,000 מ"ר מסחר וכ-154,000 מ"ר תעסוקה מתוכננים, כולל מוקד עירוני תוסס סביב תחנת הרכבת.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22V12M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg></div><h3>פארקים ושטחים פתוחים</h3><p>פארק אקליפטוסים גדול, שצ"פים וגינות ציבוריות – תכנון ירוק מאפס, בלי הפשרות של שכונות ותיקות.</p></div>
+      <div class="card rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div><h3>פוטנציאל לעליית ערך</h3><p>כניסה בשלב שבו השכונה עדיין נבנית. ככל שהאכלוס, המסחר והתעסוקה יתמלאו – צפוי ביקוש גובר לרכישה ולשכירות.</p></div>
+    </div>
+
+    <div class="head-c rv" style="margin-bottom:40px">
+      <span class="kicker">נתוני שוק</span>
+      <h3 class="h2" style="font-size:clamp(1.8rem,3.4vw,2.6rem)">המספרים מאחורי ההזדמנות</h3>
+    </div>
+    <div class="mk">
+      <div class="rv"><b>~24–25 אלף ₪</b><span>מחיר ממוצע למ"ר</span><p>לפי נתוני עסקאות שפורסמו לאזור.</p></div>
+      <div class="rv"><b>מ-2.2 מיליון ₪</b><span>מחירי פתיחה</span><p>בפרויקטים חדשים, לדירות 3–5 חדרים.</p></div>
+      <div class="rv"><b>461 מיליון ₪</b><span>מכרז ל-596 דירות</span><p>כ-773 אלף ₪ ליח"ד כולל פיתוח.</p></div>
+      <div class="rv"><b dir="ltr" style="text-align:right">2027–2029</b><span>מועדי אכלוס צפויים</span><p>משתנים לפי יזם ופרויקט.</p></div>
+    </div>
+    <div class="devs rv">
+      <span>רם אדרת</span><span>אשטרום</span><span>אבני דרך</span><span>רייסדור</span><span>בוני ישראל</span><span>באר משה ומרים</span><span>אייל פרץ</span><span>עמרם אברהם</span><span>דירה להשכיר</span>
+    </div>
+    <p class="note">* מבוסס על פרסומי עיריית לוד, החברה הכלכלית לוד, TheMarker, מרכז הנדל״ן ומדלן. הנתונים תכנוניים, נכונים למועד פרסומם ועשויים להשתנות.</p>
+    <div style="text-align:center;margin-top:36px" class="rv"><a href="#contact" class="pill pill-dark" data-path="seeker">אני מתעניין/ת ברובע הבינלאומי</a></div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <div class="head-c rv">
+      <span class="kicker">גלריה</span>
+      <h2 class="h2">ככה זה נראה מבפנים</h2>
+      <p class="lead">הדמיות מפרויקט רם אדרת – דופלקסים וטריפלקסים בסגנון בוטיק</p>
     </div>
     <div class="gal">
-      <figure class="w2 h2 rv"><img src="assets/img/facade-front.jpg" alt="חזית בניין" loading="lazy" data-lb><figcaption>חזית בניין בוטיק</figcaption></figure>
-      <figure class="rv"><img src="assets/img/penthouse-living.jpg" alt="סלון ופינת אוכל" loading="lazy" data-lb><figcaption>חלל מגורים פתוח</figcaption></figure>
-      <figure class="rv"><img src="assets/img/bedroom-patio.jpg" alt="חדר שינה עם פטיו" loading="lazy" data-lb><figcaption>חדר הורים עם פטיו</figcaption></figure>
-      <figure class="w2 rv"><img src="assets/img/roof-bar.jpg" alt="מרפסת גג עם מטבח חוץ" loading="lazy" data-lb><figcaption>מרפסת גג עם מטבח חוץ</figcaption></figure>
-      <figure class="rv"><img src="assets/img/garden-pergola.jpg" alt="גינה עם פרגולה" loading="lazy" data-lb><figcaption>דירת גן עם פרגולה</figcaption></figure>
-      <figure class="rv"><img src="assets/img/roof-terrace.jpg" alt="מרפסת גג" loading="lazy" data-lb><figcaption>מרפסת גג</figcaption></figure>
-      <figure class="w2 rv"><img src="assets/img/corner.jpg" alt="פינת רחוב" loading="lazy" data-lb><figcaption>רחובות השכונה</figcaption></figure>
-      <figure class="w4 rv"><img src="assets/img/street-trees.jpg" alt="רחוב עם עצים" loading="lazy" data-lb><figcaption>שדרות ירוקות</figcaption></figure>
+      <figure class="w2 h2 rv"><img src="assets/img/facade-front.jpg" alt="חזית בניין" loading="lazy" data-lb></figure>
+      <figure class="rv"><img src="assets/img/penthouse-living.jpg" alt="חלל מגורים פתוח" loading="lazy" data-lb></figure>
+      <figure class="rv"><img src="assets/img/bedroom-patio.jpg" alt="חדר הורים עם פטיו" loading="lazy" data-lb></figure>
+      <figure class="w2 rv"><img src="assets/img/roof-bar.jpg" alt="מרפסת גג עם מטבח חוץ" loading="lazy" data-lb></figure>
+      <figure class="rv"><img src="assets/img/garden-pergola.jpg" alt="דירת גן עם פרגולה" loading="lazy" data-lb></figure>
+      <figure class="rv"><img src="assets/img/roof-terrace.jpg" alt="מרפסת גג" loading="lazy" data-lb></figure>
+      <figure class="w2 rv"><img src="assets/img/corner.jpg" alt="רחובות השכונה" loading="lazy" data-lb></figure>
+      <figure class="w4 rv"><img src="assets/img/street-trees.jpg" alt="שדרות ירוקות" loading="lazy" data-lb></figure>
     </div>
   </div>
 </section>
 
-<!-- ============ SERVICES ============ -->
-<section class="sec why">
+<!-- ================= PROCESS ================= -->
+<section class="sec proc" id="owners">
   <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">מה אנחנו עושים</span>
-      <h2>ליווי נדל"ן מקצה לקצה</h2>
-      <p>בין אם אתם קונים דירה ראשונה, משקיעים או בעלי נכס – יש לנו מסלול בשבילכם.</p>
+    <div class="head-c rv">
+      <span class="kicker">לבעלי נכסים</span>
+      <h2 class="h2">תהליך העבודה איתנו</h2>
+      <p class="lead">מהשיחה הראשונה ועד מסירת המפתח – תהליך מסודר, שקוף ומדויק להשכרה או למכירה של הנכס שלכם.</p>
     </div>
-    <div class="svc">
-      <div class="feat rv"><span class="num">01</span><h3>רכישת דירה</h3><p>התאמת פרויקט ודירה לצרכים ולתקציב, השוואת יזמים, משא ומתן וליווי עד החתימה.</p></div>
-      <div class="feat rv"><span class="num">02</span><h3>השקעות</h3><p>ניתוח תשואה, איתור דירות עם פוטנציאל השבחה והתאמת מסלול השקעה – כולל השקעה מרחוק.</p></div>
-      <div class="feat rv"><span class="num">03</span><h3>השכרה וניהול</h3><p>שיווק הנכס, סינון שוכרים, חוזים, ביטחונות ומסירה – כדי שהנכס שלכם יעבוד בשבילכם.</p></div>
-      <div class="feat rv"><span class="num">04</span><h3>מכירת נכסים</h3><p>הערכת שווי, צילום והדמיה, חשיפה ממוקדת לקונים רלוונטיים וסגירת עסקה במחיר הנכון.</p></div>
-    </div>
+    <div class="steps" id="steps"></div>
+    <div style="text-align:center;margin-top:46px" class="rv"><a href="#contact" class="pill pill-dark" data-path="owner">יש לי נכס – בואו נדבר</a></div>
   </div>
 </section>
 
-<!-- ============ TEAM ============ -->
-<section class="sec team" id="team" style="background:var(--paper)">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">הצוות</span>
-      <h2>האנשים שמאחורי העסקה שלכם</h2>
-      <p>היכרות עמוקה עם הפרויקטים, עם היזמים ועם השוק בלוד ובסביבה – וזמינות אמיתית לאורך כל הדרך.</p>
-    </div>
-    <div class="team-grid">
-      <div class="agent rv">
-        <div class="avatar">י"מ</div>
-        <div>
-          <h3>ישראל מזרחי</h3>
-          <div class="role">שותף · מכירות והשקעות</div>
-          <div class="acts">
-            <a class="btn btn-gold" href="tel:+972584128725">058-412-8725</a>
-            <a class="btn btn-wa" href="https://wa.me/972584128725" target="_blank" rel="noopener">וואטסאפ</a>
-          </div>
-        </div>
-      </div>
-      <div class="agent rv">
-        <div class="avatar">י"כ</div>
-        <div>
-          <h3>יהודה כהן</h3>
-          <div class="role">שותף · השכרה וניהול נכסים</div>
-          <div class="acts">
-            <a class="btn btn-line" href="#contact">השאירו פרטים</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section class="sec why" id="faq">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="eyebrow">שאלות נפוצות</span>
-      <h2>כל מה שרציתם לדעת על הרובע</h2>
-    </div>
-    <div class="faq">
-      <details open><summary>איפה בדיוק נמצא הרובע הבינלאומי?</summary><p>במערב לוד, בין שכונת גני אביב, מושב ניר צבי ובאר יעקב – כ-500 מטר מתחנת הרכבת לוד–גני אביב ודקות מכבישים 1, 6, 40 ו-44 ומנתב"ג.</p></details>
-      <details><summary>כמה זמן לוקח להגיע לתל אביב?</summary><p>ברכבת מתחנת גני אביב – כ-10–12 דקות לתחנת תל אביב ההגנה, לפי פרסומי העירייה והיזמים. ברכב, תלוי בתנועה, בדרך כלל כ-20–30 דקות.</p></details>
-      <details><summary>מתי השכונה מתאכלסת?</summary><p>האכלוס מתבצע בשלבים, ומועדי המסירה משתנים לפי יזם ופרויקט – רובם צפויים בין 2027 ל-2029. נשמח לעבור איתכם על לוחות הזמנים של כל פרויקט.</p></details>
-      <details><summary>אילו סוגי דירות יש ברובע?</summary><p>מגוון רחב: דירות 3–5 חדרים בבניינים של 7–15 קומות, דירות גן, פנטהאוזים, דירות קטנות לזוגות צעירים, דיור מוגן ודיור להשכרה ארוכת טווח. בסביבה הקרובה (אחיסמך) יש גם פרויקטי בוטיק של דופלקסים וטריפלקסים.</p></details>
-      <details><summary>האם זו השקעה טובה?</summary><p>שכונה חדשה בשלב בנייה, ליד רכבת ובמרכז הארץ, נחשבת בדרך כלל לבעלת פוטנציאל השבחה – אך כל השקעה תלויה במחיר, בפרויקט ובלוח הזמנים. נבנה לכם ניתוח מותאם, כולל הערכת שכירות צפויה.</p></details>
-      <details><summary>אתם עובדים גם עם בעלי נכסים?</summary><p>בהחלט. אנחנו משכירים ומוכרים נכסים עבור בעלי דירות – רק בפרויקט אמפא ברחובות השכרנו 45 נכסים. השאירו פרטים ונחזור אליכם.</p></details>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CTA / CONTACT ============ -->
-<section class="sec cta" id="contact">
-  <div class="cta-bg"></div>
+<!-- ================= ABOUT ================= -->
+<section class="sec about" id="about">
   <div class="wrap">
     <div class="rv">
-      <span class="eyebrow">בואו נדבר</span>
-      <h2>הדירה הבאה שלכם ברובע הבינלאומי מחכה</h2>
-      <p>פגישת ייעוץ ללא התחייבות – נעבור יחד על הפרויקטים, המחירים ומסלולי המימון, ונמצא את מה שמתאים בדיוק לכם.</p>
-      <div class="contact-lines">
-        <a href="tel:+972584128725"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>ישראל מזרחי · <span dir="ltr">058-412-8725</span></a>
-        <a href="https://wa.me/972584128725" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>שלחו הודעה בוואטסאפ</a>
-        <a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>יהודה כהן · השכרה וניהול נכסים</a>
+      <span class="kicker">אודות החברה</span>
+      <h2 class="h2">נעים להכיר</h2>
+      <p>אמון נדל״ן מנוהלת על ידי <strong>יהודה כהן וישראל מזרחי</strong>, בעלי ניסיון של למעלה מעשר שנים בשוק הנדל״ן, עם התמחות בשיווק פרויקטים חדשים, השכרת דירות ומכירת נכסים.</p>
+      <p>אנחנו לא רואים בנדל״ן רק עסקאות ועמלות. אנחנו רואים אנשים, משפחות וחלומות. המטרה שלנו היא לבנות קשרים ארוכי טווח, להעניק ביטחון ושקט נפשי ולמצוא לכל לקוח את הנכס שמתאים לו באמת.</p>
+      <p class="strong">השם "אמון" נבחר כי בלעדיו אין עסקה טובה – לא מול בעלי הנכס, לא מול השוכרים והרוכשים ולא מול היזמים.</p>
+      <div class="vals">
+        <span>יושרה ושקיפות מלאה</span><span>אמון ויחס אישי</span><span>חיבור אמיתי בין אנשים</span><span>ליווי גם אחרי העסקה</span>
       </div>
     </div>
-    <div class="lead-card rv">
-      <h3>קבלו מחירון ותוכניות</h3>
-      <p>מלאו פרטים ונחזור אליכם עוד היום.</p>
-      <form class="form" data-lead>
-        <input name="name" required placeholder="שם מלא" autocomplete="name">
-        <input name="phone" required type="tel" placeholder="טלפון" autocomplete="tel" pattern="[0-9\-\+ ]{9,}">
-        <select name="interest" aria-label="מה מעניין אתכם">
-          <option>רכישת דירה ברובע הבינלאומי</option>
-          <option>דופלקס / טריפלקס – רם אדרת אחיסמך</option>
-          <option>דירה להשכרה</option>
-          <option>השקעה בנדל"ן</option>
-          <option>יש לי נכס להשכיר / למכור</option>
-        </select>
-        <select name="rooms" aria-label="מספר חדרים">
-          <option value="">מספר חדרים (לא חובה)</option>
-          <option>3 חדרים</option><option>4 חדרים</option><option>5 חדרים</option><option>6+ / דופלקס / פנטהאוז</option>
-        </select>
-        <textarea name="msg" rows="3" placeholder="הערות (לא חובה)"></textarea>
-        <button class="btn btn-gold" type="submit">שלחו – ונחזור אליכם</button>
-        <div class="ok">תודה! נחזור אליכם בהקדם.</div>
-        <small>בלחיצה על שליחה תיפתח הודעת וואטסאפ מוכנה עם הפרטים.</small>
-      </form>
+    <div class="team rv">
+      <div class="about-img"><img src="assets/img/living-garden.jpg" alt="סלון עם יציאה לגינה" loading="lazy"></div>
+      <div class="agent">
+        <div class="av">י״כ</div>
+        <div>
+          <h3>יהודה כהן</h3>
+          <div class="r">מייסד ושותף</div>
+          <div class="acts"><a href="#contact" class="pill pill-white">השאירו פרטים</a></div>
+        </div>
+      </div>
+      <div class="agent">
+        <div class="av">י״מ</div>
+        <div>
+          <h3>ישראל מזרחי</h3>
+          <div class="r">מייסד ושותף</div>
+          <div class="acts"><a href="tel:+972584128725" class="pill pill-white" dir="ltr">058-412-8725</a><a href="https://wa.me/972584128725" target="_blank" rel="noopener" class="pill pill-wa">וואטסאפ</a></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
+<!-- ================= DEVELOPERS ================= -->
+<section class="sec devband" id="developers">
+  <div class="wrap rv">
+    <div>
+      <span class="kicker">ליזמים וקבלנים</span>
+      <h2 class="h2" style="font-size:clamp(1.9rem,3.6vw,2.8rem)">יש לכם פרויקט שצריך לשווק?</h2>
+      <p class="lead">אנחנו משווקים פרויקטים שלמים ומלווים את בעלי הדירות בפרויקט – מכירה, השכרה וניהול פניות, עם היכרות עמוקה עם השוק והקונים.</p>
+    </div>
+    <div class="btns">
+      <a href="#contact" class="pill pill-dark" data-path="owner" data-subject="יזם / קבלן – שיווק פרויקט">לשיחה על שיווק הפרויקט</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MAP ================= -->
+<section class="sec mapsec" id="mapsec">
+  <div class="wrap">
+    <div class="legend rv">
+      <h3>אנחנו על המפה</h3>
+      <ul id="legend"></ul>
+      <p>לחצו על פרויקט ברשימה או על המפה לפרטים נוספים.</p>
+    </div>
+    <div id="map" class="rv" aria-label="מפת הפרויקטים"></div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="head-c rv">
+      <span class="kicker">שאלות נפוצות</span>
+      <h2 class="h2">כל מה שרציתם לדעת</h2>
+    </div>
+    <div class="faq rv">
+      <details open><summary>איפה בדיוק נמצא הרובע הבינלאומי?</summary><p>במערב לוד, בין שכונת גני אביב, מושב ניר צבי ובאר יעקב – כ-500 מטר מתחנת הרכבת לוד–גני אביב ודקות מכבישים 1, 6, 40 ו-44 ומנתב"ג.</p></details>
+      <details><summary>כמה זמן לוקח להגיע לתל אביב?</summary><p>ברכבת מתחנת גני אביב כ-10–12 דקות לתחנת תל אביב ההגנה, לפי פרסומי העירייה והיזמים. ברכב, תלוי בתנועה.</p></details>
+      <details><summary>מתי השכונה מתאכלסת?</summary><p>האכלוס מתבצע בשלבים, ומועדי המסירה משתנים לפי יזם ופרויקט – רובם צפויים בין 2027 ל-2029.</p></details>
+      <details><summary>יש לי דירה בפרויקט חדש – איך אתם עוזרים?</summary><p>אנחנו מתמחרים את הנכס לפי העסקאות בפרויקט, משווקים אותו, מסננים מתעניינים, מנהלים משא ומתן ומלווים עד החתימה והמסירה. רק במגדלי אמפא ברחובות השכרנו 45 נכסים.</p></details>
+      <details><summary>אתם עובדים רק בלוד?</summary><p>לא. אנחנו חברת שיווק נדל״ן בפריסה ארצית ופעילים בפרויקטים בלוד, ברחובות ובמרכז הארץ. הרובע הבינלאומי הוא מוקד הפעילות הנוכחי שלנו.</p></details>
+      <details><summary>אני יזם – אפשר למסור לכם פרויקט לשיווק?</summary><p>בהחלט. השאירו פרטים בטופס (מסלול "בעלי נכסים") ונחזור אליכם לפגישה.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="grid">
+    <div class="c-info rv">
+      <span class="kicker">צרו קשר</span>
+      <h2 class="h2">דברו איתנו</h2>
+      <p class="lead">בעלי נכס או מחפשים דירה? בחרו את המסלול המתאים, השאירו פרטים ונחזור אליכם בהקדם.</p>
+      <div class="lines">
+        <a href="tel:+972584128725"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>ישראל מזרחי · <span dir="ltr">058-412-8725</span></a>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>יהודה כהן</div>
+        <a href="https://wa.me/972584128725" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>שלחו הודעה בוואטסאפ</a>
+      </div>
+      <hr>
+      <small>נשמח לעמוד לשירותכם בכל שאלה</small>
+    </div>
+    <div class="c-form">
+      <div class="panel rv">
+        <div class="ptabs" role="tablist">
+          <button type="button" class="on" data-tab="seeker" role="tab">אני מחפש דירה</button>
+          <button type="button" data-tab="owner" role="tab">אני בעל נכס</button>
+        </div>
+
+        <form class="form on" data-form="seeker">
+          <div class="two">
+            <label>שם מלא*<input name="שם" required placeholder="ישראל ישראלי" autocomplete="name"></label>
+            <label>טלפון*<input name="טלפון" required type="tel" placeholder="050-0000000" autocomplete="tel" pattern="[0-9\-\+ ]{9,}"></label>
+          </div>
+          <div class="two">
+            <label>סוג העסקה*<select name="סוג עסקה" required><option>שכירות</option><option>רכישה</option><option>השקעה</option></select></label>
+            <label>מספר חדרים<select name="חדרים"><option value="">לא משנה</option><option>2–3</option><option>4</option><option>5</option><option>6+ / דופלקס / פנטהאוז</option></select></label>
+          </div>
+          <div class="two">
+            <label>פרויקט / אזור מבוקש<select name="פרויקט מבוקש" class="projsel"></select></label>
+            <label>תקציב<input name="תקציב" placeholder="לדוגמה: 6,000 ₪ / 2.5 מ׳"></label>
+          </div>
+          <label>דרישות והעדפות<textarea name="העדפות" rows="3" placeholder="קומה, מרפסת, חניה, מועד כניסה..."></textarea></label>
+          <button class="send" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>שלח פרטים</button>
+          <div class="ok">תודה! נחזור אליכם בהקדם.</div>
+          <p class="fine">בלחיצה על "שלח פרטים" תיפתח הודעת וואטסאפ מוכנה עם הפרטים. הפרטים ישמשו לחזרה אליכם בלבד.</p>
+        </form>
+
+        <form class="form" data-form="owner">
+          <div class="two">
+            <label>שם מלא*<input name="שם" required placeholder="ישראל ישראלי" autocomplete="name"></label>
+            <label>טלפון*<input name="טלפון" required type="tel" placeholder="050-0000000" autocomplete="tel" pattern="[0-9\-\+ ]{9,}"></label>
+          </div>
+          <div class="two">
+            <label>מה תרצו לעשות?*<select name="סוג עסקה" required><option>להשכיר את הנכס</option><option>למכור את הנכס</option><option>ניהול נכס</option><option>יזם / קבלן – שיווק פרויקט</option></select></label>
+            <label>מספר חדרים<select name="חדרים"><option value="">—</option><option>2–3</option><option>4</option><option>5</option><option>6+ / דופלקס / פנטהאוז</option></select></label>
+          </div>
+          <label>פרויקט / כתובת הנכס<select name="פרויקט" class="projsel"></select></label>
+          <label>פרטי הנכס<textarea name="פרטי הנכס" rows="3" placeholder="קומה, שטח, מרפסת, מועד פינוי, מחיר מבוקש..."></textarea></label>
+          <button class="send" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>שלח פרטים</button>
+          <div class="ok">תודה! נחזור אליכם בהקדם.</div>
+          <p class="fine">בלחיצה על "שלח פרטים" תיפתח הודעת וואטסאפ מוכנה עם הפרטים. הפרטים ישמשו לחזרה אליכם בלבד.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
 <footer>
   <div class="wrap">
-    <div>
-      <a href="#top" class="logo"><span class="logo-mark">מכ</span><span><b>מזרחי & כהן</b><small>נדל"ן · שיווק · השקעות</small></span></a>
-      <p>משרד תיווך ושיווק נדל"ן המתמחה בפרויקטים חדשים בלוד, ברובע הבינלאומי ובאזור המרכז – מכירה, השכרה והשקעות.</p>
+    <div class="top">
+      <a href="#top" class="logo"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 22 24 7l18 15"/><path d="M11 18v23h26V18"/><path d="M19 41V30a5 5 0 0 1 10 0v11"/><circle cx="24" cy="20" r="2.2"/></svg><span class="t"><b>אמון נדל״ן</b></span></a>
+      <div class="links"><a href="#projects">פרויקטים</a><a href="#quarter">הרובע הבינלאומי</a><a href="#owners">לבעלי נכסים</a><a href="#about">אודות</a><a href="#contact">צור קשר</a></div>
     </div>
-    <div>
-      <h4>ניווט</h4>
-      <ul><li><a href="#about">על הרובע</a></li><li><a href="#market">נתוני שוק</a></li><li><a href="#projects">הפרויקטים שלנו</a></li><li><a href="#faq">שאלות נפוצות</a></li></ul>
+    <div class="bot">
+      <span class="disc">ההדמיות להמחשה בלבד. המידע בדף מבוסס על פרסומים ציבוריים ואינו מהווה הצעה, התחייבות או ייעוץ השקעות. מחירים, תכניות ומועדי אכלוס כפופים לשינויים.</span>
+      <span>כל הזכויות שמורות לאמון נדל״ן © <span id="yr">2026</span></span>
     </div>
-    <div>
-      <h4>יצירת קשר</h4>
-      <ul><li>ישראל מזרחי – <a href="tel:+972584128725" dir="ltr">058-412-8725</a></li><li>יהודה כהן</li><li><a href="https://wa.me/972584128725" target="_blank" rel="noopener">וואטסאפ</a></li></ul>
-    </div>
-    <div class="legal">© <span id="yr">2026</span> מזרחי & כהן נדל"ן. כל הזכויות שמורות. ההדמיות להמחשה בלבד. המידע בדף מבוסס על פרסומים ציבוריים ואינו מהווה הצעה, התחייבות או ייעוץ השקעות. מחירים, תכניות ומועדי אכלוס כפופים לשינויים ולהסכם מכר מול היזם.</div>
   </div>
 </footer>
 
 <a class="fab" href="https://wa.me/972584128725" target="_blank" rel="noopener" aria-label="וואטסאפ"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg></a>
-<div class="mbar"><a href="tel:+972584128725">📞 חייגו עכשיו</a><a href="https://wa.me/972584128725" target="_blank" rel="noopener">💬 וואטסאפ</a></div>
+<div class="mbar"><a href="tel:+972584128725">חייגו עכשיו</a><a href="https://wa.me/972584128725" target="_blank" rel="noopener">וואטסאפ</a></div>
 
-<div class="lb" id="lb" aria-hidden="true"><button class="x" aria-label="סגירה">×</button><button class="pv" aria-label="הקודם">›</button><img alt=""><button class="nx" aria-label="הבא">‹</button></div>
+<div class="modal" id="modal" aria-hidden="true"><div class="mbox" role="dialog" aria-modal="true"><div class="mimg" id="mimg"></div><div class="mtx" id="mtx"></div></div></div>
+<div class="lb" id="lb"><button class="x" aria-label="סגירה">×</button><button class="p" aria-label="הקודם">›</button><img alt=""><button class="n" aria-label="הבא">‹</button></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
+/* =====================================================================
+   נתוני האתר – כדי להוסיף פרויקט / נכס חדש פשוט מוסיפים פריט למערכים
+   ===================================================================== */
+var WA='972584128725';
+var STATUS={sell:{t:'בשיווק',c:'#1f7a3d',cls:''},soon:{t:'בקרוב בשיווק',c:'#c2410c',cls:'soon'},done:{t:'השיווק הסתיים',c:'#b91c1c',cls:'done'}};
+
+var PROJECTS=[
+  {id:'aderet',name:'רם אדרת',city:'אחיסמך, לוד',region:'lod',status:'sell',img:'assets/img/facade-234.jpg',
+   lat:31.9330,lng:34.9095,
+   desc:'פרויקט בוטיק של 88 יחידות דיור בלבד – דופלקסים וטריפלקסים בבניינים נמוכים בסגנון מודרני, עם חיפויי עץ, גינות פרטיות, מרפסות רחבות ומרפסות גג עם מטבח חוץ. מגורים בתחושה של בית פרטי.',
+   res:[[88,'יח"ד בפרויקט'],[6,'דירות נמכרו'],[10,'דירות הושכרו']],
+   rows:[['יזם','רם אדרת'],['סוג','פרויקט בוטיק'],['סוגי דירות','דופלקסים וטריפלקסים'],['פעילות','מכירה והשכרה']]},
+  {id:'ampa',name:'מגדלי אמפא',city:'רחובות',region:'center',status:'sell',img:null,
+   lat:31.8805,lng:34.7915,
+   desc:'4 מגדלי מגורים בני 17 קומות בדרך ששת הימים, סמוך לחצרות המושבה בדרום-מערב רחובות: 324 דירות של 3, 4 ו-5 חדרים, מיני-פנטהאוזים ופנטהאוזים, לצד שדרת מסחר. האכלוס החל ב-2024 ושלב ב׳ אוכלס ב-2025.',
+   res:[[45,'נכסים הושכרו'],[6,'דירות נמכרו'],[324,'דירות בפרויקט']],
+   rows:[['יזם','אמפא ישראל'],['בניינים','4 מגדלים × 17 קומות'],['דירות','3 חד׳ (~75 מ"ר), 4 חד׳ (~98 מ"ר), 5 חד׳ (~121 מ"ר)'],['מסחר','כ-1,300 מ"ר'],['אדריכלות','ישר אדריכלים'],['מפרט','חניה ומחסן, מועדון דיירים, פינוי אשפה פניאומטי']]},
+  {id:'quarter',name:'הרובע הבינלאומי',city:'לוד',region:'lod',status:'sell',img:'assets/img/corner.jpg',
+   lat:31.9590,lng:34.8690,
+   desc:'השכונה החדשה של לוד – כ-11,350 יחידות דיור של יזמים מובילים, 500 מ׳ מתחנת רכבת גני אביב. אנחנו מלווים רוכשים, שוכרים ובעלי דירות בפרויקטים השונים ברובע.',
+   res:[['11K+','יח"ד מתוכננות'],['~12','דק׳ לתל אביב'],['2027+','אכלוס בשלבים']],
+   rows:[['תכנון','החברה הכלכלית לוד ו"דירה להשכיר"'],['שטח','כ-1,600 דונם'],['פעילות','רכישה, השכרה וליווי בעלי דירות']],
+   link:'#quarter'}
+];
+
+var REGIONS=[['all','כל הפרויקטים'],['lod','לוד והסביבה'],['center','מרכז ושפלה']];
+
+var FEATURED={
+  'דירות גן':[
+    {img:'assets/img/garden-pergola.jpg',proj:'רם אדרת · אחיסמך',title:'דופלקס גן',meta:['גינה פרטית','פרגולה'],desc:'דופלקס גן עם יציאה ישירה לדק עץ ולגינה מטופחת, פרגולה מעוצבת וחלונות ויטרינה גדולים מהסלון.',badge:'sell'},
+    {img:'assets/img/living-garden.jpg',proj:'רם אדרת · אחיסמך',title:'סלון עם יציאה לגינה',meta:['חלל פתוח','ויטרינה לגינה'],desc:'חלל מגורים פתוח ומואר עם פינת אוכל ויציאה ישירה לגינה – המרחב שבו המשפחה נפגשת.',badge:'sell'},
+    {img:'assets/img/bedroom-patio.jpg',proj:'רם אדרת · אחיסמך',title:'יחידת הורים עם פטיו',meta:['חדר הורים','פטיו פרטי'],desc:'חדר הורים מרווח הנפתח לפטיו פרטי ירוק – פינה שקטה משלכם בתוך הבית.',badge:'sell'}
+  ],
+  'דירות גג':[
+    {img:'assets/img/roof-sunset.jpg',proj:'רם אדרת · אחיסמך',title:'טריפלקס עם מרפסת גג',meta:['מרפסת גג','נוף פתוח'],desc:'מרפסת גג רחבה לאירוח, עם פינת אוכל, פינת ישיבה ונוף פתוח לשקיעה.',badge:'sell'},
+    {img:'assets/img/roof-bar.jpg',proj:'רם אדרת · אחיסמך',title:'גג עם מטבח חוץ',meta:['מטבח חוץ','בר ופרגולה'],desc:'מטבח חוץ, בר ישיבה ופרגולה ירוקה – גג שמרגיש כמו עוד קומה של הבית.',badge:'sell'},
+    {img:'assets/img/roof-terrace.jpg',proj:'רם אדרת · אחיסמך',title:'מרפסת צמודה לסלון',meta:['דק עץ','יציאה מהסלון'],desc:'מרפסת דק רחבה הצמודה לחלל המגורים, עם מדרגות פנימיות בין הקומות.',badge:'sell'}
+  ],
+  'להשכרה':[
+    {img:'assets/img/penthouse-living.jpg',proj:'פרויקטים חדשים · מרכז',title:'דירות חדשות להשכרה',meta:['כניסה מיידית / גמישה','מקבלן'],desc:'דירות חדשות בפרויקטים שאנחנו מלווים – 3, 4 ו-5 חדרים. ספרו לנו מה אתם מחפשים ונציג לכם את הנכסים הזמינים עכשיו.',badge:'sell'},
+    {img:'assets/img/facade-front.jpg',proj:'רם אדרת · אחיסמך',title:'דופלקסים להשכרה',meta:['בניין בוטיק','גינה / גג'],desc:'דופלקסים וטריפלקסים בפרויקט בוטיק – לפרטים על היחידות הפנויות השאירו פרטים.',badge:'sell'}
+  ]
+};
+
+var STEPS=[
+  ['שיחת היכרות','<circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-3.5 3-5.5 7-5.5M16 8a3 3 0 1 1 0 6M22 20c0-3-2-5-5-5"/>'],
+  ['הערכת שווי','<circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/>'],
+  ['אסטרטגיית שיווק','<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/>'],
+  ['הכנת הנכס','<path d="M14 6l4 4M4 20l8-8M13 3l8 8-3 3-8-8z"/>'],
+  ['פרסום ממוקד','<path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1zM16 8a5 5 0 0 1 0 8"/>'],
+  ['עדכונים שוטפים','<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'],
+  ['סינון מתעניינים','<circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6M15 15l2 2 4-4"/>'],
+  ['משא ומתן','<path d="M7 11l3-3 4 2 3-3 4 4-7 7-3-1-4-4zM3 10l4-4"/>'],
+  ['חוזה וחתימה','<path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 17l3-1 5-5-2-2-5 5z"/>'],
+  ['מסירה וליווי','<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/>']
+];
+
 (function(){
-  var WA='972584128725';
-  var hdr=document.getElementById('hdr');
-  function onScroll(){hdr.classList.toggle('solid',window.scrollY>60)}
-  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
 
-  var nav=document.getElementById('nav');
-  document.getElementById('burger').addEventListener('click',function(){nav.classList.toggle('open')});
-  nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('open')})});
+  /* header */
+  var hdr=$('#hdr');function hs(){hdr.classList.toggle('solid',scrollY>60)}addEventListener('scroll',hs,{passive:true});hs();
+  var nav=$('#nav');$('#burger').onclick=function(){nav.classList.toggle('open')};
+  $$('a',nav).forEach(function(a){a.onclick=function(){nav.classList.remove('open')}});
 
-  // reveal
-  var els=document.querySelectorAll('.rv');
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
-    els.forEach(function(el){io.observe(el)});
-  } else els.forEach(function(el){el.classList.add('in')});
+  /* featured carousel */
+  var cats=Object.keys(FEATURED),cat=cats[0],fi=0,media=$('#fmedia');
+  cats.forEach(function(c,i){var b=document.createElement('button');b.className='tab'+(i?'':' on');b.textContent=c;b.onclick=function(){$$('.tab').forEach(function(x){x.classList.remove('on')});b.classList.add('on');cat=c;fi=0;buildImgs();show()};$('#ftabs').appendChild(b)});
+  function buildImgs(){$$('img',media).forEach(function(i){i.remove()});var d=$('#fdots');d.innerHTML='';
+    FEATURED[cat].forEach(function(it,i){var im=new Image();im.src=it.img;im.alt=it.title;media.insertBefore(im,media.firstChild);var dot=document.createElement('i');dot.onclick=function(){fi=i;show()};d.appendChild(dot)})}
+  function show(){var L=FEATURED[cat],it=L[fi],imgs=$$('img',media).reverse();
+    imgs.forEach(function(im,i){im.classList.toggle('on',i===fi)});$$('#fdots i').forEach(function(d,i){d.classList.toggle('on',i===fi)});
+    $('#fcat').textContent=cat;$('#fproj').textContent=it.proj;$('#ftitle').textContent=it.title;
+    $('#fmeta').innerHTML=it.meta.map(function(m){return '<span>'+m+'</span>'}).join('');$('#fdesc').textContent=it.desc;
+    var b=$('#fbadge');b.textContent=cat==='להשכרה'?'להשכרה':'למכירה';b.className='badge'}
+  $('#fnext').onclick=function(){fi=(fi+1)%FEATURED[cat].length;show()};
+  $('#fprev').onclick=function(){fi=(fi-1+FEATURED[cat].length)%FEATURED[cat].length;show()};
+  buildImgs();show();
+  var auto=setInterval(function(){$('#fnext').click()},6000);media.addEventListener('mouseenter',function(){clearInterval(auto)});
 
-  // counters
-  var cs=document.querySelectorAll('[data-count]');
-  var cio=new IntersectionObserver(function(es){es.forEach(function(e){
-    if(!e.isIntersecting)return;cio.unobserve(e.target);
-    var el=e.target,end=+el.dataset.count,t0=null;
-    function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/1600,1);p=1-Math.pow(1-p,3);el.textContent=Math.round(end*p).toLocaleString('en-US');if(p<1)requestAnimationFrame(step)}
-    requestAnimationFrame(step);
-  })},{threshold:.5});
-  cs.forEach(function(c){cio.observe(c)});
+  /* projects grid + filters */
+  var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+  function card(p){var s=STATUS[p.status];var el=document.createElement('article');el.className='pcard rv in'+(p.img?'':' typo');el.dataset.region=p.region;
+    el.innerHTML=(p.img?'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy">':'<div class="big"><div class="row">'+p.res.slice(0,2).map(function(r){return '<div><b>'+r[0]+'</b><br><small>'+r[1]+'</small></div>'}).join('')+'</div></div>')+
+      '<div class="tops"><span class="badge lt">פרויקטים חדשים</span><span class="badge '+s.cls+'">'+s.t+'</span></div>'+
+      '<div class="name"><span>'+p.name+' · '+p.city+'</span><i>'+arrow+'</i></div>';
+    el.tabIndex=0;el.onclick=function(){openP(p)};el.onkeydown=function(e){if(e.key==='Enter')openP(p)};return el}
+  var grid=$('#pgrid');PROJECTS.forEach(function(p){grid.appendChild(card(p))});
+  REGIONS.forEach(function(r,i){var b=document.createElement('button');b.className='pill pill-line'+(i?'':' on');b.textContent=r[1];
+    b.onclick=function(){$$('#pfilters .pill').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+      $$('.pcard',grid).forEach(function(c){c.style.display=(r[0]==='all'||c.dataset.region===r[0])?'':'none'})};$('#pfilters').appendChild(b)});
 
-  // lead forms -> WhatsApp
-  document.querySelectorAll('form[data-lead]').forEach(function(f){
-    f.addEventListener('submit',function(ev){
-      ev.preventDefault();
-      var d=new FormData(f),lines=['היי, הגעתי מדף הרובע הבינלאומי בלוד'];
-      lines.push('שם: '+d.get('name'));lines.push('טלפון: '+d.get('phone'));
-      lines.push('מתעניין/ת ב: '+d.get('interest'));
-      if(d.get('rooms'))lines.push('חדרים: '+d.get('rooms'));
-      if(d.get('msg'))lines.push('הערות: '+d.get('msg'));
-      window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(lines.join('\n')),'_blank');
-      f.querySelector('.ok').style.display='block';f.reset();
-    });
-  });
+  /* project modal */
+  var modal=$('#modal');
+  function openP(p){var s=STATUS[p.status];
+    $('#mimg').style.backgroundImage=p.img?'url('+p.img+')':'linear-gradient(150deg,#5b6153,#363a31)';
+    $('#mtx').innerHTML='<button class="x" aria-label="סגירה">×</button><span class="badge '+s.cls+'">'+s.t+'</span><h3>'+p.name+'</h3><div class="loc">'+p.city+'</div><p>'+p.desc+'</p>'+
+      '<div class="res">'+p.res.map(function(r){return '<div><b>'+r[0]+'</b><span>'+r[1]+'</span></div>'}).join('')+'</div>'+
+      '<table>'+p.rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'}).join('')+'</table>'+
+      '<a href="'+(p.link||'#contact')+'" class="pill pill-dark" data-close>'+(p.link?'למידע על הרובע':'לפרטים על הפרויקט')+'</a>';
+    modal.classList.add('on');$('.x',modal).onclick=close;$('[data-close]',modal).onclick=function(){close();if(!p.link)pickProj(p.name)}}
+  function close(){modal.classList.remove('on')}
+  modal.onclick=function(e){if(e.target===modal)close()};
 
-  // lightbox
-  var imgs=[].slice.call(document.querySelectorAll('img[data-lb]')),lb=document.getElementById('lb'),li=lb.querySelector('img'),idx=0;
-  function show(i){idx=(i+imgs.length)%imgs.length;li.src=imgs[idx].src;li.alt=imgs[idx].alt;lb.classList.add('on')}
-  imgs.forEach(function(im,i){im.addEventListener('click',function(){show(i)})});
-  lb.querySelector('.x').onclick=function(){lb.classList.remove('on')};
-  lb.querySelector('.pv').onclick=function(){show(idx-1)};
-  lb.querySelector('.nx').onclick=function(){show(idx+1)};
-  lb.addEventListener('click',function(e){if(e.target===lb)lb.classList.remove('on')});
-  document.addEventListener('keydown',function(e){if(!lb.classList.contains('on'))return;if(e.key==='Escape')lb.classList.remove('on');if(e.key==='ArrowLeft')show(idx+1);if(e.key==='ArrowRight')show(idx-1)});
-  document.getElementById('yr').textContent=new Date().getFullYear();
+  /* process steps */
+  STEPS.forEach(function(s){var d=document.createElement('div');d.className='step rv';
+    d.innerHTML='<span class="dot"></span><div class="bx"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">'+s[1]+'</svg></div><em>'+s[0]+'</em></div>';$('#steps').appendChild(d)});
+
+  /* project selects in forms */
+  $$('.projsel').forEach(function(sel){['','הרובע הבינלאומי – לוד'].concat(PROJECTS.filter(function(p){return p.id!=='quarter'}).map(function(p){return p.name+' – '+p.city})).concat(['אחר']).forEach(function(o,i){var op=document.createElement('option');op.value=o;op.textContent=i?o:'בחרו פרויקט';sel.appendChild(op)})});
+  function pickProj(name){$$('.projsel').forEach(function(sel){[].forEach.call(sel.options,function(o){if(o.value.indexOf(name)===0)sel.value=o.value})})}
+
+  /* form tabs */
+  function setPath(p){$$('.ptabs button').forEach(function(b){b.classList.toggle('on',b.dataset.tab===p)});$$('.form').forEach(function(f){f.classList.toggle('on',f.dataset.form===p)})}
+  $$('.ptabs button').forEach(function(b){b.onclick=function(){setPath(b.dataset.tab)}});
+  $$('[data-path]').forEach(function(a){a.addEventListener('click',function(){setPath(a.dataset.path);if(a.dataset.subject){var s=$('[data-form=owner] select[name="סוג עסקה"]');s.value=a.dataset.subject}})});
+
+  /* submit -> WhatsApp */
+  $$('.form').forEach(function(f){f.onsubmit=function(e){e.preventDefault();
+    var head=f.dataset.form==='owner'?'פנייה מבעל/ת נכס':'פנייה ממחפש/ת דירה';var lines=['היי, הגעתי מהאתר של אמון נדל״ן',head];
+    new FormData(f).forEach(function(v,k){if(String(v).trim())lines.push(k+': '+v)});
+    window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(lines.join('\n')),'_blank');$('.ok',f).style.display='block';f.reset()}});
+
+  /* map */
+  var legend=$('#legend');
+  if(window.L){
+    var map=L.map('map',{scrollWheelZoom:false}).setView([31.925,34.86],11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
+    var bounds=[];
+    PROJECTS.forEach(function(p){var s=STATUS[p.status];
+      var m=L.circleMarker([p.lat,p.lng],{radius:11,color:'#fff',weight:3,fillColor:s.c,fillOpacity:1}).addTo(map).bindPopup('<b>'+p.name+'</b><br>'+p.city+'<br><a href="#" data-open="'+p.id+'">לפרטים</a>');
+      bounds.push([p.lat,p.lng]);
+      var li=document.createElement('li');li.innerHTML='<i style="background:'+s.c+'"></i>'+p.name+' · '+p.city;li.onclick=function(){map.flyTo([p.lat,p.lng],14);m.openPopup()};legend.appendChild(li)});
+    map.fitBounds(bounds,{padding:[60,60]});
+    map.on('popupopen',function(e){var a=e.popup.getElement().querySelector('[data-open]');if(a)a.onclick=function(ev){ev.preventDefault();openP(PROJECTS.filter(function(p){return p.id===a.dataset.open})[0])}});
+  } else { PROJECTS.forEach(function(p){var li=document.createElement('li');li.innerHTML='<i style="background:'+STATUS[p.status].c+'"></i>'+p.name+' · '+p.city;legend.appendChild(li)}); }
+
+  /* lightbox */
+  var imgs=$$('img[data-lb]'),lb=$('#lb'),li=$('img',lb),ix=0;
+  function lbs(i){ix=(i+imgs.length)%imgs.length;li.src=imgs[ix].src;lb.classList.add('on')}
+  imgs.forEach(function(im,i){im.onclick=function(){lbs(i)}});
+  $('.x',lb).onclick=function(){lb.classList.remove('on')};$('.p',lb).onclick=function(){lbs(ix-1)};$('.n',lb).onclick=function(){lbs(ix+1)};
+  lb.onclick=function(e){if(e.target===lb)lb.classList.remove('on')};
+  addEventListener('keydown',function(e){if(e.key==='Escape'){lb.classList.remove('on');close()}});
+
+  /* reveal + counters */
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+  $$('.rv').forEach(function(el){io.observe(el)});
+  var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;co.unobserve(e.target);var el=e.target,end=+el.dataset.count,t0;
+    (function st(ts){t0=t0||ts;var p=Math.min((ts-t0)/1500,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3))).toLocaleString('en-US');if(p<1)requestAnimationFrame(st)})(performance.now())})},{threshold:.5});
+  $$('[data-count]').forEach(function(el){co.observe(el)});
+  $('#yr').textContent=new Date().getFullYear();
 })();
 </script>
 </body>
