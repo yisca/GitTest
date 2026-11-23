@@ -11,450 +11,478 @@
 <meta property="og:image" content="assets/img/facade-front.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Assistant:wght@200;300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500&family=IBM+Plex+Sans+Hebrew:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
-/* Layout concept: a quiet gallery – full-bleed photography, alternating ink and ivory chapters, hairline champagne rules, a thin serif voice. */
+/* Layout concept: framed, tactile luxury – rounded photographic panels floating on warm ink and sand, glass UI, champagne accents, compact rhythm. */
 :root{
-  --ink:#121314; --ink-2:#1a1c1d; --ink-3:#24272a;
-  --ivory:#f4f0e8; --ivory-2:#ebe5d9; --paper:#faf8f3;
-  --text:#1c1d1e; --stone:#77726a; --mist:#a6a196;
-  --gold:#b39361; --gold-l:#d2b98c; --gold-d:#8c7245;
-  --line-d:rgba(244,240,232,.14); --line-l:rgba(18,19,20,.13);
-  --sell:#9bb594; --occ:#a6a196; --wa:#25a35a;
-  --serif:"Bellefair","Frank Ruhl Libre","David",serif;
-  --sans:"Assistant","Heebo",system-ui,sans-serif;
-  --max:1280px;
+  --ink:#0f0f0e; --ink-2:#181816; --ink-3:#22221f;
+  --sand:#efe9df; --sand-2:#e5ddcf; --paper:#f7f4ee;
+  --text:#191917; --stone:#6f6a62; --mist:#a39e94;
+  --gold:#c3a46f; --gold-l:#dcc49a; --gold-d:#8f7443;
+  --line-d:rgba(239,233,223,.12); --line-l:rgba(15,15,14,.1);
+  --glass:rgba(24,24,22,.55);
+  --sell:#a9c49f; --occ:#b9b3a7;
+  --serif:"Frank Ruhl Libre","David",serif;
+  --sans:"IBM Plex Sans Hebrew","Assistant",system-ui,sans-serif;
+  --r-xl:32px; --r-lg:22px; --r-md:14px;
+  --max:1240px; --gut:28px;
   color-scheme:light;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{font-family:var(--sans);font-weight:300;background:var(--paper);color:var(--text);font-size:17.5px;line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.05;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{font-family:var(--sans);font-weight:300;background:var(--paper);color:var(--text);font-size:16.5px;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;color:inherit}
-:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 48px}
-.sec{padding:150px 0}
-.dark{background:var(--ink);color:var(--ivory)}
-.ivory{background:var(--ivory)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.sec{padding:96px 0}
+.dark{background:var(--ink);color:var(--sand)}
+.sandbg{background:var(--sand)}
 
 /* type */
-.eyebrow{display:flex;align-items:center;gap:16px;font-size:.82rem;letter-spacing:.32em;color:var(--gold);font-weight:400}
-.eyebrow::before{content:"";width:46px;height:1px;background:currentColor;opacity:.8}
-.eyebrow .n{font-family:var(--serif);letter-spacing:.1em;color:var(--stone)}
-.dark .eyebrow .n{color:var(--mist)}
-.display{font-family:var(--serif);font-weight:400;line-height:1.08;letter-spacing:-.005em}
-.h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,5.2vw,4.6rem);line-height:1.08;margin:26px 0 0;text-wrap:balance}
-.lede{font-size:1.15rem;color:var(--stone);max-width:560px;margin-top:26px}
+.chip{width:fit-content;align-self:flex-start;display:inline-flex;align-items:center;gap:10px;padding:7px 16px 7px 14px;border-radius:999px;border:1px solid var(--line-l);font-size:.8rem;font-weight:500;letter-spacing:.06em;color:var(--stone);background:rgba(255,255,255,.4)}
+.chip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.dark .chip{border-color:var(--line-d);color:var(--mist);background:rgba(255,255,255,.03)}
+.h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.05;letter-spacing:-.01em;margin-top:18px;text-wrap:balance}
+.h2 em{font-style:normal;color:var(--gold-d);font-weight:400}
+.dark .h2 em{color:var(--gold)}
+.lede{font-size:1.05rem;color:var(--stone);max-width:520px}
 .dark .lede{color:var(--mist)}
-.head{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:end;margin-bottom:90px}
-.head .lede{margin:0;justify-self:start}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:44px;flex-wrap:wrap}
+.head .lede{margin-bottom:6px}
 
-/* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:17px 38px;border:1px solid var(--gold);color:var(--gold-l);background:transparent;font-size:.92rem;letter-spacing:.18em;font-weight:400;cursor:pointer;transition:background .4s,color .4s,border-color .4s;position:relative}
-.btn:hover{background:var(--gold);color:var(--ink)}
-.btn.solid{background:var(--gold);color:var(--ink)}
-.btn.solid:hover{background:var(--gold-l);border-color:var(--gold-l)}
-.btn.onlight{color:var(--gold-d);border-color:var(--gold-d)}
-.btn.onlight:hover{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
-.btn svg{width:16px;height:16px}
-.link{display:inline-flex;align-items:center;gap:12px;font-size:.88rem;letter-spacing:.2em;color:var(--gold-d);border-bottom:1px solid currentColor;padding-bottom:4px;transition:gap .3s}
-.link:hover{gap:20px}
+/* buttons – pill with icon disc */
+.btn{display:inline-flex;align-items:center;gap:14px;padding:7px 7px 7px 24px;padding-inline:24px 7px;border-radius:999px;font-size:.95rem;font-weight:500;cursor:pointer;border:1px solid transparent;transition:background .35s,color .35s,border-color .35s,transform .35s;white-space:nowrap}
+.btn .ic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;transition:transform .45s cubic-bezier(.2,.8,.2,1),background .35s}
+.btn .ic svg{width:16px;height:16px}
+.btn:hover .ic{transform:translateX(-4px) rotate(-45deg)}
+.btn.gold{background:var(--gold);color:var(--ink)}
+.btn.gold .ic{background:var(--ink);color:var(--gold-l)}
+.btn.gold:hover{background:var(--gold-l)}
+.btn.ghost{border-color:rgba(239,233,223,.35);color:var(--sand);background:rgba(255,255,255,.06);backdrop-filter:blur(10px)}
+.btn.ghost .ic{background:rgba(239,233,223,.14)}
+.btn.ghost:hover{background:var(--sand);color:var(--ink)}
+.btn.ghost:hover .ic{background:var(--ink);color:var(--sand)}
+.btn.ink{background:var(--ink);color:var(--sand)}
+.btn.ink .ic{background:var(--gold);color:var(--ink)}
+.btn.ink:hover{background:var(--ink-3)}
+.btn.line{border-color:var(--line-l);color:var(--text)}
+.btn.line .ic{background:var(--ink);color:var(--sand)}
+.btn.line:hover{background:var(--ink);color:var(--sand)}
+.btn.line:hover .ic{background:var(--gold);color:var(--ink)}
+.btn.sm{font-size:.85rem;padding-inline:18px 5px;padding-block:5px}
+.btn.sm .ic{width:32px;height:32px}
+.link{display:inline-flex;align-items:center;gap:10px;font-weight:500;font-size:.92rem;color:var(--gold-d)}
 .dark .link{color:var(--gold-l)}
-.link svg{width:15px;height:15px}
+.link svg{width:15px;height:15px;transition:transform .3s}
+.link:hover svg{transform:translateX(-5px)}
 
-/* ============ header ============ */
-.hdr{position:fixed;inset:0 0 auto;z-index:60;padding:30px 0;transition:background .5s,padding .5s,border-color .5s;border-bottom:1px solid transparent;color:var(--ivory)}
-.hdr.solid{background:rgba(18,19,20,.92);backdrop-filter:blur(14px);padding:16px 0;border-color:var(--line-d)}
-.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:30px}
-.mark{display:flex;align-items:center;gap:16px}
-.mark .mono{width:44px;height:44px;border:1px solid var(--gold);display:grid;place-items:center;font-family:var(--serif);font-size:1.45rem;color:var(--gold-l);line-height:1}
-.mark .wm{display:flex;flex-direction:column;line-height:1}
-.mark b{font-family:var(--serif);font-weight:400;font-size:1.7rem;letter-spacing:.04em}
-.mark small{font-size:.66rem;letter-spacing:.42em;color:var(--mist);margin-top:6px}
-.nav{display:flex;gap:40px;font-size:.95rem;letter-spacing:.06em}
-.nav a{position:relative;padding:6px 0;opacity:.85;transition:opacity .3s}
-.nav a:hover{opacity:1}
-.nav a::after{content:"";position:absolute;bottom:0;right:0;width:0;height:1px;background:var(--gold);transition:width .4s}
-.nav a:hover::after{width:100%}
-.hdr-end{display:flex;align-items:center;gap:26px}
-.hdr-tel{font-family:var(--serif);font-size:1.15rem;letter-spacing:.06em;color:var(--gold-l)}
-.hdr .btn{padding:12px 26px;font-size:.82rem}
-.burger{display:none;background:none;border:0;cursor:pointer;padding:8px;color:var(--ivory)}
+/* ============ header – floating glass pill ============ */
+.hdr{position:fixed;top:14px;left:0;right:0;z-index:60;pointer-events:none}
+.hdr .bar{position:relative;pointer-events:auto;max-width:var(--max);margin:0 auto;width:calc(100% - 2*var(--gut));display:flex;align-items:center;justify-content:space-between;gap:20px;padding:8px 8px 8px 8px;padding-inline:18px 8px;border-radius:999px;background:rgba(15,15,14,.28);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border:1px solid rgba(239,233,223,.16);color:var(--sand);transition:background .4s,box-shadow .4s}
+.hdr.solid .bar{background:rgba(15,15,14,.82);box-shadow:0 20px 40px -24px rgba(0,0,0,.6)}
+.mark{display:flex;align-items:center;gap:12px}
+.mark .mono{width:38px;height:38px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;font-family:var(--serif);font-size:1.25rem;font-weight:500}
+.mark b{font-family:var(--serif);font-weight:400;font-size:1.45rem;letter-spacing:.02em;line-height:1}
+.mark small{display:block;font-size:.62rem;letter-spacing:.3em;color:var(--mist);margin-top:3px}
+.nav{display:flex;gap:4px;font-size:.9rem;font-weight:400}
+.nav a{padding:9px 16px;border-radius:999px;transition:background .3s,color .3s;color:rgba(239,233,223,.82)}
+.nav a:hover{background:rgba(239,233,223,.1);color:var(--sand)}
+.hdr-end{display:flex;align-items:center;gap:10px}
+.hdr-tel{font-size:.9rem;font-weight:500;letter-spacing:.04em;color:var(--gold-l);padding:0 10px}
+.burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(239,233,223,.2);background:rgba(255,255,255,.05);cursor:pointer;color:var(--sand);place-items:center}
 
-/* ============ hero ============ */
-.hero{position:relative;height:100vh;height:100svh;min-height:680px;color:var(--ivory);overflow:hidden;display:flex;align-items:flex-end}
-.hero-bg{position:absolute;inset:0;background:url(assets/img/facade-front.jpg) center 45%/cover;transform:scale(1.12);animation:hz 22s cubic-bezier(.2,.6,.2,1) forwards}
+/* ============ hero – framed ============ */
+.hero{padding:12px 12px 0}
+.hero-frame{position:relative;height:calc(100vh - 12px);height:calc(100svh - 12px);min-height:640px;max-height:980px;border-radius:var(--r-xl);overflow:hidden;color:var(--sand);display:flex;align-items:flex-end}
+.hero-bg{position:absolute;inset:0;background:url(assets/img/facade-front.jpg) center 42%/cover;transform:scale(1.1);animation:hz 20s cubic-bezier(.2,.6,.2,1) forwards}
 @keyframes hz{to{transform:scale(1)}}
-.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(270deg,rgba(12,13,14,.62) 0%,rgba(12,13,14,.25) 45%,rgba(12,13,14,0) 70%),linear-gradient(180deg,rgba(12,13,14,.62) 0%,rgba(12,13,14,.2) 30%,rgba(12,13,14,.42) 58%,rgba(12,13,14,.94) 100%)}
-.hero .wrap{position:relative;z-index:2;width:100%;padding-bottom:90px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
-.hero .eyebrow{color:var(--gold-l)}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(3.4rem,8.6vw,8rem);line-height:.98;margin:30px 0 30px;letter-spacing:-.01em}
-.hero h1 span{display:block}
-.hero h1 em{font-style:normal;color:var(--gold-l)}
-.hero p{max-width:520px;font-size:1.15rem;color:rgba(244,240,232,.82)}
-.hero .btns{display:flex;gap:16px;flex-wrap:wrap;margin-top:42px}
-.hero .btns .btn:not(.solid){color:var(--ivory);border-color:rgba(244,240,232,.55)}
-.hero .btns .btn:not(.solid):hover{background:var(--ivory);color:var(--ink)}
-.hero-side{display:flex;flex-direction:column;align-items:center;gap:18px;color:var(--mist);font-size:.72rem;letter-spacing:.4em}
-.hero-side span{writing-mode:vertical-rl}
-.hero-side i{width:1px;height:90px;background:linear-gradient(var(--gold),transparent);animation:drip 2.6s infinite}
-@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-.hero-in>*{opacity:0;transform:translateY(24px);animation:up 1.3s cubic-bezier(.2,.7,.2,1) forwards}
-.hero-in>*:nth-child(1){animation-delay:.3s}.hero-in>*:nth-child(2){animation-delay:.5s}.hero-in>*:nth-child(3){animation-delay:.75s}.hero-in>*:nth-child(4){animation-delay:.95s}
+.hero-frame::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(270deg,rgba(10,10,9,.66),rgba(10,10,9,.2) 52%,rgba(10,10,9,0) 75%),linear-gradient(180deg,rgba(10,10,9,.45),rgba(10,10,9,0) 28%,rgba(10,10,9,.15) 55%,rgba(10,10,9,.86))}
+.hero-in{position:relative;z-index:2;width:100%;padding:0 clamp(20px,4vw,56px) clamp(24px,4vw,48px);display:grid;grid-template-columns:1.3fr .9fr;gap:40px;align-items:end}
+.hero .chip{color:var(--sand);border-color:rgba(239,233,223,.3);background:rgba(15,15,14,.25);backdrop-filter:blur(8px)}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,7.4vw,6.8rem);line-height:.98;letter-spacing:-.02em;margin:22px 0 18px}
+.hero h1 em{font-style:normal;color:var(--gold-l);font-weight:400}
+.hero p{max-width:500px;color:rgba(239,233,223,.85);font-size:1.05rem}
+.hero .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.glass{background:rgba(20,20,18,.42);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);border:1px solid rgba(239,233,223,.16);border-radius:var(--r-lg)}
+.hero-card{padding:22px 24px;justify-self:start;width:100%;max-width:400px}
+.hero-card .t{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;letter-spacing:.14em;color:var(--mist);margin-bottom:14px}
+.hero-card .t i{width:8px;height:8px;border-radius:50%;background:var(--sell);box-shadow:0 0 0 4px rgba(169,196,159,.2)}
+.hc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hc-grid div{background:rgba(239,233,223,.06);border-radius:var(--r-md);padding:12px 12px 10px}
+.hc-grid b{display:block;font-family:var(--serif);font-weight:400;font-size:1.9rem;line-height:1;color:var(--sand)}
+.hc-grid span{font-size:.74rem;color:var(--mist);line-height:1.4;display:block;margin-top:6px}
+.hero-in .l>*{opacity:0;transform:translateY(20px);animation:up 1.1s cubic-bezier(.2,.7,.2,1) forwards}
+.hero-in .l>*:nth-child(1){animation-delay:.25s}.hero-in .l>*:nth-child(2){animation-delay:.4s}.hero-in .l>*:nth-child(3){animation-delay:.6s}.hero-in .l>*:nth-child(4){animation-delay:.75s}
+.hero-card{opacity:0;transform:translateY(20px);animation:up 1.1s .9s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes up{to{opacity:1;transform:none}}
 
+/* marquee */
+.marq{overflow:hidden;padding:22px 0;border-bottom:1px solid var(--line-l);background:var(--paper)}
+.marq .track{display:flex;width:max-content;animation:mq 38s linear infinite}
+.marq span{display:inline-flex;align-items:center;gap:26px;padding-inline:13px;font-family:var(--serif);font-size:1.7rem;font-weight:300;color:var(--text);white-space:nowrap}
+.marq span small{font-family:var(--sans);font-size:.85rem;color:var(--stone);letter-spacing:.08em}
+.marq span::after{content:"✦";font-size:.9rem;color:var(--gold);margin-inline-start:13px}
+@keyframes mq{to{transform:translateX(50%)}}
+
 /* ============ intro + numbers ============ */
-.intro .statement{font-family:var(--serif);font-size:clamp(1.9rem,3.6vw,3.2rem);line-height:1.35;max-width:1000px;text-wrap:balance}
-.intro .statement em{font-style:normal;color:var(--gold-d)}
-.intro .sig{margin-top:34px;color:var(--stone);font-size:.95rem;letter-spacing:.12em}
-.nums{display:grid;grid-template-columns:repeat(4,1fr);margin-top:110px;border-top:1px solid var(--line-l)}
-.num{padding:44px 30px 0 0;border-inline-start:1px solid var(--line-l)}
-.num:first-child{border-inline-start:0;padding-right:0}
-.num b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(3rem,5.4vw,4.8rem);line-height:1;color:var(--text)}
+.intro-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+.statement{font-family:var(--serif);font-weight:300;font-size:clamp(1.7rem,2.8vw,2.45rem);line-height:1.3;margin-top:18px;text-wrap:balance}
+.statement em{font-style:normal;color:var(--gold-d);font-weight:400}
+.sig{display:flex;align-items:center;gap:14px;margin-top:22px;color:var(--stone);font-size:.9rem}
+.sig .avs{display:flex}
+.sig .avs i{width:36px;height:36px;border-radius:50%;background:var(--ink);color:var(--gold-l);display:grid;place-items:center;font-family:var(--serif);font-style:normal;font-size:.95rem;border:2px solid var(--paper)}
+.sig .avs i+i{margin-right:-10px;background:var(--gold);color:var(--ink)}
+.nums{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.num{background:var(--sand);border-radius:var(--r-lg);padding:22px 22px 18px}
+.num:first-child{background:var(--ink);color:var(--sand)}
+.num b{display:block;font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,4.2vw,3.6rem);line-height:1}
 .num b span{font:inherit;color:inherit}
-.num small{display:block;margin-top:16px;color:var(--stone);font-size:.98rem;max-width:200px}
+.num small{display:block;margin-top:10px;font-size:.85rem;color:var(--stone);line-height:1.45}
+.num:first-child small{color:var(--mist)}
 
 /* ============ featured ============ */
-.feat{display:grid;grid-template-columns:1.45fr 1fr;gap:0;align-items:stretch;border:1px solid var(--line-d)}
-.feat-media{position:relative;min-height:600px;overflow:hidden;background:var(--ink-2)}
-.feat-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity 1.1s ease,transform 6s ease}
+.feat{display:grid;grid-template-columns:1.5fr 1fr;gap:12px}
+.feat-media{position:relative;min-height:540px;border-radius:var(--r-xl);overflow:hidden;background:var(--ink-2)}
+.feat-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.05);transition:opacity 1s ease,transform 6s ease}
 .feat-media img.on{opacity:1;transform:scale(1)}
-.feat-txt{padding:60px 56px;display:flex;flex-direction:column;background:var(--ink-2)}
-.tabs{display:flex;gap:30px;margin-bottom:56px;flex-wrap:wrap}
-.tab{background:none;border:0;padding:0 0 8px;font-size:.92rem;letter-spacing:.14em;color:var(--mist);cursor:pointer;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
-.tab:hover{color:var(--ivory)}
-.tab.on{color:var(--gold-l);border-color:var(--gold)}
-.fidx{font-family:var(--serif);font-size:1.05rem;color:var(--mist);letter-spacing:.14em}
-.fidx b{font-weight:400;color:var(--gold-l);font-size:1.6rem}
-.feat-txt .proj{margin-top:34px;color:var(--gold-l);font-size:.85rem;letter-spacing:.24em}
-.feat-txt h3{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,3.2vw,2.8rem);line-height:1.15;margin:12px 0 18px}
-.feat-txt .meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
-.feat-txt .meta span{font-size:.84rem;letter-spacing:.08em;border:1px solid var(--line-d);padding:6px 14px;color:var(--ivory)}
-.feat-txt p{color:var(--mist)}
-.feat-ctl{margin-top:auto;padding-top:40px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.arrows{display:flex;gap:10px}
-.arrow{width:54px;height:54px;border:1px solid var(--line-d);background:none;display:grid;place-items:center;cursor:pointer;color:var(--ivory);transition:border-color .3s,background .3s}
-.arrow:hover{border-color:var(--gold);background:rgba(179,147,97,.1)}
-.arrow svg{width:18px;height:18px}
-.badge-f{position:absolute;top:26px;right:26px;z-index:2;font-size:.75rem;letter-spacing:.3em;background:rgba(18,19,20,.6);backdrop-filter:blur(6px);padding:8px 16px;color:var(--gold-l);border:1px solid rgba(210,185,140,.4)}
-.dots{position:absolute;bottom:26px;right:26px;z-index:2;display:flex;gap:6px}
-.dots i{width:26px;height:2px;background:rgba(244,240,232,.35);cursor:pointer;transition:background .3s,width .3s}
-.dots i.on{background:var(--gold-l);width:44px}
+.feat-txt{border-radius:var(--r-xl);background:var(--ink-2);border:1px solid var(--line-d);padding:30px 32px;display:flex;flex-direction:column}
+.tabs{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:rgba(239,233,223,.06);border:1px solid var(--line-d);align-self:flex-start;flex-wrap:wrap}
+.tab{border:0;background:none;padding:9px 18px;border-radius:999px;font-size:.86rem;font-weight:500;color:var(--mist);cursor:pointer;transition:background .3s,color .3s}
+.tab:hover{color:var(--sand)}
+.tab.on{background:var(--sand);color:var(--ink)}
+.fidx{margin-top:34px;font-family:var(--serif);font-size:1rem;color:var(--mist)}
+.fidx b{font-weight:400;color:var(--gold-l);font-size:1.5rem}
+.feat-txt .proj{margin-top:14px;color:var(--gold-l);font-size:.82rem;font-weight:500;letter-spacing:.1em}
+.feat-txt h3{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,2.8vw,2.5rem);line-height:1.1;margin:8px 0 14px}
+.feat-txt .meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.feat-txt .meta span{font-size:.8rem;border-radius:999px;border:1px solid var(--line-d);padding:5px 13px;color:var(--sand)}
+.feat-txt p{color:var(--mist);font-size:.98rem}
+.feat-ctl{margin-top:auto;padding-top:26px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.arrows{display:flex;gap:8px}
+.arrow{width:48px;height:48px;border-radius:50%;border:1px solid var(--line-d);background:none;display:grid;place-items:center;cursor:pointer;color:var(--sand);transition:background .3s,color .3s,border-color .3s}
+.arrow:hover{background:var(--sand);color:var(--ink);border-color:var(--sand)}
+.arrow svg{width:17px;height:17px}
+.badge-f{position:absolute;top:18px;right:18px;z-index:2;padding:7px 15px;border-radius:999px;font-size:.78rem;font-weight:500;color:var(--sand)}
+.dots{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:2;display:flex;gap:6px;padding:8px 10px;border-radius:999px}
+.dots i{width:7px;height:7px;border-radius:999px;background:rgba(239,233,223,.45);cursor:pointer;transition:width .35s,background .35s}
+.dots i.on{width:24px;background:var(--sand)}
 
 /* ============ projects ============ */
-.filters{display:flex;gap:34px;flex-wrap:wrap;margin:-40px 0 70px}
-.filters button{background:none;border:0;padding:0 0 8px;font-size:.95rem;letter-spacing:.14em;color:var(--stone);cursor:pointer;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
-.filters button.on,.filters button:hover{color:var(--text);border-color:var(--gold)}
-.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:90px 70px}
-.pcard{cursor:pointer;display:flex;flex-direction:column}
-.pgrid .pcard:nth-child(even){margin-top:140px}
-.pimg{position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--ivory-2)}
-.pimg img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s cubic-bezier(.2,.7,.2,1),filter .8s}
-.pcard:hover .pimg img{transform:scale(1.06)}
-.pimg::after{content:"";position:absolute;inset:18px;border:1px solid rgba(244,240,232,.0);transition:border-color .8s}
-.pcard:hover .pimg::after{border-color:rgba(244,240,232,.5)}
-.pmeta{display:grid;grid-template-columns:1fr auto;gap:4px 20px;padding-top:26px;border-top:1px solid var(--line-l);margin-top:24px;align-items:end}
-.pstat{grid-column:1/-1;display:flex;align-items:center;gap:10px;font-size:.78rem;letter-spacing:.28em;color:var(--stone)}
+.filters{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:var(--sand);margin-bottom:26px;flex-wrap:wrap}
+.filters button{border:0;background:none;padding:9px 20px;border-radius:999px;font-size:.88rem;font-weight:500;color:var(--stone);cursor:pointer;transition:background .3s,color .3s}
+.filters button.on{background:var(--ink);color:var(--sand)}
+.filters button:not(.on):hover{color:var(--text)}
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.pcard{position:relative;border-radius:var(--r-xl);overflow:hidden;cursor:pointer;aspect-ratio:16/12;background:var(--ink-2);isolation:isolate}
+.pcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.pcard:hover img{transform:scale(1.06)}
+.pcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,9,.25),rgba(10,10,9,0) 30%,rgba(10,10,9,0) 50%,rgba(10,10,9,.75));z-index:1}
+.ptop{position:absolute;top:16px;right:16px;left:16px;z-index:2;display:flex;justify-content:space-between;gap:10px}
+.pstat{display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;font-size:.78rem;font-weight:500;color:var(--sand)}
 .pstat i{width:7px;height:7px;border-radius:50%}
-.pmeta h3{font-family:var(--serif);font-weight:400;font-size:2.3rem;line-height:1.1}
-.pmeta .city{color:var(--stone);font-size:1rem}
-.pmeta .go{grid-row:2/4;grid-column:2;align-self:center;width:58px;height:58px;border:1px solid var(--line-l);display:grid;place-items:center;transition:background .4s,border-color .4s,color .4s}
-.pmeta .go svg{width:18px;height:18px}
-.pcard:hover .go{background:var(--ink);border-color:var(--ink);color:var(--gold-l)}
-.pstats{grid-column:1/-1;display:flex;gap:34px;margin-top:14px;color:var(--stone);font-size:.92rem}
-.pstats b{font-family:var(--serif);font-weight:400;font-size:1.5rem;color:var(--text);margin-left:6px}
+.pcity{padding:6px 13px;border-radius:999px;font-size:.78rem;color:var(--sand)}
+.pbot{position:absolute;bottom:14px;right:14px;left:14px;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:14px;padding:16px 18px;color:var(--sand)}
+.pbot h3{font-family:var(--serif);font-weight:300;font-size:clamp(1.7rem,2.4vw,2.2rem);line-height:1.05}
+.pstats{display:flex;gap:16px;margin-top:6px;font-size:.84rem;color:rgba(239,233,223,.8)}
+.pstats b{font-family:var(--serif);font-weight:400;font-size:1.25rem;color:var(--gold-l);margin-left:4px}
+.pgo{flex:none;width:48px;height:48px;border-radius:50%;background:var(--sand);color:var(--ink);display:grid;place-items:center;transition:transform .45s cubic-bezier(.2,.8,.2,1),background .3s}
+.pgo svg{width:17px;height:17px}
+.pcard:hover .pgo{transform:rotate(-45deg);background:var(--gold)}
 
 /* ============ quarter ============ */
-.q-band{position:relative;height:88vh;min-height:560px;max-height:860px;overflow:hidden;display:flex;align-items:flex-end;color:var(--ivory)}
+.q-band{position:relative;border-radius:var(--r-xl);overflow:hidden;min-height:520px;display:flex;align-items:flex-end;color:var(--sand)}
 .q-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.q-band::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,19,20,1) 0%,rgba(18,19,20,.55) 38%,rgba(18,19,20,.15) 70%,rgba(18,19,20,.35) 100%)}
-.q-band .wrap{position:relative;z-index:2;width:100%;padding-bottom:70px}
-.q-band .eyebrow{color:var(--gold-l)}
-.q-band h2{font-family:var(--serif);font-weight:400;font-size:clamp(3rem,8vw,7.4rem);line-height:1;margin:24px 0 22px}
-.q-band p{max-width:620px;color:rgba(244,240,232,.85);font-size:1.15rem}
-.qstats{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line-d);border-bottom:1px solid var(--line-d)}
-.qstats div{padding:40px 24px;border-inline-start:1px solid var(--line-d)}
-.qstats div:first-child{border-inline-start:0;padding-right:0}
-.qstats b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,3.6vw,3.2rem);line-height:1;color:var(--ivory)}
-.qstats span{display:block;margin-top:12px;color:var(--mist);font-size:.92rem}
-.q-split{display:grid;grid-template-columns:1fr 1fr;gap:100px;margin-top:130px}
-.q-split h3{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,3.4vw,2.9rem);line-height:1.2;margin:22px 0 28px}
-.q-split p{color:var(--mist);margin-bottom:20px}
-.checks{list-style:none;margin-top:34px;border-top:1px solid var(--line-d)}
-.checks li{padding:16px 0;border-bottom:1px solid var(--line-d);display:flex;gap:18px;align-items:baseline}
-.checks li::before{content:"";flex:none;width:18px;height:1px;background:var(--gold);transform:translateY(-5px)}
-.tl{margin-top:10px}
-.tl-i{display:grid;grid-template-columns:130px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line-d)}
-.tl-i:first-child{border-top:1px solid var(--line-d)}
-.tl-i .y{font-family:var(--serif);font-size:1.5rem;color:var(--gold-l);line-height:1.2}
-.tl-i h4{font-weight:400;font-size:1.12rem;color:var(--ivory)}
-.tl-i p{margin:4px 0 0;font-size:.97rem}
-.infra{display:grid;grid-template-columns:repeat(3,1fr);margin-top:130px;border-top:1px solid var(--line-d)}
-.infra div{padding:44px 40px 50px 40px;border-bottom:1px solid var(--line-d);border-inline-start:1px solid var(--line-d)}
-.infra div:nth-child(3n+1){border-inline-start:0;padding-right:0}
-.infra .k{font-family:var(--serif);color:var(--gold);font-size:1.05rem;letter-spacing:.14em}
-.infra h4{font-family:var(--serif);font-weight:400;font-size:1.75rem;margin:12px 0 12px;line-height:1.2}
-.infra p{color:var(--mist);font-size:.98rem}
-.mk{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-d);border:1px solid var(--line-d);margin-top:60px}
-.mk div{background:var(--ink);padding:38px 30px}
-.mk b{display:block;font-family:var(--serif);font-weight:400;font-size:2.1rem;line-height:1.1;color:var(--gold-l)}
-.mk span{display:block;margin:14px 0 4px;color:var(--ivory)}
-.mk p{color:var(--mist);font-size:.9rem}
-.devs{margin-top:60px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 0;color:var(--mist);font-size:1rem}
-.devs .lbl{color:var(--ivory);margin-left:24px;letter-spacing:.1em}
-.devs span:not(.lbl)+span::before{content:"·";margin:0 14px;color:var(--gold)}
-.note{font-size:.8rem;color:var(--mist);opacity:.75;margin-top:26px}
+.q-band::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,10,9,.92),rgba(10,10,9,.35) 55%,rgba(10,10,9,.12))}
+.q-in{position:relative;z-index:2;width:100%;padding:36px;display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:end}
+.q-in .chip{color:var(--sand);border-color:rgba(239,233,223,.3);background:rgba(15,15,14,.3)}
+.q-in h2{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,6vw,5rem);line-height:1;margin:16px 0 12px;letter-spacing:-.02em}
+.q-in p{color:rgba(239,233,223,.85);max-width:560px}
+.qstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px}
+.qstats div{background:rgba(239,233,223,.07);border-radius:var(--r-md);padding:14px 14px 12px}
+.qstats b{display:block;font-family:var(--serif);font-weight:300;font-size:1.85rem;line-height:1}
+.qstats span{display:block;margin-top:6px;font-size:.74rem;color:var(--mist);line-height:1.35}
+.qstats div:nth-child(4),.qstats div:nth-child(5){grid-column:span 1}
+.q-split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.tile{background:var(--ink-2);border:1px solid var(--line-d);border-radius:var(--r-xl);padding:32px}
+.tile h3{font-family:var(--serif);font-weight:300;font-size:clamp(1.6rem,2.4vw,2.1rem);line-height:1.2;margin:14px 0 14px}
+.tile p{color:var(--mist);margin-bottom:12px;font-size:.98rem}
+.checks{list-style:none;display:grid;gap:8px;margin-top:16px}
+.checks li{display:flex;gap:12px;align-items:center;background:rgba(239,233,223,.05);border-radius:999px;padding:9px 16px;font-size:.93rem}
+.checks li::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f0f0e' stroke-width='3'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/11px no-repeat}
+.tl{position:relative;margin-top:8px}
+.tl::before{content:"";position:absolute;right:5px;top:12px;bottom:12px;width:1px;background:var(--line-d)}
+.tl-i{position:relative;padding:10px 30px 10px 0}
+.tl-i::before{content:"";position:absolute;right:0;top:19px;width:11px;height:11px;border-radius:50%;background:var(--ink-2);border:2px solid var(--gold)}
+.tl-i .y{font-family:var(--serif);color:var(--gold-l);font-size:1.15rem;line-height:1.3}
+.tl-i h4{font-weight:500;font-size:.98rem;color:var(--sand)}
+.tl-i p{margin:0;font-size:.9rem}
+.infra{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.infra .tile{padding:26px 28px}
+.infra .ico{width:46px;height:46px;border-radius:50%;background:rgba(195,164,111,.14);color:var(--gold-l);display:grid;place-items:center}
+.infra .ico svg{width:21px;height:21px}
+.infra h4{font-family:var(--serif);font-weight:400;font-size:1.4rem;margin:16px 0 6px;line-height:1.2}
+.infra p{color:var(--mist);font-size:.93rem;margin:0}
+.mk{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
+.mk .tile{background:linear-gradient(160deg,#25241f,#171715);padding:26px}
+.mk b{display:block;font-family:var(--serif);font-weight:300;font-size:1.9rem;line-height:1.1;color:var(--gold-l)}
+.mk span{display:block;margin:12px 0 2px;font-weight:500;color:var(--sand);font-size:.95rem}
+.mk p{color:var(--mist);font-size:.85rem;margin:0}
+.q-foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-top:28px}
+.devs{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.devs .lbl{font-size:.85rem;color:var(--mist);margin-left:8px}
+.devs span:not(.lbl){font-size:.82rem;padding:6px 13px;border-radius:999px;border:1px solid var(--line-d);color:var(--sand)}
+.note{font-size:.76rem;color:var(--mist);opacity:.75;margin-top:16px}
 
 /* ============ gallery ============ */
-.gal{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:110px;gap:14px}
-.gal figure{position:relative;overflow:hidden;cursor:zoom-in;background:var(--ivory-2)}
-.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.gal{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:92px;gap:12px}
+.gal figure{position:relative;overflow:hidden;cursor:zoom-in;border-radius:var(--r-lg);background:var(--sand-2)}
+.gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
 .gal figure:hover img{transform:scale(1.05)}
-.gal figcaption{position:absolute;right:20px;bottom:16px;color:var(--ivory);font-size:.8rem;letter-spacing:.22em;opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s;text-shadow:0 1px 12px rgba(0,0,0,.6)}
+.gal figcaption{position:absolute;right:12px;bottom:12px;padding:6px 13px;border-radius:999px;font-size:.76rem;font-weight:500;color:var(--sand);opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s}
 .gal figure:hover figcaption{opacity:1;transform:none}
 .g1{grid-column:span 7;grid-row:span 5}.g2{grid-column:span 5;grid-row:span 3}.g3{grid-column:span 5;grid-row:span 2}
 .g4{grid-column:span 4;grid-row:span 3}.g5{grid-column:span 4;grid-row:span 3}.g6{grid-column:span 4;grid-row:span 3}
 .g7{grid-column:span 5;grid-row:span 4}.g8{grid-column:span 7;grid-row:span 4}
 
 /* ============ approach ============ */
-.vals{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-l)}
-.vals div{padding:44px 34px 0 34px;border-inline-start:1px solid var(--line-l)}
-.vals div:first-child{border-inline-start:0;padding-right:0}
-.vals .k{font-family:var(--serif);color:var(--gold-d);font-size:1.1rem;letter-spacing:.12em}
-.vals h3{font-family:var(--serif);font-weight:400;font-size:1.75rem;line-height:1.2;margin:14px 0 14px}
-.vals p{color:var(--stone);font-size:.98rem}
-.steps{display:grid;grid-template-columns:repeat(5,1fr);margin-top:130px;counter-reset:s}
-.step{position:relative;padding:0 0 0 30px}
-.step::before{content:"";position:absolute;top:21px;right:56px;left:0;height:1px;background:var(--line-l)}
-.step:last-child::before{display:none}
-.step .k{width:44px;height:44px;border:1px solid var(--gold-d);display:grid;place-items:center;font-family:var(--serif);font-size:1.15rem;color:var(--gold-d);background:var(--ivory);position:relative}
-.step h4{font-family:var(--serif);font-weight:400;font-size:1.45rem;margin:26px 0 10px;line-height:1.2}
-.step p{color:var(--stone);font-size:.95rem}
+.vals{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.val{background:var(--sand);border-radius:var(--r-lg);padding:26px 24px 24px}
+.val .k{width:40px;height:40px;border-radius:50%;background:var(--paper);display:grid;place-items:center;color:var(--gold-d)}
+.val .k svg{width:19px;height:19px}
+.val h3{font-family:var(--serif);font-weight:400;font-size:1.4rem;line-height:1.2;margin:18px 0 8px}
+.val p{color:var(--stone);font-size:.93rem}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:12px}
+.step{background:var(--ink);color:var(--sand);border-radius:var(--r-lg);padding:22px 22px 24px;position:relative;overflow:hidden}
+.step .k{font-family:var(--serif);font-size:2.6rem;font-weight:300;line-height:1;color:var(--gold)}
+.step h4{font-family:var(--serif);font-weight:400;font-size:1.25rem;margin:16px 0 6px;line-height:1.2}
+.step p{color:var(--mist);font-size:.88rem;line-height:1.6}
+.cta-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin-top:12px;background:var(--sand);border-radius:var(--r-lg);padding:18px 18px 18px 18px;padding-inline:28px 18px}
+.cta-row p{font-family:var(--serif);font-size:1.35rem;font-weight:300}
 
 /* ============ about ============ */
-.about .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:110px;align-items:center}
-.quote{font-family:var(--serif);font-size:clamp(1.9rem,3.2vw,2.8rem);line-height:1.3;margin:34px 0 34px;position:relative}
-.about p{color:var(--mist);margin-bottom:18px}
-.about p strong{color:var(--ivory);font-weight:400}
-.team{display:grid;gap:0;border-top:1px solid var(--line-d)}
-.agent{display:grid;grid-template-columns:86px 1fr;gap:28px;align-items:center;padding:36px 0;border-bottom:1px solid var(--line-d)}
-.av{width:86px;height:86px;border:1px solid var(--gold);display:grid;place-items:center;font-family:var(--serif);font-size:1.9rem;color:var(--gold-l)}
-.agent h3{font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1.1}
-.agent .r{color:var(--mist);font-size:.88rem;letter-spacing:.2em;margin:6px 0 14px}
-.agent .acts{display:flex;gap:24px;flex-wrap:wrap;align-items:center}
-.agent .tel{font-family:var(--serif);font-size:1.35rem;letter-spacing:.06em;color:var(--ivory);direction:ltr}
-.agent .wa{font-size:.85rem;letter-spacing:.2em;color:var(--gold-l);border-bottom:1px solid currentColor;padding-bottom:2px}
-.about-img{aspect-ratio:16/10;overflow:hidden;margin-bottom:10px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+.about-txt{padding:36px 36px 32px;border-radius:var(--r-xl);background:var(--ink-2);border:1px solid var(--line-d)}
+.about-txt .quote{font-family:var(--serif);font-weight:300;font-size:clamp(1.7rem,2.6vw,2.3rem);line-height:1.3;margin:18px 0 18px;color:var(--sand)}
+.quote em{font-style:normal;color:var(--gold-l);font-weight:400}
+.about-txt p{color:var(--mist);margin-bottom:12px;font-size:.98rem}
+.about-txt p strong{color:var(--sand);font-weight:500}
+.vchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.vchips span{font-size:.82rem;padding:6px 14px;border-radius:999px;border:1px solid var(--line-d);color:var(--sand)}
+.about-side{display:grid;grid-template-rows:1fr auto;gap:16px}
+.about-img{border-radius:var(--r-xl);overflow:hidden;min-height:260px}
 .about-img img{width:100%;height:100%;object-fit:cover}
+.team{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.agent{border-radius:var(--r-lg);background:var(--ink-2);border:1px solid var(--line-d);padding:20px}
+.agent .top{display:flex;align-items:center;gap:14px}
+.av{flex:none;width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--ink);display:grid;place-items:center;font-family:var(--serif);font-size:1.2rem;font-weight:500}
+.agent:nth-child(2) .av{background:var(--sand)}
+.agent h3{font-family:var(--serif);font-weight:400;font-size:1.4rem;line-height:1.1}
+.agent .r{color:var(--mist);font-size:.8rem;margin-top:3px}
+.agent .tel{display:block;margin:16px 0 12px;font-size:1.1rem;font-weight:500;letter-spacing:.04em;color:var(--sand);direction:ltr;text-align:right}
+.agent .acts{display:flex;gap:6px}
+.agent .acts a{flex:1;text-align:center;padding:9px 10px;border-radius:999px;font-size:.84rem;font-weight:500;border:1px solid var(--line-d);transition:background .3s,color .3s}
+.agent .acts a:hover{background:var(--sand);color:var(--ink)}
+.agent .acts a.wa{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.agent .acts a.wa:hover{background:var(--gold-l)}
 
 /* ============ developers ============ */
-.devband{position:relative;overflow:hidden;color:var(--ivory);padding:170px 0}
+.devband{position:relative;border-radius:var(--r-xl);overflow:hidden;color:var(--sand);padding:70px 44px;min-height:380px;display:flex;align-items:center}
 .devband img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.devband::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,19,20,.35),rgba(18,19,20,.88) 62%)}
-.devband .wrap{position:relative;z-index:2}
-.devband .in{max-width:620px}
-.devband .eyebrow{color:var(--gold-l)}
-.devband p{color:rgba(244,240,232,.8);margin:22px 0 40px;font-size:1.1rem}
+.devband::after{content:"";position:absolute;inset:0;background:linear-gradient(270deg,rgba(10,10,9,.9),rgba(10,10,9,.55) 55%,rgba(10,10,9,.2))}
+.devband .in{position:relative;z-index:2;max-width:560px}
+.devband .chip{color:var(--sand);border-color:rgba(239,233,223,.3);background:rgba(15,15,14,.3)}
+.devband p{color:rgba(239,233,223,.85);margin:14px 0 26px}
 
 /* ============ map ============ */
-.mapsec .wrap{display:grid;grid-template-columns:1fr 1.7fr;gap:80px;align-items:center}
-.legend ul{list-style:none;margin:40px 0 30px;border-top:1px solid var(--line-d)}
-.legend li{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--line-d);cursor:pointer;transition:color .3s,padding .3s}
-.legend li:hover{color:var(--gold-l);padding-right:8px}
-.legend li span{display:flex;align-items:center;gap:14px;font-family:var(--serif);font-size:1.35rem}
-.legend li i{width:8px;height:8px;border-radius:50%;flex:none}
-.legend li small{color:var(--mist);font-size:.88rem;letter-spacing:.1em}
-.legend p{color:var(--mist);font-size:.92rem}
-#map{height:560px;background:var(--ink-2);z-index:1;border:1px solid var(--line-d);display:flex;align-items:center}
-#map svg{display:block}
+.map-grid{display:grid;grid-template-columns:1fr 1.7fr;gap:16px;align-items:stretch}
+.legend{padding:32px;border-radius:var(--r-xl);background:var(--ink-2);border:1px solid var(--line-d);display:flex;flex-direction:column}
+.legend ul{list-style:none;display:grid;gap:8px;margin:24px 0 18px}
+.legend li{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-radius:999px;background:rgba(239,233,223,.05);border:1px solid transparent;cursor:pointer;transition:border-color .3s,background .3s}
+.legend li:hover{border-color:var(--gold);background:rgba(195,164,111,.08)}
+.legend li span{display:flex;align-items:center;gap:10px;font-weight:500;font-size:.95rem}
+.legend li i{width:8px;height:8px;border-radius:50%}
+.legend li small{color:var(--mist);font-size:.82rem}
+.legend p{color:var(--mist);font-size:.86rem;margin-top:auto}
+#map{min-height:500px;border-radius:var(--r-xl);overflow:hidden;background:var(--ink-2);border:1px solid var(--line-d);z-index:1;display:flex;align-items:center}
 .leaflet-container{font-family:var(--sans);background:var(--ink-2)}
-.leaflet-popup-content-wrapper{border-radius:0;background:var(--paper);color:var(--text)}
+.leaflet-popup-content-wrapper{border-radius:16px;background:var(--paper);color:var(--text)}
 .leaflet-popup-tip{background:var(--paper)}
-.leaflet-popup-content{direction:rtl;text-align:right;font-family:var(--sans);margin:16px 20px}
-.leaflet-popup-content b{font-family:var(--serif);font-weight:400;font-size:1.35rem}
-.leaflet-popup-content a{color:var(--gold-d);border-bottom:1px solid currentColor}
-.leaflet-control-attribution{background:rgba(18,19,20,.7)!important;color:var(--mist)!important}
+.leaflet-popup-content{direction:rtl;text-align:right;font-family:var(--sans);margin:14px 18px}
+.leaflet-popup-content b{font-family:var(--serif);font-weight:400;font-size:1.3rem}
+.leaflet-popup-content a{color:var(--gold-d);font-weight:500}
+.leaflet-control-attribution{background:rgba(15,15,14,.7)!important;color:var(--mist)!important;border-radius:999px 0 0 0}
 .leaflet-control-attribution a{color:var(--gold-l)!important}
-.leaflet-bar a{background:var(--ink-2)!important;color:var(--ivory)!important;border-color:var(--line-d)!important}
+.leaflet-bar{border:0!important;border-radius:999px!important;overflow:hidden}
+.leaflet-bar a{background:var(--ink-3)!important;color:var(--sand)!important;border-color:var(--line-d)!important}
 
 /* ============ faq ============ */
-.faq-wrap{display:grid;grid-template-columns:1fr 1.6fr;gap:100px;align-items:start}
-.faq{border-top:1px solid var(--line-l)}
-.faq details{border-bottom:1px solid var(--line-l);padding:30px 0}
-.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:30px;align-items:center;font-family:var(--serif);font-size:1.55rem;line-height:1.3}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.4fr;gap:56px;align-items:start}
+.faq{display:grid;gap:8px}
+.faq details{background:var(--paper);border-radius:var(--r-lg);padding:18px 24px;transition:background .3s}
+.faq details[open]{background:#fff}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;align-items:center;font-weight:500;font-size:1.02rem}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"";flex:none;width:14px;height:14px;background:linear-gradient(var(--gold-d),var(--gold-d)) center/14px 1px no-repeat,linear-gradient(var(--gold-d),var(--gold-d)) center/1px 14px no-repeat;transition:transform .4s}
-.faq details[open] summary::after{transform:rotate(45deg)}
-.faq p{color:var(--stone);margin-top:16px;max-width:640px}
+.faq summary::after{content:"";flex:none;width:32px;height:32px;border-radius:50%;background:var(--sand) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23191917' stroke-width='1.6'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") center/14px no-repeat;transition:transform .35s,background-color .35s}
+.faq details[open] summary::after{transform:rotate(45deg);background-color:var(--gold)}
+.faq p{color:var(--stone);margin-top:10px;font-size:.96rem}
+.faq-side .btn{margin-top:24px}
 
 /* ============ contact ============ */
-.contact .wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:110px;align-items:start}
-.c-lines{margin-top:50px;border-top:1px solid var(--line-d)}
-.c-lines>*{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:22px 0;border-bottom:1px solid var(--line-d)}
-.c-lines small{color:var(--mist);letter-spacing:.2em;font-size:.82rem}
-.c-lines b{font-family:var(--serif);font-weight:400;font-size:1.55rem;color:var(--ivory);direction:ltr}
-.c-lines a:hover b{color:var(--gold-l)}
-.panel{background:var(--ink-2);border:1px solid var(--line-d);padding:54px 50px}
-.ptabs{display:flex;gap:34px;margin-bottom:40px;border-bottom:1px solid var(--line-d)}
-.ptabs button{background:none;border:0;padding:0 0 16px;margin-bottom:-1px;font-family:var(--serif);font-size:1.45rem;color:var(--mist);cursor:pointer;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
-.ptabs button.on{color:var(--ivory);border-color:var(--gold)}
-.form{display:none;gap:30px}
+.c-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:16px;align-items:stretch}
+.c-info{border-radius:var(--r-xl);padding:36px;background:linear-gradient(160deg,#25241f,#121211);border:1px solid var(--line-d);display:flex;flex-direction:column}
+.c-lines{display:grid;gap:8px;margin-top:26px}
+.c-lines a{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 20px;border-radius:999px;background:rgba(239,233,223,.05);border:1px solid var(--line-d);transition:background .3s,border-color .3s}
+.c-lines a:hover{border-color:var(--gold);background:rgba(195,164,111,.08)}
+.c-lines small{color:var(--mist);font-size:.86rem}
+.c-lines b{font-weight:500;font-size:1.05rem;color:var(--sand);direction:ltr;letter-spacing:.03em}
+.c-info .foot{margin-top:auto;padding-top:26px;color:var(--mist);font-size:.86rem}
+.panel{border-radius:var(--r-xl);background:var(--paper);color:var(--text);padding:30px 32px}
+.ptabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:999px;background:var(--sand);margin-bottom:22px}
+.ptabs button{border:0;background:none;padding:11px;border-radius:999px;font-size:.92rem;font-weight:500;color:var(--stone);cursor:pointer;transition:background .3s,color .3s}
+.ptabs button.on{background:var(--ink);color:var(--sand)}
+.form{display:none;gap:12px}
 .form.on{display:grid}
-.form .two{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-.form label{display:grid;gap:6px;font-size:.78rem;letter-spacing:.22em;color:var(--mist)}
-.form input,.form select,.form textarea{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(244,240,232,.25);padding:10px 0 12px;color:var(--ivory);font-family:var(--sans);font-size:1.08rem;font-weight:300;letter-spacing:0;border-radius:0;transition:border-color .3s}
-.form select{-webkit-appearance:none;appearance:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b39361' stroke-width='1.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") left 0 center/16px no-repeat;padding-left:24px;cursor:pointer}
-.form select option{color:var(--text);background:var(--paper)}
-.form textarea{resize:vertical;min-height:80px}
-.form input::placeholder,.form textarea::placeholder{color:rgba(244,240,232,.32)}
-.form input:focus,.form select:focus,.form textarea:focus{outline:0;border-color:var(--gold)}
-.form .send{margin-top:10px;width:100%}
-.form .fine{font-size:.78rem;color:var(--mist);line-height:1.7;letter-spacing:.02em}
-.form .ok{display:none;border:1px solid var(--gold);padding:16px 20px;color:var(--ivory)}
-.form .ok a{color:var(--gold-l);border-bottom:1px solid currentColor}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form label{display:grid;gap:6px;font-size:.8rem;font-weight:500;color:var(--stone);padding-inline-start:6px}
+.form input,.form select,.form textarea{width:100%;background:#fff;border:1px solid var(--line-l);border-radius:999px;padding:13px 18px;color:var(--text);font-family:var(--sans);font-size:.98rem;font-weight:400;transition:border-color .3s,box-shadow .3s}
+.form textarea{border-radius:var(--r-lg);resize:vertical;min-height:84px}
+.form select{-webkit-appearance:none;appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238f7443' stroke-width='1.8'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") left 16px center/15px no-repeat;padding-left:40px;cursor:pointer}
+.form input::placeholder,.form textarea::placeholder{color:#b1aca2}
+.form input:focus,.form select:focus,.form textarea:focus{outline:0;border-color:var(--gold);box-shadow:0 0 0 4px rgba(195,164,111,.18)}
+.form .send{justify-content:space-between;width:100%;margin-top:4px;font-size:1rem}
+.form .fine{font-size:.76rem;color:var(--stone);line-height:1.6;text-align:center}
+.form .ok{display:none;border-radius:var(--r-md);background:var(--sand);padding:12px 16px;text-align:center}
+.form .ok a{color:var(--gold-d);font-weight:600;text-decoration:underline}
 
 /* ============ footer ============ */
-footer{background:var(--ink);color:var(--mist);padding:110px 0 40px;border-top:1px solid var(--line-d);font-size:.92rem}
-.f-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:60px;padding-bottom:70px}
-.f-word{font-family:var(--serif);font-size:clamp(3.6rem,8vw,7rem);color:var(--ivory);line-height:.9}
-.f-word small{display:block;font-family:var(--sans);font-size:.78rem;letter-spacing:.42em;color:var(--gold);margin-top:22px}
-footer h4{font-weight:400;font-size:.78rem;letter-spacing:.32em;color:var(--gold);margin-bottom:20px}
-footer ul{list-style:none;display:grid;gap:10px}
-footer a:hover{color:var(--ivory)}
-.f-bot{border-top:1px solid var(--line-d);padding-top:28px;display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;font-size:.78rem;opacity:.8}
+footer{background:var(--ink);color:var(--mist);padding:20px 0 30px;font-size:.88rem}
+.f-card{border-radius:var(--r-xl);background:var(--ink-2);border:1px solid var(--line-d);padding:40px;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.f-word{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,6vw,5rem);color:var(--sand);line-height:.9}
+.f-word small{display:block;font-family:var(--sans);font-size:.74rem;letter-spacing:.3em;color:var(--gold);margin-top:16px}
+footer h4{font-weight:500;font-size:.8rem;letter-spacing:.16em;color:var(--gold);margin-bottom:12px}
+footer ul{list-style:none;display:grid;gap:6px}
+footer a:hover{color:var(--sand)}
+.f-bot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:20px 8px 0;font-size:.76rem;opacity:.8}
 .f-bot .disc{max-width:760px}
 
 /* ============ floating / overlays ============ */
-.fab{position:fixed;left:calc(28px + env(safe-area-inset-left,0px));bottom:calc(28px + env(safe-area-inset-bottom,0px));z-index:70;width:58px;height:58px;border-radius:50%;background:var(--ink);border:1px solid var(--gold);display:grid;place-items:center;box-shadow:0 18px 40px -14px rgba(0,0,0,.6);transition:background .3s}
-.fab:hover{background:var(--gold)}
-.fab svg{width:26px;height:26px;color:var(--gold-l)}
-.fab:hover svg{color:var(--ink)}
+.fab{position:fixed;left:calc(22px + env(safe-area-inset-left,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:70;width:56px;height:56px;border-radius:50%;background:var(--gold);display:grid;place-items:center;box-shadow:0 16px 36px -12px rgba(0,0,0,.55);transition:transform .3s}
+.fab:hover{transform:scale(1.07)}
+.fab svg{width:26px;height:26px;color:var(--ink)}
 .mbar{display:none}
-.modal{position:fixed;inset:0;z-index:120;background:rgba(10,11,12,.86);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:30px}
-.modal.on{display:flex;animation:fade .4s ease}
+.modal{position:fixed;inset:0;z-index:120;background:rgba(8,8,7,.7);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:24px}
+.modal.on{display:flex;animation:fade .35s ease}
 @keyframes fade{from{opacity:0}to{opacity:1}}
-.mbox{background:var(--paper);max-width:1120px;width:100%;max-height:92vh;overflow:auto;display:grid;grid-template-columns:1.15fr 1fr}
-.mimg{position:relative;min-height:560px;background:var(--ink) center/cover;transition:background-image .4s}
-.mthumbs{position:absolute;bottom:18px;right:18px;left:18px;display:flex;gap:8px;overflow-x:auto}
-.mthumbs button{flex:none;width:68px;height:50px;border:1px solid rgba(244,240,232,.45);background:center/cover;cursor:pointer;padding:0;opacity:.75;transition:opacity .3s,border-color .3s}
+.mbox{background:var(--paper);border-radius:var(--r-xl);max-width:1080px;width:100%;max-height:92vh;overflow:auto;display:grid;grid-template-columns:1.1fr 1fr;padding:10px;gap:10px}
+.mimg{position:relative;min-height:520px;border-radius:24px;background:var(--ink) center/cover;overflow:hidden}
+.mthumbs{position:absolute;bottom:12px;right:12px;left:12px;display:flex;gap:6px;overflow-x:auto;padding:6px;border-radius:16px;background:rgba(15,15,14,.35);backdrop-filter:blur(10px)}
+.mthumbs button{flex:none;width:60px;height:44px;border-radius:10px;border:2px solid transparent;background:center/cover;cursor:pointer;padding:0;opacity:.7;transition:opacity .3s,border-color .3s}
 .mthumbs button.on,.mthumbs button:hover{opacity:1;border-color:var(--gold-l)}
-.mtx{padding:56px 50px;position:relative}
-.mtx .x{position:absolute;top:22px;left:22px;width:46px;height:46px;border:1px solid var(--line-l);background:none;font-size:1.4rem;cursor:pointer;transition:background .3s,color .3s}
-.mtx .x:hover{background:var(--ink);color:var(--ivory)}
-.mtx .pstat{margin-bottom:16px}
-.mtx h3{font-family:var(--serif);font-weight:400;font-size:2.8rem;line-height:1.05}
-.mtx .loc{color:var(--stone);margin:8px 0 22px;letter-spacing:.08em}
-.mtx p{color:var(--stone);margin-bottom:26px}
-.res{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line-l);border-bottom:1px solid var(--line-l);margin-bottom:26px}
-.res div{padding:20px 0 18px;text-align:center;border-inline-start:1px solid var(--line-l)}
-.res div:first-child{border-inline-start:0}
-.res b{display:block;font-family:var(--serif);font-weight:400;font-size:2.3rem;line-height:1}
-.res span{font-size:.8rem;color:var(--stone);letter-spacing:.06em}
-.mtx table{width:100%;border-collapse:collapse;font-size:.93rem;margin-bottom:32px}
-.mtx td{padding:10px 0;border-bottom:1px solid var(--line-l);vertical-align:top}
-.mtx td:first-child{color:var(--stone);width:34%;letter-spacing:.06em}
-.lb{position:fixed;inset:0;z-index:130;background:rgba(10,11,12,.95);display:none;align-items:center;justify-content:center}
-.lb.on{display:flex;animation:fade .4s ease}
-.lb img{max-width:90vw;max-height:86vh}
-.lb button{position:absolute;width:54px;height:54px;border:1px solid rgba(244,240,232,.3);background:none;color:var(--ivory);font-size:1.5rem;cursor:pointer;transition:border-color .3s}
-.lb button:hover{border-color:var(--gold)}
-.lb .x{top:24px;left:24px}.lb .p{right:24px;top:50%;margin-top:-27px}.lb .n{left:24px;top:50%;margin-top:-27px}
+.mtx{padding:30px 26px 26px;position:relative}
+.mtx .x{position:absolute;top:14px;left:14px;width:42px;height:42px;border-radius:50%;border:0;background:var(--sand);font-size:1.3rem;cursor:pointer;transition:background .3s}
+.mtx .x:hover{background:var(--gold)}
+.mtx .pstat{background:var(--ink)}
+.mtx h3{font-family:var(--serif);font-weight:300;font-size:2.5rem;line-height:1.05;margin-top:14px}
+.mtx .loc{color:var(--stone);margin:4px 0 14px}
+.mtx p{color:var(--stone);margin-bottom:18px;font-size:.96rem}
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+.res div{background:var(--sand);border-radius:var(--r-md);padding:14px 8px 12px;text-align:center}
+.res b{display:block;font-family:var(--serif);font-weight:300;font-size:2rem;line-height:1}
+.res span{font-size:.76rem;color:var(--stone)}
+.mtx table{width:100%;border-collapse:collapse;font-size:.88rem;margin-bottom:22px}
+.mtx td{padding:8px 0;border-bottom:1px solid var(--line-l);vertical-align:top}
+.mtx td:first-child{color:var(--stone);width:32%}
+.lb{position:fixed;inset:0;z-index:130;background:rgba(8,8,7,.94);display:none;align-items:center;justify-content:center}
+.lb.on{display:flex;animation:fade .35s ease}
+.lb img{max-width:90vw;max-height:86vh;border-radius:20px}
+.lb button{position:absolute;width:52px;height:52px;border-radius:50%;border:0;background:rgba(239,233,223,.12);color:var(--sand);font-size:1.4rem;cursor:pointer;transition:background .3s}
+.lb button:hover{background:var(--gold);color:var(--ink)}
+.lb .x{top:22px;left:22px}.lb .p{right:22px;top:50%;margin-top:-26px}.lb .n{left:22px;top:50%;margin-top:-26px}
+
+/* glass helper for small chips on photos */
+.gl{background:rgba(15,15,14,.38);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(239,233,223,.18)}
 
 /* reveal */
-.rv{transition:opacity 1.2s cubic-bezier(.2,.7,.2,1),transform 1.2s cubic-bezier(.2,.7,.2,1)}
-.rv.pre{opacity:0;transform:translateY(40px)}
-@media (prefers-reduced-motion:reduce){.rv,.rv.pre{opacity:1;transform:none;transition:none}.hero-bg{animation:none;transform:none}.hero-in>*{animation:none;opacity:1;transform:none}.hero-side i{animation:none}}
+.rv{transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.pre{opacity:0;transform:translateY(28px)}
+@media (prefers-reduced-motion:reduce){.rv,.rv.pre{opacity:1;transform:none;transition:none}.hero-bg{animation:none;transform:none}.hero-in .l>*,.hero-card{animation:none;opacity:1;transform:none}.marq .track{animation:none}}
 
 /* ============ responsive ============ */
 @media (max-width:1100px){
   .nav,.hdr-tel{display:none}
-  .burger{display:block}
-  .nav.open{display:flex;flex-direction:column;position:absolute;top:100%;right:0;left:0;background:var(--ink);padding:30px 48px 36px;gap:20px;border-bottom:1px solid var(--line-d);font-family:var(--serif);font-size:1.5rem}
-  .head,.q-split,.about .wrap,.mapsec .wrap,.faq-wrap,.contact .wrap{grid-template-columns:1fr;gap:50px}
+  .burger{display:grid}
+  .nav.open{display:flex;flex-direction:column;position:absolute;top:calc(100% + 8px);right:var(--gut);left:var(--gut);background:rgba(15,15,14,.95);backdrop-filter:blur(18px);border:1px solid var(--line-d);border-radius:var(--r-lg);padding:12px;gap:2px;pointer-events:auto}
+  .nav.open a{padding:13px 18px;font-size:1.05rem}
+  .hero-in,.intro-grid,.q-in,.q-split,.about-grid,.map-grid,.faq-grid,.c-grid{grid-template-columns:1fr}
+  .hero-card{max-width:none}
   .feat{grid-template-columns:1fr}
-  .feat-media{min-height:440px}
-  .steps{grid-template-columns:1fr 1fr;gap:50px 30px}
-  .step::before{display:none}
+  .feat-media{min-height:420px}
   .vals{grid-template-columns:1fr 1fr}
-  .vals div:nth-child(3){border-inline-start:0;padding-right:0}
-  .qstats{grid-template-columns:repeat(3,1fr)}
-  .qstats div:nth-child(4){border-inline-start:0;padding-right:0}
-  .mk{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:repeat(3,1fr)}
   .infra{grid-template-columns:1fr 1fr}
-  .infra div:nth-child(3n+1){border-inline-start:1px solid var(--line-d);padding-right:40px}
-  .infra div:nth-child(odd){border-inline-start:0;padding-right:0}
-  .f-top{grid-template-columns:1fr 1fr}
-  .f-top>div:first-child{grid-column:1/-1}
+  .mk{grid-template-columns:1fr 1fr}
+  .f-card{grid-template-columns:1fr 1fr}
+  .f-card>div:first-child{grid-column:1/-1}
   .mbox{grid-template-columns:1fr}
-  .mimg{min-height:320px}
+  .mimg{min-height:300px}
 }
 @media (max-width:700px){
-  body{font-size:16.5px}
-  .wrap{padding:0 max(20px,env(safe-area-inset-left,0px)) 0 max(20px,env(safe-area-inset-right,0px))}
-  .nav.open{padding:24px 20px 30px}
-  .sec{padding:96px 0}
-  .hdr{padding:20px 0}
-  .hdr .btn{display:none}
+  :root{--gut:14px;--r-xl:24px;--r-lg:18px}
+  body{font-size:16px}
+  .wrap{padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+  .sec{padding:60px 0}
+  .hdr{top:10px}
+  .hdr .bar{padding-inline:12px 6px;padding-block:6px}
+  .hdr-end .btn{display:none}
   .mark small{display:none}
-  .mark .mono{width:38px;height:38px;font-size:1.25rem}
-  .mark b{font-size:1.45rem}
-  .hero{min-height:600px}
-  .hero .wrap{grid-template-columns:1fr;padding-bottom:110px}
-  .hero-side{display:none}
-  .hero .btns .btn{flex:1 1 100%}
-  .head{margin-bottom:56px}
-  .nums{grid-template-columns:1fr 1fr;margin-top:70px}
-  .num{padding:34px 0 30px 0;border-inline-start:0}
-  .num:nth-child(even){border-inline-start:1px solid var(--line-l);padding-right:22px}
-  .num:nth-child(n+3){border-top:1px solid var(--line-l)}
-  .feat-media{min-height:320px}
-  .feat-txt{padding:40px 24px}
-  .tabs{gap:22px;margin-bottom:36px}
-  .filters{margin:-20px 0 46px;gap:24px}
-  .pgrid{grid-template-columns:1fr;gap:70px}
-  .pgrid .pcard:nth-child(even){margin-top:0}
-  .pimg{aspect-ratio:4/4.4}
-  .pmeta h3{font-size:2rem}
-  .q-band{height:auto;min-height:540px}
-  .qstats{grid-template-columns:1fr 1fr}
-  .qstats div{border-inline-start:0;padding:30px 0}
-  .qstats div:nth-child(even){border-inline-start:1px solid var(--line-d);padding-right:22px}
-  .qstats div:nth-child(n+3){border-top:1px solid var(--line-d)}
+  .mark .mono{width:34px;height:34px;font-size:1.1rem}
+  .mark b{font-size:1.3rem}
+  .hero{padding:8px 8px 0}
+  .hero-frame{min-height:620px;height:calc(100svh - 8px)}
+  .hero-in{gap:18px}
+  .hero h1{margin:16px 0 12px}
+  .hero .btns .btn{flex:1 1 auto;justify-content:space-between}
+  .hero-card{padding:14px}
+  .hc-grid b{font-size:1.5rem}
+  .marq span{font-size:1.3rem}
+  .head{margin-bottom:26px}
+  .feat-media{min-height:300px}
+  .feat-txt{padding:22px}
+  .tab{padding:8px 13px;font-size:.8rem}
+  .pgrid{grid-template-columns:1fr;gap:12px}
+  .pcard{aspect-ratio:4/4.3}
+  .q-band{min-height:0}
+  .q-in{padding:22px 16px 16px}
+  .qstats{grid-template-columns:1fr 1fr;padding:6px}
   .qstats div:last-child{grid-column:1/-1}
-  .q-split,.infra{margin-top:80px}
-  .tl-i{grid-template-columns:1fr;gap:4px}
-  .infra{grid-template-columns:1fr}
-  .infra div,.infra div:nth-child(odd),.infra div:nth-child(3n+1){border-inline-start:0;padding:34px 0}
-  .mk{grid-template-columns:1fr}
-  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:120px;gap:8px}
-  .g1,.g8,.g7{grid-column:span 2;grid-row:span 2}.g2,.g3,.g4,.g5,.g6{grid-column:span 1;grid-row:span 2}
+  .tile{padding:24px 20px}
+  .infra,.mk{grid-template-columns:1fr}
+  .gal{grid-template-columns:repeat(2,1fr);grid-auto-rows:110px;gap:8px}
+  .g1,.g7,.g8{grid-column:span 2;grid-row:span 2}.g2,.g3,.g4,.g5,.g6{grid-column:span 1;grid-row:span 2}
   .vals{grid-template-columns:1fr}
-  .vals div,.vals div:nth-child(3){border-inline-start:0;padding:34px 0;border-bottom:1px solid var(--line-l)}
-  .steps{grid-template-columns:1fr;margin-top:80px;gap:40px}
-  .step{padding:0}
-  .agent{grid-template-columns:64px 1fr;gap:20px}
-  .av{width:64px;height:64px;font-size:1.5rem}
-  .devband{padding:110px 0}
-  .devband::after{background:linear-gradient(0deg,rgba(18,19,20,.92),rgba(18,19,20,.6))}
-  #map{height:360px}
-  .faq summary{font-size:1.3rem}
-  .panel{padding:36px 22px}
-  .ptabs{gap:24px}
-  .ptabs button{font-size:1.2rem}
+  .steps{grid-template-columns:1fr 1fr}
+  .steps .step:last-child{grid-column:1/-1}
+  .cta-row{padding:18px;flex-direction:column;align-items:stretch;text-align:center}
+  .cta-row .btn{justify-content:space-between}
+  .about-txt{padding:26px 22px}
+  .team{grid-template-columns:1fr}
+  .devband{padding:44px 22px;min-height:0}
+  .devband::after{background:linear-gradient(0deg,rgba(10,10,9,.92),rgba(10,10,9,.5))}
+  .legend{padding:24px 20px}
+  #map{min-height:300px}
+  .c-info,.panel{padding:24px 18px}
   .form .two{grid-template-columns:1fr}
-  .f-top{grid-template-columns:1fr}
-  .mtx{padding:40px 24px}
-  .mtx h3{font-size:2.2rem}
+  .f-card{grid-template-columns:1fr;padding:28px 22px}
+  .mtx{padding:24px 14px 16px}
+  .mtx h3{font-size:2rem}
   .fab{display:none}
-  .mbar{display:grid;grid-template-columns:1fr 1fr;position:fixed;bottom:0;left:0;right:0;z-index:70;border-top:1px solid var(--gold)}
-  .mbar a{padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));text-align:center;letter-spacing:.2em;font-size:.88rem}
-  .mbar a:first-child{background:var(--ink);color:var(--gold-l)}
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:calc(10px + env(safe-area-inset-bottom,0px));left:10px;right:10px;z-index:70;padding:6px;border-radius:999px;background:rgba(15,15,14,.85);backdrop-filter:blur(16px);border:1px solid var(--line-d)}
+  .mbar a{padding:12px;border-radius:999px;text-align:center;font-weight:500;font-size:.92rem;color:var(--sand)}
   .mbar a:last-child{background:var(--gold);color:var(--ink)}
-  footer{padding-bottom:100px}
+  footer{padding-bottom:96px}
 }
 </style>
 </head>
@@ -462,10 +490,10 @@ footer a:hover{color:var(--ivory)}
 
 <!-- ================= HEADER ================= -->
 <header class="hdr" id="hdr">
-  <div class="wrap">
+  <div class="bar">
     <a href="#top" class="mark" aria-label="אמון נדל״ן – לראש הדף">
       <span class="mono">א</span>
-      <span class="wm"><b>אמון</b><small>נדל״ן · שיווק · השכרה</small></span>
+      <span><b>אמון</b><small>נדל״ן · שיווק · השכרה</small></span>
     </a>
     <nav class="nav" id="nav">
       <a href="#projects">פרויקטים</a>
@@ -476,35 +504,49 @@ footer a:hover{color:var(--ivory)}
     </nav>
     <div class="hdr-end">
       <a class="hdr-tel" href="tel:+972584128725" dir="ltr">058-412-8725</a>
-      <a href="#contact" class="btn">צרו קשר</a>
-      <button class="burger" id="burger" aria-label="פתיחת תפריט"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 8h18M3 16h18"/></svg></button>
+      <a href="#contact" class="btn gold sm">צרו קשר<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+      <button class="burger" id="burger" aria-label="פתיחת תפריט"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9h16M4 15h16"/></svg></button>
     </div>
   </div>
 </header>
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
-  <div class="hero-bg" role="img" aria-label="הדמיית פרויקט מגורים"></div>
-  <div class="wrap">
+  <div class="hero-frame">
+    <div class="hero-bg" role="img" aria-label="הדמיית פרויקט מגורים"></div>
     <div class="hero-in">
-      <div class="eyebrow">שיווק פרויקטים חדשים · מכירה · השכרה</div>
-      <h1><span>הבית הנכון.</span><span><em>האנשים</em> הנכונים.</span></h1>
-      <p>חברת שיווק נדל״ן בפריסה ארצית, עם התמחות ברובע הבינלאומי בלוד. ליווי אישי של יהודה כהן וישראל מזרחי – מהשיחה הראשונה ועד המפתח.</p>
-      <div class="btns">
-        <a href="#contact" class="btn solid" data-path="owner">אני בעל נכס</a>
-        <a href="#contact" class="btn" data-path="seeker">אני מחפש דירה</a>
+      <div class="l">
+        <span class="chip">שיווק פרויקטים חדשים · מכירה · השכרה</span>
+        <h1>הבית הנכון.<br><em>האנשים</em> הנכונים.</h1>
+        <p>חברת שיווק נדל״ן בפריסה ארצית, עם התמחות ברובע הבינלאומי בלוד. ליווי אישי מהשיחה הראשונה ועד המפתח.</p>
+        <div class="btns">
+          <a href="#contact" class="btn gold" data-path="owner">אני בעל נכס<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+          <a href="#contact" class="btn ghost" data-path="seeker">אני מחפש דירה<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+        </div>
+      </div>
+      <div class="hero-card glass">
+        <div class="t"><span>התוצאות שלנו בפרויקטים חדשים</span><i></i></div>
+        <div class="hc-grid">
+          <div><b>105</b><span>נכסים הושכרו</span></div>
+          <div><b>19</b><span>דירות נמכרו</span></div>
+          <div><b>4</b><span>פרויקטים פעילים</span></div>
+        </div>
       </div>
     </div>
-    <a href="#intro" class="hero-side" aria-label="גלילה למטה"><span>גללו</span><i></i></a>
   </div>
 </section>
 
+<!-- marquee -->
+<div class="marq" aria-hidden="true"><div class="track" id="marq"></div></div>
+
 <!-- ================= INTRO ================= -->
-<section class="sec intro ivory" id="intro">
-  <div class="wrap">
-    <div class="eyebrow rv"><span class="n">01</span> הגישה שלנו</div>
-    <p class="statement rv" style="margin-top:40px">אנחנו לא רואים בנדל״ן רק עסקאות ועמלות. אנחנו רואים <em>אנשים, משפחות וחלומות</em> – ומלווים כל אחד מהם בשקיפות מלאה, עד שהבית הנכון נמצא.</p>
-    <div class="sig rv">יהודה כהן וישראל מזרחי · מייסדים ושותפים</div>
+<section class="sec" id="intro">
+  <div class="wrap intro-grid">
+    <div class="rv">
+      <span class="chip">הגישה שלנו</span>
+      <p class="statement">אנחנו לא רואים בנדל״ן רק עסקאות ועמלות. אנחנו רואים <em>אנשים, משפחות וחלומות</em> – ומלווים כל אחד מהם בשקיפות מלאה, עד שהבית הנכון נמצא.</p>
+      <div class="sig"><span class="avs"><i>י״כ</i><i>י״מ</i></span>יהודה כהן וישראל מזרחי · מייסדים ושותפים</div>
+    </div>
     <div class="nums">
       <div class="num rv"><b dir="ltr" style="text-align:right"><span data-count="10">10</span>+</b><small>שנות ניסיון בשוק הנדל״ן</small></div>
       <div class="num rv"><b data-count="105">105</b><small>נכסים שהושכרו בפרויקטים חדשים</small></div>
@@ -517,14 +559,14 @@ footer a:hover{color:var(--ivory)}
 <!-- ================= FEATURED ================= -->
 <section class="sec dark" id="featured">
   <div class="wrap">
-    <div class="head">
-      <div class="rv"><div class="eyebrow"><span class="n">02</span> נכסים נבחרים</div><h2 class="h2">הנכסים המובילים שלנו</h2></div>
-      <p class="lede rv">מבחר נכסים מהפרויקטים שאנחנו משווקים – דירות גן, דירות גג ודירות חדשות להשכרה.</p>
+    <div class="head rv">
+      <div><span class="chip">נכסים נבחרים</span><h2 class="h2">הנכסים <em>המובילים</em> שלנו</h2></div>
+      <p class="lede">דירות גן, דירות גג ודירות חדשות להשכרה – מבחר מהפרויקטים שאנחנו משווקים.</p>
     </div>
     <div class="feat rv">
       <div class="feat-media" id="fmedia">
-        <span class="badge-f" id="fbadge"></span>
-        <div class="dots" id="fdots"></div>
+        <span class="badge-f gl" id="fbadge"></span>
+        <div class="dots gl" id="fdots"></div>
       </div>
       <div class="feat-txt">
         <div class="tabs" id="ftabs"></div>
@@ -534,10 +576,10 @@ footer a:hover{color:var(--ivory)}
         <div class="meta" id="fmeta"></div>
         <p id="fdesc"></p>
         <div class="feat-ctl">
-          <a href="#contact" class="link" data-path="seeker">לפרטים נוספים <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
+          <a href="#contact" class="link" data-path="seeker">לפרטים נוספים <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></a>
           <div class="arrows">
-            <button class="arrow" id="fprev" aria-label="הקודם"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M9 6l6 6-6 6"/></svg></button>
-            <button class="arrow" id="fnext" aria-label="הבא"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button class="arrow" id="fprev" aria-label="הקודם"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg></button>
+            <button class="arrow" id="fnext" aria-label="הבא"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 6l-6 6 6 6"/></svg></button>
           </div>
         </div>
       </div>
@@ -548,39 +590,42 @@ footer a:hover{color:var(--ivory)}
 <!-- ================= PROJECTS ================= -->
 <section class="sec" id="projects">
   <div class="wrap">
-    <div class="head">
-      <div class="rv"><div class="eyebrow"><span class="n">03</span> תיק עבודות</div><h2 class="h2">הפרויקטים שלנו</h2></div>
-      <p class="lede rv">פרויקטים ששיווקנו ושאנחנו פעילים בהם. לחצו על פרויקט כדי לראות תמונות, פרטים ותוצאות.</p>
+    <div class="head rv">
+      <div><span class="chip">תיק עבודות</span><h2 class="h2">הפרויקטים <em>שלנו</em></h2></div>
+      <p class="lede">פרויקטים ששיווקנו ושאנחנו פעילים בהם. לחצו על פרויקט לתמונות, פרטים ותוצאות.</p>
     </div>
-    <div class="filters" id="pfilters"></div>
+    <div class="filters rv" id="pfilters"></div>
     <div class="pgrid" id="pgrid"></div>
   </div>
 </section>
 
 <!-- ================= INTERNATIONAL QUARTER ================= -->
-<section class="dark" id="quarter">
-  <div class="q-band">
-    <img src="assets/img/street-row.jpg" alt="רחוב מגורים חדש ברובע הבינלאומי" loading="lazy">
-    <div class="wrap rv">
-      <div class="eyebrow"><span class="n">04</span> מוקד הפעילות שלנו</div>
-      <h2>הרובע הבינלאומי, לוד</h2>
-      <p>אחת השכונות החדשות הגדולות שנבנות היום במרכז הארץ – כ-11,350 יחידות דיור, פארקים, מסחר ותעסוקה, כ-500 מטר מתחנת רכבת ו-12 דקות ברכבת מתל אביב.</p>
-    </div>
-  </div>
-  <div class="wrap" style="padding-bottom:150px">
-    <div class="qstats rv">
-      <div><b>11,350</b><span>יחידות דיור מתוכננות</span></div>
-      <div><b>1,600</b><span>דונם</span></div>
-      <div><b>12 דק'</b><span>ברכבת לתל אביב</span></div>
-      <div><b dir="ltr" style="text-align:right">~40,000</b><span>תושבים חדשים צפויים</span></div>
-      <div><b>154,000</b><span>מ"ר שטחי תעסוקה</span></div>
+<section class="sec dark" id="quarter">
+  <div class="wrap">
+    <div class="q-band rv">
+      <img src="assets/img/street-row.jpg" alt="רחוב מגורים חדש ברובע הבינלאומי" loading="lazy">
+      <div class="q-in">
+        <div>
+          <span class="chip">מוקד הפעילות שלנו</span>
+          <h2>הרובע הבינלאומי, לוד</h2>
+          <p>אחת השכונות החדשות הגדולות שנבנות היום במרכז הארץ – כ-11,350 יחידות דיור, פארקים, מסחר ותעסוקה, כ-500 מטר מתחנת רכבת ו-12 דקות ברכבת מתל אביב.</p>
+        </div>
+        <div class="qstats glass">
+          <div><b>11,350</b><span>יחידות דיור מתוכננות</span></div>
+          <div><b>1,600</b><span>דונם</span></div>
+          <div><b>12 דק'</b><span>ברכבת לתל אביב</span></div>
+          <div><b dir="ltr" style="text-align:right">~40,000</b><span>תושבים חדשים צפויים</span></div>
+          <div><b>154,000</b><span>מ"ר שטחי תעסוקה</span></div>
+          <div><b>500 מ'</b><span>מתחנת רכבת גני אביב</span></div>
+        </div>
+      </div>
     </div>
 
     <div class="q-split">
-      <div class="rv">
-        <div class="eyebrow">על השכונה</div>
+      <div class="tile rv">
+        <span class="chip">על השכונה</span>
         <h3>עיר חדשה בתוך העיר, במיקום הכי מרכזי בישראל</h3>
-        <p>הרובע הבינלאומי משתרע על כ-1,600 דונם במערב לוד, בין שכונת גני אביב, מושב ניר צבי ובאר יעקב, על קרקעות שהועברו לעיר במסגרת הסכם הגג. הפרויקט הוא אחד המהלכים המרכזיים בהסכם האסטרטגי שנחתם ב-2017 בין הממשלה לעיריית לוד.</p>
+        <p>הרובע הבינלאומי משתרע על כ-1,600 דונם במערב לוד, בין שכונת גני אביב, מושב ניר צבי ובאר יעקב, על קרקעות שהועברו לעיר במסגרת הסכם הגג – אחד המהלכים המרכזיים בהסכם האסטרטגי שנחתם ב-2017 בין הממשלה לעיריית לוד.</p>
         <p>את התכנון מובילה החברה הכלכלית לוד יחד עם החברה הממשלתית "דירה להשכיר", במודל של שימושים מעורבים: מגורים לצד מסחר, תעסוקה, מבני ציבור ושטחים פתוחים.</p>
         <ul class="checks">
           <li>בניינים בגובה 7 עד 15 קומות</li>
@@ -589,146 +634,140 @@ footer a:hover{color:var(--ivory)}
           <li>כ-48,000 מ"ר מסחר וכ-154,000 מ"ר תעסוקה</li>
         </ul>
       </div>
-      <div class="rv">
-        <div class="eyebrow">ציר הזמן</div>
+      <div class="tile rv">
+        <span class="chip">ציר הזמן</span>
         <h3>מתכנית על הנייר לשכונה חיה</h3>
         <div class="tl">
-          <div class="tl-i"><div class="y" dir="ltr">2017</div><div><h4>הסכם אסטרטגי ממשלה–עיריית לוד</h4><p>הרובע מוגדר כמנוע צמיחה מרכזי של העיר והתכנון יוצא לדרך.</p></div></div>
-          <div class="tl-i"><div class="y" dir="ltr">2022–2024</div><div><h4>שיווק קרקעות ותחילת פיתוח</h4><p>מכרזי רמ"י והחברה הכלכלית משווקים אלפי יחידות דיור.</p></div></div>
-          <div class="tl-i"><div class="y" dir="ltr">2025</div><div><h4>כ-4,100 יח"ד שווקו</h4><p>לפי פרסומי העירייה, וכ-1,700 יח"ד נוספות בשיווק.</p></div></div>
-          <div class="tl-i"><div class="y" dir="ltr">2026</div><div><h4>הבנייה בעיצומה</h4><p>פרויקטים בשלבי בנייה שונים, והחברה הכלכלית מקדמת עבודות פיתוח ושטחים ציבוריים.</p></div></div>
-          <div class="tl-i"><div class="y" dir="ltr">2027–2029</div><div><h4>גלי אכלוס</h4><p>מועדי האכלוס משתנים לפי יזם ופרויקט.</p></div></div>
+          <div class="tl-i"><div class="y" dir="ltr" style="text-align:right">2017</div><h4>הסכם אסטרטגי ממשלה–עיריית לוד</h4><p>הרובע מוגדר כמנוע צמיחה מרכזי של העיר והתכנון יוצא לדרך.</p></div>
+          <div class="tl-i"><div class="y" dir="ltr" style="text-align:right">2022–2024</div><h4>שיווק קרקעות ותחילת פיתוח</h4><p>מכרזי רמ"י והחברה הכלכלית משווקים אלפי יחידות דיור.</p></div>
+          <div class="tl-i"><div class="y" dir="ltr" style="text-align:right">2025</div><h4>כ-4,100 יח"ד שווקו</h4><p>לפי פרסומי העירייה, וכ-1,700 יח"ד נוספות בשיווק.</p></div>
+          <div class="tl-i"><div class="y" dir="ltr" style="text-align:right">2026</div><h4>הבנייה בעיצומה</h4><p>פרויקטים בשלבי בנייה שונים, והחברה הכלכלית מקדמת עבודות פיתוח ושטחים ציבוריים.</p></div>
+          <div class="tl-i"><div class="y" dir="ltr" style="text-align:right">2027–2029</div><h4>גלי אכלוס</h4><p>מועדי האכלוס משתנים לפי יזם ופרויקט.</p></div>
         </div>
       </div>
     </div>
 
     <div class="infra">
-      <div class="rv"><span class="k">תחבורה</span><h4>רכבת במרחק הליכה</h4><p>תחנת לוד–גני אביב נמצאת כ-500 מטר מהשכונה, עם נסיעה של 10 עד 12 דקות לתל אביב ההגנה. התכנית כוללת שדרוג והרחבה של התחנה.</p></div>
-      <div class="rv"><span class="k">נגישות</span><h4>כבישים ונתב"ג</h4><p>גישה מהירה לכבישים 1, 6, 40 ו-44 וקרבה לנמל התעופה בן גוריון. ראשון לציון, רחובות ומודיעין בהישג יד.</p></div>
-      <div class="rv"><span class="k">חינוך</span><h4>חינוך ומבני ציבור</h4><p>התכנית כוללת שטחים ייעודיים למוסדות חינוך ומבני ציבור לאורך השכונה, בהתאם לשלבי האכלוס.</p></div>
-      <div class="rv"><span class="k">מסחר</span><h4>מסחר ותעסוקה</h4><p>כ-48,000 מ"ר מסחר וכ-154,000 מ"ר תעסוקה מתוכננים, כולל מוקד עירוני סביב תחנת הרכבת.</p></div>
-      <div class="rv"><span class="k">טבע</span><h4>פארקים ושטחים פתוחים</h4><p>פארק אקליפטוסים גדול, שצ"פים וגינות ציבוריות – תכנון ירוק מאפס, בלי הפשרות של שכונות ותיקות.</p></div>
-      <div class="rv"><span class="k">ערך</span><h4>כניסה בשלב מוקדם</h4><p>השכונה עדיין נבנית. ככל שהאכלוס, המסחר והתעסוקה יתמלאו, צפוי ביקוש גובר לרכישה ולשכירות באזור.</p></div>
+      <div class="tile rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M9 21l-2-4M15 21l2-4"/></svg></span><h4>רכבת במרחק הליכה</h4><p>תחנת לוד–גני אביב כ-500 מטר מהשכונה, 10 עד 12 דקות לתל אביב ההגנה. התכנית כוללת שדרוג והרחבה של התחנה.</p></div>
+      <div class="tile rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/><circle cx="12" cy="12" r="9"/></svg></span><h4>כבישים ונתב"ג</h4><p>גישה מהירה לכבישים 1, 6, 40 ו-44 וקרבה לנמל התעופה בן גוריון.</p></div>
+      <div class="tile rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></span><h4>חינוך ומבני ציבור</h4><p>שטחים ייעודיים למוסדות חינוך ומבני ציבור לאורך השכונה, בהתאם לשלבי האכלוס.</p></div>
+      <div class="tile rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7h16l-1 13H5z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></span><h4>מסחר ותעסוקה</h4><p>כ-48,000 מ"ר מסחר וכ-154,000 מ"ר תעסוקה, כולל מוקד עירוני סביב תחנת הרכבת.</p></div>
+      <div class="tile rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22V12M12 12c0-4 3-7 7-7 0 4-3 7-7 7zM12 14c0-3-2.5-5.5-6-5.5 0 3 2.5 5.5 6 5.5z"/></svg></span><h4>פארקים ושטחים פתוחים</h4><p>פארק אקליפטוסים גדול, שצ"פים וגינות ציבוריות – תכנון ירוק מאפס.</p></div>
+      <div class="tile rv"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></span><h4>כניסה בשלב מוקדם</h4><p>השכונה עדיין נבנית. ככל שהאכלוס, המסחר והתעסוקה יתמלאו, צפוי ביקוש גובר באזור.</p></div>
     </div>
 
-    <div class="mk rv">
-      <div><b>24 עד 25 אלף ₪</b><span>מחיר ממוצע למ"ר</span><p>לפי נתוני עסקאות שפורסמו לאזור.</p></div>
-      <div><b>מ-2.2 מיליון ₪</b><span>מחירי פתיחה</span><p>בפרויקטים חדשים, לדירות 3 עד 5 חדרים.</p></div>
-      <div><b>461 מיליון ₪</b><span>מכרז ל-596 דירות</span><p>כ-773 אלף ₪ ליח"ד כולל פיתוח.</p></div>
-      <div><b dir="ltr" style="text-align:right">2027–2029</b><span>מועדי אכלוס צפויים</span><p>משתנים לפי יזם ופרויקט.</p></div>
+    <div class="mk">
+      <div class="tile rv"><b>24 עד 25 אלף ₪</b><span>מחיר ממוצע למ"ר</span><p>לפי נתוני עסקאות שפורסמו לאזור.</p></div>
+      <div class="tile rv"><b>מ-2.2 מיליון ₪</b><span>מחירי פתיחה</span><p>בפרויקטים חדשים, לדירות 3 עד 5 חדרים.</p></div>
+      <div class="tile rv"><b>461 מיליון ₪</b><span>מכרז ל-596 דירות</span><p>כ-773 אלף ₪ ליח"ד כולל פיתוח.</p></div>
+      <div class="tile rv"><b dir="ltr" style="text-align:right">2027–2029</b><span>מועדי אכלוס צפויים</span><p>משתנים לפי יזם ופרויקט.</p></div>
     </div>
-    <div class="devs rv">
-      <span class="lbl">חלק מהיזמים והגופים הפועלים ברובע</span>
-      <span>רם אדרת</span><span>אשטרום</span><span>אבני דרך</span><span>רייסדור</span><span>בוני ישראל</span><span>באר משה ומרים</span><span>אייל פרץ</span><span>עמרם אברהם</span><span>דירה להשכיר</span>
+    <div class="q-foot rv">
+      <div class="devs"><span class="lbl">חלק מהיזמים והגופים ברובע:</span><span>רם אדרת</span><span>אשטרום</span><span>אבני דרך</span><span>רייסדור</span><span>בוני ישראל</span><span>באר משה ומרים</span><span>אייל פרץ</span><span>עמרם אברהם</span><span>דירה להשכיר</span></div>
+      <a href="#contact" class="btn gold" data-path="seeker">אני מתעניין/ת ברובע<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
     </div>
     <p class="note">* מבוסס על פרסומי עיריית לוד, החברה הכלכלית לוד, TheMarker, מרכז הנדל״ן ומדלן. הנתונים תכנוניים, נכונים למועד פרסומם ועשויים להשתנות.</p>
-    <div class="rv" style="margin-top:60px"><a href="#contact" class="btn" data-path="seeker">אני מתעניין/ת ברובע הבינלאומי</a></div>
   </div>
 </section>
 
 <!-- ================= GALLERY ================= -->
-<section class="sec ivory" id="gallery">
+<section class="sec" id="gallery">
   <div class="wrap">
-    <div class="head">
-      <div class="rv"><div class="eyebrow"><span class="n">05</span> גלריה</div><h2 class="h2">רם אדרת, מבפנים ומבחוץ</h2></div>
-      <p class="lede rv">הדמיות מפרויקט הבוטיק באחיסמך – דופלקסים וטריפלקסים עם גינות פרטיות ומרפסות גג.</p>
+    <div class="head rv">
+      <div><span class="chip">גלריה</span><h2 class="h2">רם אדרת, <em>מבפנים ומבחוץ</em></h2></div>
+      <p class="lede">הדמיות מפרויקט הבוטיק באחיסמך – דופלקסים וטריפלקסים עם גינות פרטיות ומרפסות גג.</p>
     </div>
     <div class="gal">
-      <figure class="g1 rv"><img src="assets/img/facade-front.jpg" alt="חזית בניין" loading="lazy" data-lb><figcaption>חזית</figcaption></figure>
-      <figure class="g2 rv"><img src="assets/img/penthouse-living.jpg" alt="חלל מגורים פתוח" loading="lazy" data-lb><figcaption>חלל מגורים</figcaption></figure>
-      <figure class="g3 rv"><img src="assets/img/bedroom-patio.jpg" alt="חדר הורים עם פטיו" loading="lazy" data-lb><figcaption>יחידת הורים</figcaption></figure>
-      <figure class="g4 rv"><img src="assets/img/garden-pergola.jpg" alt="דירת גן עם פרגולה" loading="lazy" data-lb><figcaption>דירת גן</figcaption></figure>
-      <figure class="g5 rv"><img src="assets/img/roof-terrace.jpg" alt="מרפסת גג" loading="lazy" data-lb><figcaption>מרפסת</figcaption></figure>
-      <figure class="g6 rv"><img src="assets/img/roof-sunset.jpg" alt="מרפסת גג בשקיעה" loading="lazy" data-lb><figcaption>גג בשקיעה</figcaption></figure>
-      <figure class="g7 rv"><img src="assets/img/roof-bar.jpg" alt="מרפסת גג עם מטבח חוץ" loading="lazy" data-lb><figcaption>מטבח חוץ</figcaption></figure>
-      <figure class="g8 rv"><img src="assets/img/street-trees.jpg" alt="שדרות ירוקות" loading="lazy" data-lb><figcaption>הרחוב</figcaption></figure>
+      <figure class="g1 rv"><img src="assets/img/facade-front.jpg" alt="חזית בניין" loading="lazy" data-lb><figcaption class="gl">חזית</figcaption></figure>
+      <figure class="g2 rv"><img src="assets/img/penthouse-living.jpg" alt="חלל מגורים פתוח" loading="lazy" data-lb><figcaption class="gl">חלל מגורים</figcaption></figure>
+      <figure class="g3 rv"><img src="assets/img/bedroom-patio.jpg" alt="חדר הורים עם פטיו" loading="lazy" data-lb><figcaption class="gl">יחידת הורים</figcaption></figure>
+      <figure class="g4 rv"><img src="assets/img/garden-pergola.jpg" alt="דירת גן עם פרגולה" loading="lazy" data-lb><figcaption class="gl">דירת גן</figcaption></figure>
+      <figure class="g5 rv"><img src="assets/img/roof-terrace.jpg" alt="מרפסת גג" loading="lazy" data-lb><figcaption class="gl">מרפסת</figcaption></figure>
+      <figure class="g6 rv"><img src="assets/img/roof-sunset.jpg" alt="מרפסת גג בשקיעה" loading="lazy" data-lb><figcaption class="gl">גג בשקיעה</figcaption></figure>
+      <figure class="g7 rv"><img src="assets/img/roof-bar.jpg" alt="מרפסת גג עם מטבח חוץ" loading="lazy" data-lb><figcaption class="gl">מטבח חוץ</figcaption></figure>
+      <figure class="g8 rv"><img src="assets/img/street-trees.jpg" alt="שדרות ירוקות" loading="lazy" data-lb><figcaption class="gl">הרחוב</figcaption></figure>
     </div>
   </div>
 </section>
 
 <!-- ================= APPROACH + PROCESS ================= -->
-<section class="sec" id="owners">
+<section class="sec sandbg" id="owners" style="background:var(--paper);padding-top:0">
   <div class="wrap">
-    <div class="head">
-      <div class="rv"><div class="eyebrow"><span class="n">06</span> לבעלי נכסים</div><h2 class="h2">מה מבדיל אותנו</h2></div>
-      <p class="lede rv">גישה שמחברת בין היכרות עמוקה עם השוק, שקיפות מלאה וליווי צמוד – לבעלי נכסים, לרוכשים ולשוכרים.</p>
+    <div class="head rv">
+      <div><span class="chip">לבעלי נכסים</span><h2 class="h2">מה <em>מבדיל</em> אותנו</h2></div>
+      <p class="lede">היכרות עמוקה עם השוק, שקיפות מלאה וליווי צמוד – לבעלי נכסים, לרוכשים ולשוכרים.</p>
     </div>
     <div class="vals">
-      <div class="rv"><span class="k">I</span><h3>התמחות בפרויקטים חדשים</h3><p>היכרות מעמיקה עם הדינמיקה של מכירה והשכרה בבניינים חדשים, עם היזמים ועם רמות המחירים בכל פרויקט.</p></div>
-      <div class="rv"><span class="k">II</span><h3>תמחור מדויק</h3><p>ניתוח עסקאות והשוואה לנכסים דומים בפרויקט – כדי שתקבלו את המחיר הנכון, לא רק את המחיר המהיר.</p></div>
-      <div class="rv"><span class="k">III</span><h3>התאמה וסינון</h3><p>אנחנו מקשיבים לצרכים, לתקציב ולחלומות, ומתאימים נכס ללקוח ולקוח לנכס.</p></div>
-      <div class="rv"><span class="k">IV</span><h3>יושרה וליווי</h3><p>עדכון שוטף, אמירת אמת גם כשהיא לא נוחה, וליווי מקצועי ואנושי גם אחרי שהעסקה נחתמה.</p></div>
+      <div class="val rv"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg></span><h3>התמחות בפרויקטים חדשים</h3><p>היכרות מעמיקה עם מכירה והשכרה בבניינים חדשים, עם היזמים ועם רמות המחירים בכל פרויקט.</p></div>
+      <div class="val rv"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><h3>תמחור מדויק</h3><p>ניתוח עסקאות והשוואה לנכסים דומים – כדי שתקבלו את המחיר הנכון, לא רק את המהיר.</p></div>
+      <div class="val rv"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M16 11l2 2 4-4"/></svg></span><h3>התאמה וסינון</h3><p>מקשיבים לצרכים, לתקציב ולחלומות, ומתאימים נכס ללקוח ולקוח לנכס.</p></div>
+      <div class="val rv"><span class="k"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-8-4.5-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 6.5-8 11-8 11z"/></svg></span><h3>יושרה וליווי</h3><p>עדכון שוטף, אמירת אמת גם כשהיא לא נוחה, וליווי גם אחרי שהעסקה נחתמה.</p></div>
     </div>
     <div class="steps" id="steps"></div>
-    <div class="rv" style="margin-top:80px"><a href="#contact" class="btn onlight" data-path="owner">יש לי נכס – בואו נדבר</a></div>
+    <div class="cta-row rv"><p>יש לכם נכס בפרויקט חדש? בואו נדבר.</p><a href="#contact" class="btn ink" data-path="owner">יש לי נכס<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a></div>
   </div>
 </section>
 
 <!-- ================= ABOUT ================= -->
-<section class="sec dark about" id="about">
+<section class="sec dark" id="about">
   <div class="wrap">
-    <div class="rv">
-      <div class="eyebrow"><span class="n">07</span> אודות</div>
-      <p class="quote">אמון הוא הבסיס לכל עסקה טובה – מול בעלי הנכס, מול השוכרים והרוכשים, ומול היזמים.</p>
-      <p>אמון נדל״ן מנוהלת על ידי <strong>יהודה כהן וישראל מזרחי</strong>, בעלי ניסיון של למעלה מעשר שנים בשוק הנדל״ן, עם התמחות בשיווק פרויקטים חדשים, השכרת דירות ומכירת נכסים.</p>
-      <p>המטרה שלנו היא לבנות קשרים ארוכי טווח, להעניק ביטחון ושקט נפשי, ולמצוא לכל לקוח את הנכס שמתאים לו באמת.</p>
-    </div>
-    <div class="rv">
-      <div class="about-img"><img src="assets/img/living-garden.jpg" alt="סלון עם יציאה לגינה" loading="lazy"></div>
-      <div class="team">
-        <div class="agent">
-          <div class="av">י״כ</div>
-          <div>
-            <h3>יהודה כהן</h3>
-            <div class="r">מייסד ושותף</div>
-            <div class="acts"><a href="tel:+972505840144" class="tel">050-584-0144</a><a href="https://wa.me/972505840144" target="_blank" rel="noopener" class="wa">וואטסאפ</a></div>
+    <div class="about-grid">
+      <div class="about-txt rv">
+        <span class="chip">אודות</span>
+        <p class="quote"><em>אמון</em> הוא הבסיס לכל עסקה טובה – מול בעלי הנכס, מול השוכרים והרוכשים, ומול היזמים.</p>
+        <p>אמון נדל״ן מנוהלת על ידי <strong>יהודה כהן וישראל מזרחי</strong>, בעלי ניסיון של למעלה מעשר שנים בשוק הנדל״ן, עם התמחות בשיווק פרויקטים חדשים, השכרת דירות ומכירת נכסים.</p>
+        <p>המטרה שלנו היא לבנות קשרים ארוכי טווח, להעניק ביטחון ושקט נפשי, ולמצוא לכל לקוח את הנכס שמתאים לו באמת.</p>
+        <div class="vchips"><span>יושרה ושקיפות מלאה</span><span>אמון ויחס אישי</span><span>חיבור אמיתי בין אנשים</span><span>ליווי גם אחרי העסקה</span></div>
+      </div>
+      <div class="about-side">
+        <div class="about-img rv"><img src="assets/img/living-garden.jpg" alt="סלון עם יציאה לגינה" loading="lazy"></div>
+        <div class="team rv">
+          <div class="agent">
+            <div class="top"><span class="av">י״כ</span><div><h3>יהודה כהן</h3><div class="r">מייסד ושותף</div></div></div>
+            <a class="tel" href="tel:+972505840144">050-584-0144</a>
+            <div class="acts"><a href="tel:+972505840144">חיוג</a><a class="wa" href="https://wa.me/972505840144" target="_blank" rel="noopener">וואטסאפ</a></div>
           </div>
-        </div>
-        <div class="agent">
-          <div class="av">י״מ</div>
-          <div>
-            <h3>ישראל מזרחי</h3>
-            <div class="r">מייסד ושותף</div>
-            <div class="acts"><a href="tel:+972584128725" class="tel">058-412-8725</a><a href="https://wa.me/972584128725" target="_blank" rel="noopener" class="wa">וואטסאפ</a></div>
+          <div class="agent">
+            <div class="top"><span class="av">י״מ</span><div><h3>ישראל מזרחי</h3><div class="r">מייסד ושותף</div></div></div>
+            <a class="tel" href="tel:+972584128725">058-412-8725</a>
+            <div class="acts"><a href="tel:+972584128725">חיוג</a><a class="wa" href="https://wa.me/972584128725" target="_blank" rel="noopener">וואטסאפ</a></div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ================= DEVELOPERS ================= -->
-<section class="devband" id="developers">
-  <img src="assets/img/davidson-cover.jpg" alt="" loading="lazy">
-  <div class="wrap">
-    <div class="in rv">
-      <div class="eyebrow">ליזמים וקבלנים</div>
-      <h2 class="h2">יש לכם פרויקט שצריך לשווק?</h2>
-      <p>אנחנו משווקים פרויקטים שלמים ומלווים את בעלי הדירות בפרויקט – מכירה, השכרה וניהול פניות, עם היכרות עמוקה עם השוק ועם הקונים.</p>
-      <a href="#contact" class="btn solid" data-path="owner" data-subject="יזם / קבלן – שיווק פרויקט">לשיחה על שיווק הפרויקט</a>
+    <!-- developers -->
+    <div class="devband rv" id="developers" style="margin-top:16px">
+      <img src="assets/img/davidson-cover.jpg" alt="" loading="lazy">
+      <div class="in">
+        <span class="chip">ליזמים וקבלנים</span>
+        <h2 class="h2">יש לכם פרויקט <em>שצריך לשווק?</em></h2>
+        <p>אנחנו משווקים פרויקטים שלמים ומלווים את בעלי הדירות בפרויקט – מכירה, השכרה וניהול פניות, עם היכרות עמוקה עם השוק ועם הקונים.</p>
+        <a href="#contact" class="btn gold" data-path="owner" data-subject="יזם / קבלן – שיווק פרויקט">לשיחה על שיווק הפרויקט<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
+      </div>
     </div>
-  </div>
-</section>
 
-<!-- ================= MAP ================= -->
-<section class="sec dark mapsec" id="mapsec">
-  <div class="wrap">
-    <div class="legend rv">
-      <div class="eyebrow"><span class="n">08</span> מפה</div>
-      <h2 class="h2" style="font-size:clamp(2.3rem,4vw,3.4rem)">אנחנו על המפה</h2>
-      <ul id="legend"></ul>
-      <p>לחצו על פרויקט ברשימה או על המפה לפרטים נוספים.</p>
+    <!-- map -->
+    <div class="map-grid" id="mapsec" style="margin-top:16px">
+      <div class="legend rv">
+        <span class="chip">מפה</span>
+        <h2 class="h2" style="font-size:clamp(2rem,3.2vw,2.6rem)">אנחנו <em>על המפה</em></h2>
+        <ul id="legend"></ul>
+        <p>לחצו על פרויקט ברשימה או על המפה לפרטים נוספים.</p>
+      </div>
+      <div id="map" class="rv" aria-label="מפת הפרויקטים"></div>
     </div>
-    <div id="map" class="rv" aria-label="מפת הפרויקטים"></div>
   </div>
 </section>
 
 <!-- ================= FAQ ================= -->
-<section class="sec ivory" id="faq">
-  <div class="wrap faq-wrap">
-    <div class="rv">
-      <div class="eyebrow"><span class="n">09</span> שאלות נפוצות</div>
-      <h2 class="h2">כל מה שרציתם לדעת</h2>
+<section class="sec sandbg" id="faq">
+  <div class="wrap faq-grid">
+    <div class="faq-side rv">
+      <span class="chip">שאלות נפוצות</span>
+      <h2 class="h2">כל מה <em>שרציתם לדעת</em></h2>
+      <p class="lede" style="margin-top:14px">לא מצאתם תשובה? אנחנו זמינים בוואטסאפ ובטלפון.</p>
+      <a href="#contact" class="btn ink">דברו איתנו<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></a>
     </div>
     <div class="faq rv">
       <details open><summary>איפה בדיוק נמצא הרובע הבינלאומי?</summary><p>במערב לוד, בין שכונת גני אביב, מושב ניר צבי ובאר יעקב – כ-500 מטר מתחנת הרכבת לוד–גני אביב ודקות מכבישים 1, 6, 40 ו-44 ומנתב"ג.</p></details>
@@ -742,17 +781,18 @@ footer a:hover{color:var(--ivory)}
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section class="sec dark contact" id="contact">
-  <div class="wrap">
-    <div class="rv">
-      <div class="eyebrow"><span class="n">10</span> צרו קשר</div>
-      <h2 class="h2">בואו נדבר</h2>
-      <p class="lede">בעלי נכס או מחפשים דירה? בחרו מסלול, השאירו פרטים ונחזור אליכם בהקדם.</p>
+<section class="sec dark" id="contact">
+  <div class="wrap c-grid">
+    <div class="c-info rv">
+      <span class="chip">צרו קשר</span>
+      <h2 class="h2">בואו <em>נדבר</em></h2>
+      <p class="lede" style="margin-top:12px">בעלי נכס או מחפשים דירה? בחרו מסלול, השאירו פרטים ונחזור אליכם בהקדם.</p>
       <div class="c-lines">
         <a href="tel:+972584128725"><small>ישראל מזרחי</small><b>058-412-8725</b></a>
         <a href="tel:+972505840144"><small>יהודה כהן</small><b>050-584-0144</b></a>
-        <a href="https://wa.me/972584128725" target="_blank" rel="noopener"><small>וואטסאפ</small><b style="direction:rtl;font-size:1.3rem">שלחו הודעה</b></a>
+        <a href="https://wa.me/972584128725" target="_blank" rel="noopener"><small>וואטסאפ</small><b style="direction:rtl">שלחו הודעה</b></a>
       </div>
+      <div class="foot">זמינים בימים א׳–ה׳, ובוואטסאפ גם מעבר לזה.</div>
     </div>
     <div class="panel rv">
       <div class="ptabs" role="tablist">
@@ -774,7 +814,7 @@ footer a:hover{color:var(--ivory)}
           <label>תקציב<input id="s-budget" name="תקציב" placeholder="לדוגמה: 6,000 ₪ / 2.5 מ׳"></label>
         </div>
         <label>דרישות והעדפות<textarea id="s-pref" name="העדפות" rows="2" placeholder="קומה, מרפסת, חניה, מועד כניסה..."></textarea></label>
-        <button class="btn solid send" type="submit">שליחת פרטים</button>
+        <button class="btn ink send" type="submit">שליחת פרטים<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></button>
         <div class="ok"></div>
         <p class="fine">בלחיצה על "שליחת פרטים" תיפתח הודעת וואטסאפ מוכנה עם הפרטים. הפרטים ישמשו לחזרה אליכם בלבד.</p>
       </form>
@@ -790,7 +830,7 @@ footer a:hover{color:var(--ivory)}
         </div>
         <label>פרויקט / כתובת הנכס<select id="o-proj" name="פרויקט" class="projsel"></select></label>
         <label>פרטי הנכס<textarea id="o-details" name="פרטי הנכס" rows="2" placeholder="קומה, שטח, מרפסת, מועד פינוי, מחיר מבוקש..."></textarea></label>
-        <button class="btn solid send" type="submit">שליחת פרטים</button>
+        <button class="btn ink send" type="submit">שליחת פרטים<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></button>
         <div class="ok"></div>
         <p class="fine">בלחיצה על "שליחת פרטים" תיפתח הודעת וואטסאפ מוכנה עם הפרטים. הפרטים ישמשו לחזרה אליכם בלבד.</p>
       </form>
@@ -801,7 +841,7 @@ footer a:hover{color:var(--ivory)}
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="wrap">
-    <div class="f-top">
+    <div class="f-card">
       <div class="f-word">אמון<small>נדל״ן · שיווק פרויקטים · מכירה · השכרה</small></div>
       <div>
         <h4>ניווט</h4>
@@ -831,7 +871,7 @@ footer a:hover{color:var(--ivory)}
    נתוני האתר – כדי להוסיף פרויקט / נכס חדש פשוט מוסיפים פריט למערכים
    ===================================================================== */
 var WA='972584128725';
-var STATUS={sell:{t:'בשיווק',c:'#9bb594'},soon:{t:'בקרוב בשיווק',c:'#d39a5f'},done:{t:'השיווק הסתיים',c:'#c2766b'},occ:{t:'מאוכלס',c:'#a6a196'}};
+var STATUS={sell:{t:'בשיווק',c:'#a9c49f'},soon:{t:'בקרוב בשיווק',c:'#d9a05f'},done:{t:'השיווק הסתיים',c:'#c9776b'},occ:{t:'מאוכלס',c:'#c9c2b4'}};
 
 var PROJECTS=[
   {id:'aderet',name:'רם אדרת',city:'אחיסמך',region:'lod',status:'sell',img:'assets/img/facade-234.jpg',
@@ -875,31 +915,35 @@ var FEATURED={
     {img:'assets/img/roof-terrace.jpg',proj:'רם אדרת · אחיסמך',title:'מרפסת צמודה לסלון',meta:['דק עץ','יציאה מהסלון'],desc:'מרפסת דק רחבה הצמודה לחלל המגורים, עם מדרגות פנימיות בין הקומות.'}
   ],
   'להשכרה':[
-    {img:'assets/img/ampa-night.jpg',proj:'מגדלי אמפא · רחובות',title:'דירות 3 עד 5 חדרים להשכרה',meta:['75 עד 121 מ"ר','מרפסת שמש'],desc:'דירות חדשות במגדלי אמפא ברחובות – 4 מגדלים בני 17 קומות עם חניה ומחסן, מועדון דיירים ושדרת מסחר למטה. כבר השכרנו בפרויקט 45 נכסים; ספרו לנו מה אתם מחפשים ונציג את הדירות הזמינות.'},
+    {img:'assets/img/ampa-night.jpg',proj:'מגדלי אמפא · רחובות',title:'דירות 3 עד 5 חדרים להשכרה',meta:['75 עד 121 מ"ר','מרפסת שמש'],desc:'דירות חדשות במגדלי אמפא ברחובות – 4 מגדלים בני 17 קומות עם חניה ומחסן, מועדון דיירים ושדרת מסחר למטה. כבר השכרנו בפרויקט 45 נכסים.'},
     {img:'assets/img/ampa-aerial.jpg',proj:'מגדלי אמפא · רחובות',title:'מגורים ליד חצרות המושבה',meta:['שדרת מסחר','גישה לכבישים 40, 4 ו-431'],desc:'ארבעת מגדלי אמפא בדרך ששת הימים, בדרום-מערב רחובות – שדרת מסחר בקומת הקרקע וגישה מהירה לכבישים הראשיים.'},
-    {img:'assets/img/davidson-coast.jpg',proj:'דוידסון בפארק הים · בת ים',title:'דירות עם נוף לים',meta:['קו ראשון לים','מגדל 40 קומות'],desc:'דירות במגדל דוידסון בפארק הים – מגדל מאוכלס עם נוף פתוח לים, לובי בחלל כפול וחניון תת-קרקעי. השכרנו בפרויקט 50 נכסים; ספרו לנו מה אתם מחפשים.'},
+    {img:'assets/img/davidson-coast.jpg',proj:'דוידסון בפארק הים · בת ים',title:'דירות עם נוף לים',meta:['קו ראשון לים','מגדל 40 קומות'],desc:'דירות במגדל דוידסון בפארק הים – מגדל מאוכלס עם נוף פתוח לים, לובי בחלל כפול וחניון תת-קרקעי. השכרנו בפרויקט 50 נכסים.'},
     {img:'assets/img/penthouse-living.jpg',proj:'פרויקטים חדשים · מרכז',title:'דירות חדשות להשכרה',meta:['כניסה מיידית / גמישה','מקבלן'],desc:'דירות חדשות בפרויקטים שאנחנו מלווים – 3, 4 ו-5 חדרים. ספרו לנו מה אתם מחפשים ונציג לכם את הנכסים הזמינים עכשיו.'},
     {img:'assets/img/facade-front.jpg',proj:'רם אדרת · אחיסמך',title:'דופלקסים להשכרה',meta:['בניין בוטיק','גינה / גג'],desc:'דופלקסים וטריפלקסים בפרויקט בוטיק – לפרטים על היחידות הפנויות השאירו פרטים.'}
   ]
 };
 
 var STEPS=[
-  ['היכרות ואבחון','פגישה אישית, היכרות עם הנכס, עם המטרות ועם לוח הזמנים שלכם.'],
-  ['תמחור ואסטרטגיה','ניתוח העסקאות בפרויקט ובסביבה, וקביעת מחיר ותכנית שיווק.'],
-  ['שיווק וסינון','חשיפה ממוקדת לקהל הנכון, סינון מתעניינים ועדכון שוטף שלכם.'],
-  ['משא ומתן וחתימה','ניהול המשא ומתן עד להסכם, בשקיפות מלאה מולכם.'],
-  ['מסירה וליווי','מסירת הנכס וליווי גם אחרי החתימה – אנחנו נשארים זמינים.']
+  ['היכרות ואבחון','פגישה אישית, היכרות עם הנכס, המטרות ולוח הזמנים.'],
+  ['תמחור ואסטרטגיה','ניתוח העסקאות בפרויקט וקביעת מחיר ותכנית שיווק.'],
+  ['שיווק וסינון','חשיפה ממוקדת, סינון מתעניינים ועדכון שוטף שלכם.'],
+  ['משא ומתן וחתימה','ניהול המשא ומתן עד להסכם, בשקיפות מלאה.'],
+  ['מסירה וליווי','מסירת הנכס וליווי גם אחרי החתימה.']
 ];
 
 (function(){
   var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
-  var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
+  var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>';
   function pad(n){return (n<10?'0':'')+n}
 
   /* header */
-  var hdr=$('#hdr');function hs(){hdr.classList.toggle('solid',scrollY>80)}addEventListener('scroll',hs,{passive:true});hs();
-  var nav=$('#nav');$('#burger').onclick=function(){nav.classList.toggle('open');hdr.classList.add('solid')};
+  var hdr=$('#hdr');function hs(){hdr.classList.toggle('solid',scrollY>60)}addEventListener('scroll',hs,{passive:true});hs();
+  var nav=$('#nav');$('#burger').onclick=function(){nav.classList.toggle('open')};
   $$('a',nav).forEach(function(a){a.onclick=function(){nav.classList.remove('open')}});
+
+  /* marquee */
+  var mq=PROJECTS.map(function(p){return '<span>'+p.name+' <small>'+p.city+'</small></span>'}).join('');
+  $('#marq').innerHTML=mq+mq+mq+mq;
 
   /* featured carousel */
   var cats=Object.keys(FEATURED),cat=cats[0],fi=0,media=$('#fmedia');
@@ -918,12 +962,14 @@ var STEPS=[
   var auto=setInterval(function(){$('#fnext').click()},7000);$('.feat').addEventListener('mouseenter',function(){clearInterval(auto)});
 
   /* projects grid + filters */
-  function stat(s){return '<span class="pstat"><i style="background:'+s.c+'"></i>'+s.t+'</span>'}
+  function stat(s,glass){return '<span class="pstat'+(glass?' gl':'')+'"><i style="background:'+s.c+'"></i>'+s.t+'</span>'}
   function card(p){var s=STATUS[p.status];var el=document.createElement('article');el.className='pcard rv';el.dataset.region=p.region;
     var top=p.res.filter(function(r){return /הושכרו|נמכרו/.test(r[1])});
-    el.innerHTML='<div class="pimg"><img src="'+p.img+'" alt="'+p.name+'" loading="lazy"></div>'+
-      '<div class="pmeta">'+stat(s)+'<h3>'+p.name+'</h3><span class="go">'+arrow+'</span><span class="city">'+p.city+'</span>'+
-      (top.length?'<div class="pstats">'+top.map(function(r){return '<span><b>'+r[0]+'</b>'+r[1]+'</span>'}).join('')+'</div>':'<div class="pstats"><span>'+p.res[0][0]+' '+p.res[0][1]+'</span></div>')+'</div>';
+    el.innerHTML='<img src="'+p.img+'" alt="'+p.name+'" loading="lazy">'+
+      '<div class="ptop">'+stat(s,true)+'<span class="pcity gl">'+p.city+'</span></div>'+
+      '<div class="pbot gl" style="border-radius:20px"><div><h3>'+p.name+'</h3>'+
+      '<div class="pstats">'+(top.length?top.map(function(r){return '<span><b>'+r[0]+'</b>'+r[1]+'</span>'}).join(''):'<span><b>'+p.res[0][0]+'</b>'+p.res[0][1]+'</span>')+'</div></div>'+
+      '<span class="pgo">'+arrow+'</span></div>';
     el.tabIndex=0;el.setAttribute('role','button');el.setAttribute('aria-label',p.name+', '+p.city);
     el.onclick=function(){openP(p)};el.onkeydown=function(e){if(e.key==='Enter')openP(p)};return el}
   var grid=$('#pgrid');PROJECTS.forEach(function(p){grid.appendChild(card(p))});
@@ -940,14 +986,14 @@ var STEPS=[
     $('#mtx').innerHTML='<button class="x" aria-label="סגירה">×</button>'+stat(s)+'<h3>'+p.name+'</h3><div class="loc">'+p.city+'</div><p>'+p.desc+'</p>'+
       '<div class="res">'+p.res.map(function(r){return '<div><b>'+r[0]+'</b><span>'+r[1]+'</span></div>'}).join('')+'</div>'+
       '<table>'+p.rows.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'}).join('')+'</table>'+
-      '<a href="'+(p.link||'#contact')+'" class="btn onlight" data-close>'+(p.link?'למידע על הרובע':'לפרטים על הפרויקט')+'</a>';
+      '<a href="'+(p.link||'#contact')+'" class="btn ink" data-close>'+(p.link?'למידע על הרובע':'לפרטים על הפרויקט')+'<span class="ic">'+arrow+'</span></a>';
     modal.classList.add('on');$('.x',modal).onclick=close;$('[data-close]',modal).onclick=function(){close();if(!p.link)pickProj(p.name)}}
   function close(){modal.classList.remove('on')}
   modal.onclick=function(e){if(e.target===modal)close()};
 
   /* process steps */
   STEPS.forEach(function(s,i){var d=document.createElement('div');d.className='step rv';
-    d.innerHTML='<span class="k">'+(i+1)+'</span><h4>'+s[0]+'</h4><p>'+s[1]+'</p>';$('#steps').appendChild(d)});
+    d.innerHTML='<span class="k">'+pad(i+1)+'</span><h4>'+s[0]+'</h4><p>'+s[1]+'</p>';$('#steps').appendChild(d)});
 
   /* project selects in forms */
   $$('.projsel').forEach(function(sel){['','הרובע הבינלאומי – לוד'].concat(PROJECTS.filter(function(p){return p.id!=='quarter'}).map(function(p){return p.name+' – '+p.city})).concat(['אחר']).forEach(function(o,i){var op=document.createElement('option');op.value=o;op.textContent=i?o:'בחרו פרויקט';sel.appendChild(op)})});
@@ -970,28 +1016,28 @@ var STEPS=[
   var legend=$('#legend');
   function legendItem(p,fn){var li=document.createElement('li');li.innerHTML='<span><i style="background:'+STATUS[p.status].c+'"></i>'+p.name+'</span><small>'+p.city+'</small>';li.onclick=fn;legend.appendChild(li)}
   if(window.L){
-    var map=L.map('map',{scrollWheelZoom:false,zoomControl:true}).setView([31.925,34.86],11);
+    var map=L.map('map',{scrollWheelZoom:false}).setView([31.925,34.86],11);
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:19,subdomains:'abcd',attribution:'&copy; OpenStreetMap &copy; CARTO'}).addTo(map);
     var bounds=[];
     PROJECTS.forEach(function(p){var s=STATUS[p.status];
-      var m=L.circleMarker([p.lat,p.lng],{radius:9,color:'#d2b98c',weight:1.5,fillColor:s.c,fillOpacity:1}).addTo(map).bindPopup('<b>'+p.name+'</b><br>'+p.city+'<br><a href="#" data-open="'+p.id+'">לפרטים</a>');
+      var m=L.circleMarker([p.lat,p.lng],{radius:10,color:'#dcc49a',weight:2,fillColor:s.c,fillOpacity:1}).addTo(map).bindPopup('<b>'+p.name+'</b><br>'+p.city+'<br><a href="#" data-open="'+p.id+'">לפרטים ←</a>');
       bounds.push([p.lat,p.lng]);
       legendItem(p,function(){map.flyTo([p.lat,p.lng],14);m.openPopup()})});
     map.fitBounds(bounds,{padding:[70,70]});
     map.on('popupopen',function(e){var a=e.popup.getElement().querySelector('[data-open]');if(a)a.onclick=function(ev){ev.preventDefault();openP(PROJECTS.filter(function(p){return p.id===a.dataset.open})[0])}});
   } else { schematic(); }
   function schematic(){
-    var W=800,H=560,la0=31.84,la1=32.11,lo0=34.64,lo1=34.98;
+    var W=800,H=520,la0=31.84,la1=32.11,lo0=34.64,lo1=34.98;
     function xy(lat,lng){return [Math.round((lng-lo0)/(lo1-lo0)*W),Math.round((la1-lat)/(la1-la0)*H)]}
     var sea=[[32.11,34.775],[32.05,34.745],[31.98,34.725],[31.90,34.705],[31.84,34.69]].map(function(c){return xy(c[0],c[1]).join(',')}).join(' ');
-    var F='font-family="Assistant,sans-serif"';
-    var svg='<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="מפה סכמטית של הפרויקטים"><rect width="'+W+'" height="'+H+'" fill="#1a1c1d"/>'+
-      '<polygon points="'+sea+' 0,'+H+' 0,0" fill="#15191b"/><polyline points="'+sea+'" fill="none" stroke="#b39361" stroke-opacity=".5" stroke-width="1"/>'+
-      '<text x="110" y="'+(H-40)+'" fill="#6f6a61" font-size="18" letter-spacing="4" '+F+' direction="rtl">הים התיכון</text>';
+    var F='font-family="IBM Plex Sans Hebrew,sans-serif"';
+    var svg='<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="מפה סכמטית של הפרויקטים"><rect width="'+W+'" height="'+H+'" fill="#181816"/>'+
+      '<polygon points="'+sea+' 0,'+H+' 0,0" fill="#121414"/><polyline points="'+sea+'" fill="none" stroke="#c3a46f" stroke-opacity=".45" stroke-width="1"/>'+
+      '<text x="110" y="'+(H-36)+'" fill="#6f6a62" font-size="16" letter-spacing="3" '+F+' direction="rtl">הים התיכון</text>';
     [['תל אביב',32.075,34.795],['ראשון לציון',31.965,34.805],['נתב"ג',31.998,34.886],['רמלה',31.928,34.866],['באר יעקב',31.94,34.837]].forEach(function(c){var q=xy(c[1],c[2]);
-      svg+='<circle cx="'+q[0]+'" cy="'+q[1]+'" r="2.5" fill="#6f6a61"/><text x="'+(q[0]-9)+'" y="'+(q[1]+5)+'" fill="#77726a" font-size="14" '+F+' direction="rtl">'+c[0]+'</text>'});
+      svg+='<circle cx="'+q[0]+'" cy="'+q[1]+'" r="2.5" fill="#6f6a62"/><text x="'+(q[0]-9)+'" y="'+(q[1]+5)+'" fill="#7c776e" font-size="13" '+F+' direction="rtl">'+c[0]+'</text>'});
     PROJECTS.forEach(function(p){var q=xy(p.lat,p.lng),s=STATUS[p.status],left=q[0]<260;
-      svg+='<g class="mpt" data-id="'+p.id+'" style="cursor:pointer"><circle cx="'+q[0]+'" cy="'+q[1]+'" r="16" fill="none" stroke="#d2b98c" stroke-opacity=".35"/><circle cx="'+q[0]+'" cy="'+q[1]+'" r="8" fill="'+s.c+'" stroke="#d2b98c" stroke-width="1.5"/><text x="'+(left?q[0]+24:q[0]-24)+'" y="'+(q[1]+7)+'" text-anchor="'+(left?'end':'start')+'" fill="#f4f0e8" font-size="20" font-family="Bellefair,serif" direction="rtl">'+p.name+'</text></g>'});
+      svg+='<g class="mpt" data-id="'+p.id+'" style="cursor:pointer"><circle cx="'+q[0]+'" cy="'+q[1]+'" r="18" fill="#c3a46f" fill-opacity=".14"/><circle cx="'+q[0]+'" cy="'+q[1]+'" r="8" fill="'+s.c+'" stroke="#dcc49a" stroke-width="2"/><text x="'+(left?q[0]+26:q[0]-26)+'" y="'+(q[1]+6)+'" text-anchor="'+(left?'end':'start')+'" fill="#efe9df" font-size="17" font-weight="500" '+F+' direction="rtl">'+p.name+'</text></g>'});
     svg+='</svg>';var m=$('#map');m.innerHTML=svg;
     $$('.mpt',m).forEach(function(g){g.onclick=function(){openP(PROJECTS.filter(function(p){return p.id===g.dataset.id})[0])}});
     PROJECTS.forEach(function(p){legendItem(p,function(){openP(p)})});
@@ -1011,7 +1057,7 @@ var STEPS=[
     $$('.rv').forEach(function(el){if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre');io.observe(el)}});
   }
   var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;co.unobserve(e.target);var el=e.target,end=+el.dataset.count,t0;
-    (function st(ts){t0=t0||ts;var p=Math.min((ts-t0)/1800,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3))).toLocaleString('en-US');if(p<1)requestAnimationFrame(st)})(performance.now())})},{threshold:.5});
+    (function st(ts){t0=t0||ts;var p=Math.min((ts-t0)/1600,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3))).toLocaleString('en-US');if(p<1)requestAnimationFrame(st)})(performance.now())})},{threshold:.5});
   $$('[data-count]').forEach(function(el){co.observe(el)});
   $('#yr').textContent=new Date().getFullYear();
 })();
